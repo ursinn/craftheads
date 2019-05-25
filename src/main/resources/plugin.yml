@@ -1,17 +1,17 @@
-main: me.deejayarroba.craftheads.Main
-version: 2.1.2
 name: CraftHeads
-author: DeejayArroba
-permissions:
-   craftheads.*:
-      description: Gives access to all of CraftHeads features
-      children:
-         craftheads.use: true
-         craftheads.updater: true
-   craftheads.use:
-      description: Gives access to the CraftHeads menu
-      default: op
-   craftheads.updater:
-      description: Gives access to CraftHeads updates
-      default: op
+version: ${project.version}
+main: me.deejayarroba.craftheads.Main
 softdepend: [Vault]
+authors: [DeejayArroba, ursinn]
+permissions:
+  craftheads.*:
+    description: Gives access to all of CraftHeads features
+    children:
+      craftheads.use: true
+      craftheads.updater: true
+  craftheads.use:
+    description: Gives access to the CraftHeads menu
+    default: op
+  craftheads.updater:
+    description: Gives access to CraftHeads updates
+    default: op

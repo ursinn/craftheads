@@ -6,26 +6,22 @@ import org.bukkit.entity.Player;
 
 public class UpdateUtil {
 
-	Main plugin = (Main) Bukkit.getPluginManager().getPlugin("CraftHeads");
-	MessageManager msg = MessageManager.getInstance();
-	private static UpdateUtil instance = new UpdateUtil();
+    MessageManager msg = MessageManager.getInstance();
+    private static UpdateUtil instance = new UpdateUtil();
 
-	// Alerts the administrator of a new update for the plugin
-	public void updateNotice(Player p) {
-		if (!Main.devBuild)
-			if (plugin.getConfig().getBoolean("update-check"))
-				if (!plugin.getConfig().getBoolean("auto-update"))
-					if (p.hasPermission("craftheads.updater") || p.isOp()) {
-						Updater updater = new Updater(plugin, 70538, plugin.getPluginFile(), Updater.UpdateType.NO_DOWNLOAD, false);
-						Updater.UpdateResult result = updater.getResult();
-						if (result == Updater.UpdateResult.UPDATE_AVAILABLE)
-							msg.info(p, "An update is available for CraftHeads. Get it here: " + updater.getLatestFileLink());
+    // Alerts the administrator of a new update for the plugin
+    public void updateNotice(Player p) {
+        if (!Main.devBuild)
+            if (Main.instance.getConfig().getBoolean("update-check"))
+                if (p.hasPermission("craftheads.updater") || p.isOp()) {
+                    UpdateChecker updateChecker = new UpdateChecker(59481);
+                    if (updateChecker.check())
+                        msg.info(p, "An update is available for CraftHeads.");
+                }
+    }
 
-					}
-	}
-
-	public static UpdateUtil getInstance() {
-		return instance;
-	}
+    public static UpdateUtil getInstance() {
+        return instance;
+    }
 
 }

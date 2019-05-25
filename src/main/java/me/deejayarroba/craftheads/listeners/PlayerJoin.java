@@ -7,9 +7,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerJoin implements Listener {
 
-	@EventHandler
-	public void onJoin(PlayerJoinEvent e) {
-		UpdateUtil.getInstance().updateNotice(e.getPlayer());
-	}
+    @EventHandler
+    public void onJoin(PlayerJoinEvent e) {
+        UpdateUtil.getInstance().updateNotice(e.getPlayer());
+    }
 
 }
