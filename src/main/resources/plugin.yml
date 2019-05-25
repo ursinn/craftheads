@@ -3,6 +3,7 @@ version: ${project.version}
 main: me.deejayarroba.craftheads.Main
 softdepend: [Vault]
 authors: [DeejayArroba, ursinn]
+api-version: 1.13
 permissions:
   craftheads.*:
     description: Gives access to all of CraftHeads features

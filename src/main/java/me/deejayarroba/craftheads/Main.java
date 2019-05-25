@@ -63,7 +63,7 @@ public class Main extends JavaPlugin {
                 new Metrics(this);
 
             if (getConfig().getBoolean("update-check")) {
-                UpdateChecker updateChecker = new UpdateChecker(59481);
+                UpdateChecker updateChecker = new UpdateChecker(59484);
                 if (updateChecker.check())
                     getLogger().info("An update for CraftHeads is available");
             }

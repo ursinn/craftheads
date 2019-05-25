@@ -11,7 +11,6 @@ import me.deejayarroba.craftheads.util.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.SkullType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
@@ -33,8 +32,7 @@ public class MainMenu extends Menu {
 
         final Items.ItemStackBuilder ownHeadBuilder = Items.builder()
                 .setName(ChatColor.GOLD + "Get your own head")
-                .setMaterial(Material.SKULL_ITEM)
-                .setData((short) SkullType.PLAYER.ordinal());
+                .setMaterial(Material.PLAYER_HEAD);
 
         Items.ItemStackBuilder otherHeadBuilder = Items.editor(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
                 .setName(ChatColor.GOLD + "Get someone else's head")

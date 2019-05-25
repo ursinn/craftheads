@@ -1,7 +1,6 @@
 package me.deejayarroba.craftheads.util;
 
 import me.deejayarroba.craftheads.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class UpdateUtil {
@@ -14,7 +13,7 @@ public class UpdateUtil {
         if (!Main.devBuild)
             if (Main.instance.getConfig().getBoolean("update-check"))
                 if (p.hasPermission("craftheads.updater") || p.isOp()) {
-                    UpdateChecker updateChecker = new UpdateChecker(59481);
+                    UpdateChecker updateChecker = new UpdateChecker(59484);
                     if (updateChecker.check())
                         msg.info(p, "An update is available for CraftHeads.");
                 }
