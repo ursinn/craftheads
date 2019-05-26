@@ -1,5 +1,7 @@
-CraftHeads
+CraftHeads 
 ==========
+
+[![Build Status](https://travis-ci.com/ursinn/CraftHeads.svg?branch=master)](https://travis-ci.com/ursinn/CraftHeads)
 
 ![CraftHeads logo](http://i.imgur.com/WqkRLhF.png)
 
