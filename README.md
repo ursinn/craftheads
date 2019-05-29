@@ -2,6 +2,7 @@ CraftHeads
 ==========
 
 [![Build Status](https://travis-ci.com/ursinn/CraftHeads.svg?branch=master)](https://travis-ci.com/ursinn/CraftHeads)
+[![Build Status](https://ci.filli-it.ch/job/ursinn/job/CraftHeads/job/master/badge/icon)](https://ci.filli-it.ch/job/ursinn/job/CraftHeads/job/master/)
 
 ![CraftHeads logo](http://i.imgur.com/WqkRLhF.png)
 
