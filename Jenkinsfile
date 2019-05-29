@@ -14,7 +14,7 @@ pipeline {
 			}
 			post {
 				success {
-					archiveArtifacts artifacts: '**/target/ursinn/CraftHeads/*.jar', fingerprint: true
+					archiveArtifacts artifacts: '**/target/**.jar', fingerprint: true
                 }
 			}
         }
