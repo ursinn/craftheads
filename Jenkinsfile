@@ -10,11 +10,11 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-				sh 'mvn clean package -Djar.finalName=${JOB_NAME}_CI_Build_#${BUILD_NUMBER}'
+				sh 'mvn clean package -Djar.finalName=CraftHeads-${JOB_NAME}-CI-Build-#${BUILD_NUMBER}'
 			}
 			post {
 				success {
-					archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
+					archiveArtifacts artifacts: '**/target/ursinn/CraftHeads/*.jar', fingerprint: true
                 }
 			}
         }
