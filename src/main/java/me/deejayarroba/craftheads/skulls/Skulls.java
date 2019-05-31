@@ -5,12 +5,14 @@ import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
 import me.deejayarroba.craftheads.util.Base64;
 import me.deejayarroba.craftheads.util.Reflections;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
+import java.util.HashMap;
 import java.util.UUID;
 
 public class Skulls {
@@ -35,7 +37,7 @@ public class Skulls {
         }
         String encodedData = Base64.encodeBytes(String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes());
         propertyMap.put("textures", new Property("textures", encodedData));
-        ItemStack head = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+        ItemStack head = new ItemStack(getSkullMaterial(), 1, (short) 3);
         ItemMeta headMeta = head.getItemMeta();
         Class<?> headMetaClass = headMeta.getClass();
         Reflections.getField(headMetaClass, "profile", GameProfile.class).set(headMeta, profile);
@@ -50,7 +52,7 @@ public class Skulls {
      * @return itemstack
      */
     public static ItemStack getPlayerSkull(String name) {
-        ItemStack itemStack = new ItemStack(Material.SKULL_ITEM, 1, (short) SkullType.PLAYER.ordinal());
+        ItemStack itemStack = new ItemStack(getSkullMaterial(), 1, (short) SkullType.PLAYER.ordinal());
         SkullMeta meta = (SkullMeta) itemStack.getItemMeta();
         meta.setOwner(name);
         itemStack.setItemMeta(meta);
@@ -72,11 +74,52 @@ public class Skulls {
      * @return itemstack
      */
     public ItemStack getSkull() {
-        ItemStack itemStack = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+        ItemStack itemStack = new ItemStack(getSkullMaterial(), 1, (short) 3);
         SkullMeta meta = (SkullMeta) itemStack.getItemMeta();
         meta.setOwner(id);
         itemStack.setItemMeta(meta);
         return itemStack;
+    }
+
+    public static HashMap<String, Boolean> getVersions() {
+        HashMap<String, Boolean> versions = new HashMap<>();
+        versions.put("v_1_7_R1", true);
+        versions.put("v_1_7_R2", true);
+        versions.put("v_1_7_R3", true);
+        versions.put("v_1_7_R4", true);
+        versions.put("v1_8_R1", true);
+        versions.put("v1_8_R2", true);
+        versions.put("v1_8_R3", true);
+        versions.put("v1_9_R1", true);
+        versions.put("v1_9_R2", true);
+        versions.put("v1_10_R1", true);
+        versions.put("v1_11_R1", true);
+        versions.put("v1_12_R1", true);
+        versions.put("v1_13_R1", false);
+        versions.put("v1_13_R2", false);
+        versions.put("v1_14_R1", false);
+
+        return versions;
+    }
+
+    public static Material getSkullMaterial() {
+        String ver = Bukkit.getServer().getClass().getPackage().getName();
+        ver = ver.substring(ver.lastIndexOf('.') + 1);
+        if (getVersions().get(ver)) {
+            return Material.getMaterial("SKULL_ITEM");
+        }
+
+        return Material.getMaterial("LEGACY_SKULL_ITEM");
+    }
+
+    public static Material getPlayerSkullMaterial() {
+        String ver = Bukkit.getServer().getClass().getPackage().getName();
+        ver = ver.substring(ver.lastIndexOf('.') + 1);
+        if (getVersions().get(ver)) {
+            return Material.getMaterial("SKULL_ITEM");
+        }
+
+        return Material.getMaterial("PLAYER_HEAD");
     }
 
 }

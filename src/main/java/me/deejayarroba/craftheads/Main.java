@@ -4,6 +4,7 @@ import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
 import me.deejayarroba.craftheads.listeners.InvClickEvent;
 import me.deejayarroba.craftheads.listeners.PlayerJoin;
 import me.deejayarroba.craftheads.menu.MenuManager;
+import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.util.AbstractCommand;
 import me.deejayarroba.craftheads.util.Metrics;
 import me.deejayarroba.craftheads.util.UpdateChecker;
@@ -36,6 +37,14 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        String ver = Bukkit.getServer().getClass().getPackage().getName();
+        ver = ver.substring(ver.lastIndexOf('.') + 1);
+        if (!Skulls.getVersions().containsKey(ver)) {
+            System.err.println("unsupported Minecraft Server version! (" + ver + ")");
+            Bukkit.getPluginManager().disablePlugin(this);
+            return;
+        }
+
         saveDefaultConfig();
 
         instance = this;

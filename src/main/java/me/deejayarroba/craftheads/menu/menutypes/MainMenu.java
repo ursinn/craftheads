@@ -33,7 +33,7 @@ public class MainMenu extends Menu {
 
         final Items.ItemStackBuilder ownHeadBuilder = Items.builder()
                 .setName(ChatColor.GOLD + "Get your own head")
-                .setMaterial(Material.SKULL_ITEM)
+                .setMaterial(Skulls.getPlayerSkullMaterial())
                 .setData((short) SkullType.PLAYER.ordinal());
 
         Items.ItemStackBuilder otherHeadBuilder = Items.editor(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
@@ -62,7 +62,6 @@ public class MainMenu extends Menu {
                 new MenuItemAction() {
                     @Override
                     public void execute(Player p) {
-
                         if (Main.economy != null) {
                             double balance = Main.economy.getBalance(p);
                             if (balance < ownHeadPrice) {
