@@ -39,4 +39,4 @@ This plugin utilizes bStats plugin metrics system, which means that the followin
 * bStats-supported plugins
 * Plugin version of bStats-supported plugins
 
-![Metrcis](https://bstats.org/signatures/bukkit/CraftHeads.svg)
+[![Metrcis](https://bstats.org/signatures/bukkit/CraftHeads.svg)](https://bstats.org/plugin/bukkit/CraftHeads)
