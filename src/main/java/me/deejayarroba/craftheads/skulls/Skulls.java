@@ -83,10 +83,19 @@ public class Skulls {
 
     public static HashMap<String, Boolean> getVersions() {
         HashMap<String, Boolean> versions = new HashMap<>();
-        versions.put("v_1_7_R1", true);
-        versions.put("v_1_7_R2", true);
-        versions.put("v_1_7_R3", true);
-        versions.put("v_1_7_R4", true);
+        versions.put("v1_4_6", true);
+        //----------------------------
+        versions.put("v1_4_R1", true);
+        versions.put("v1_5_R1", true);
+        versions.put("v1_5_R2", true);
+        versions.put("v1_6_R1", true);
+        versions.put("v1_6_R2", true);
+        versions.put("v1_6_R3", true);
+        versions.put("v1_7_R1", true);
+        versions.put("v1_7_R2", true);
+        versions.put("v1_7_R3", true);
+        versions.put("v1_7_R4", true);
+        //----------------------------
         versions.put("v1_8_R1", true);
         versions.put("v1_8_R2", true);
         versions.put("v1_8_R3", true);
@@ -98,7 +107,6 @@ public class Skulls {
         versions.put("v1_13_R1", false);
         versions.put("v1_13_R2", false);
         versions.put("v1_14_R1", false);
-
         return versions;
     }
 
