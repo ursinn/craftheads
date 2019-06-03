@@ -10,7 +10,6 @@ import me.deejayarroba.craftheads.util.Items;
 import me.deejayarroba.craftheads.util.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.SkullType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;

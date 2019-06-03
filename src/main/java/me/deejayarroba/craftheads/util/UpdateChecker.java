@@ -4,31 +4,38 @@ import me.deejayarroba.craftheads.Main;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 
 public class UpdateChecker {
 
-    int id;
+    private int id;
+    private Main plugin;
+    private boolean update;
 
-    public UpdateChecker(int id) {
+    public UpdateChecker(int id, Main plugin) {
         this.id = id;
+        this.plugin = plugin;
     }
 
-    public boolean check() {
-        try {
-            HttpURLConnection c = (HttpURLConnection) new URL("http://www.spigotmc.org/api/general.php").openConnection();
-            c.setDoOutput(true);
-            c.setRequestMethod("POST");
-            c.getOutputStream().write(("key=98BE0FE67F88AB82B4C197FAF1DC3B69206EFDCC4D3B80FC83A00037510B99B4&resource=" + id).getBytes("UTF-8"));
-            String oldVersion = Main.instance.getDescription().getVersion();
-            String newVersion = new BufferedReader(new InputStreamReader(c.getInputStream())).readLine().replaceAll("[a-zA-Z ]", "");
-            if (!newVersion.equals(oldVersion))
-                return true;
-        } catch (Exception e) {
-            return false;
+    public Thread checkUpdates = new Thread() {
+        public void run() {
+            try {
+                URLConnection conn = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + id).openConnection();
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String oldVersion = plugin.getDescription().getVersion();
+                String newVersion = br.readLine();
+                if (!newVersion.equals(oldVersion)) {
+                    update = true;
+                    plugin.getLogger().info("An update for CraftHeads is available");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        return false;
-    }
+    };
 
+    public boolean isUpdate() {
+        return update;
+    }
 }

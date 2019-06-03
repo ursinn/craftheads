@@ -34,6 +34,7 @@ public class Main extends JavaPlugin {
     public static Economy economy = null;
     public static float defaultHeadPrice;
     public static Main instance;
+    public UpdateChecker updateChecker = new UpdateChecker(59481, this);
 
     @Override
     public void onEnable() {
@@ -72,9 +73,7 @@ public class Main extends JavaPlugin {
                 new Metrics(this);
 
             if (getConfig().getBoolean("update-check")) {
-                UpdateChecker updateChecker = new UpdateChecker(59481);
-                if (updateChecker.check())
-                    getLogger().info("An update for CraftHeads is available");
+                updateChecker.checkUpdates.start();
             }
         }
 

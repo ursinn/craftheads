@@ -6,7 +6,7 @@
 
     <groupId>me.deejayarroba</groupId>
     <artifactId>CraftHeads</artifactId>
-    <version>4.0-SNAPSHOT</version>
+    <version>4.1</version>
     <packaging>jar</packaging>
 
     <name>CraftHeads</name>
