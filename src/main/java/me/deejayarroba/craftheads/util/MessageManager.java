@@ -5,12 +5,11 @@ import org.bukkit.entity.Player;
 
 public class MessageManager {
 
+    private static MessageManager instance = new MessageManager();
     String prefix = ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + "CraftHeads" + ChatColor.DARK_GRAY + "] " + ChatColor.RESET;
 
     private MessageManager() {
     }
-
-    private static MessageManager instance = new MessageManager();
 
     public static MessageManager getInstance() {
         return instance;

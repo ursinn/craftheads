@@ -58,58 +58,49 @@ public class MainMenu extends Menu {
         }
 
         menuItems.add(0, new MenuItem(ownHeadBuilder.build(),
-                new MenuItemAction() {
-                    @Override
-                    public void execute(Player p) {
-                        if (Main.economy != null) {
-                            double balance = Main.economy.getBalance(p);
-                            if (balance < ownHeadPrice) {
-                                // Player can't afford the head
-                                msg.bad(p, "You can't your afford your own head!");
-                                return;
-                            }
+                p -> {
+                    if (Main.economy != null) {
+                        double balance = Main.economy.getBalance(p);
+                        if (balance < ownHeadPrice) {
+                            // Player can't afford the head
+                            msg.bad(p, "You can't your afford your own head!");
+                            return;
+                        }
+                    }
+
+                    // If the inventory is full
+                    if (p.getInventory().firstEmpty() == -1) {
+                        msg.bad(p, "Your inventory is full!");
+                    } else {
+                        ItemStack head = Items.editor(Skulls.getPlayerSkull(p.getName()))
+                                .setName(ChatColor.GOLD + "Head: " + ChatColor.AQUA + p.getName())
+                                .build();
+                        p.getInventory().addItem(head);
+
+                        if (Main.economy != null && ownHeadPrice > 0) {
+                            // Player can afford the head
+                            Main.economy.withdrawPlayer(p, ownHeadPrice);
+                            msg.good(p, "You bought your own head for " + ChatColor.AQUA + ownHeadPrice);
                         }
 
-                        // If the inventory is full
-                        if (p.getInventory().firstEmpty() == -1) {
-                            msg.bad(p, "Your inventory is full!");
-                        } else {
-                            ItemStack head = Items.editor(Skulls.getPlayerSkull(p.getName()))
-                                    .setName(ChatColor.GOLD + "Head: " + ChatColor.AQUA + p.getName())
-                                    .build();
-                            p.getInventory().addItem(head);
-
-                            if (Main.economy != null && ownHeadPrice > 0) {
-                                // Player can afford the head
-                                Main.economy.withdrawPlayer(p, ownHeadPrice);
-                                msg.good(p, "You bought your own head for " + ChatColor.AQUA + ownHeadPrice);
-                            }
-
-                            msg.good(p, "You now have your own head!");
-                            p.closeInventory();
-                        }
+                        msg.good(p, "You now have your own head!");
+                        p.closeInventory();
                     }
                 }));
 
         menuItems.add(1, new MenuItem(Items.editor(Skulls.getCustomSkull(CATEGORIES_ITEM_URL))
                 .setName(ChatColor.GOLD + "Categories")
                 .build(),
-                new MenuItemAction() {
-                    @Override
-                    public void execute(Player p) {
-                        // Open categories menu here
-                        p.openInventory(MenuManager.categoriesMenu.getInventory());
-                    }
+                p -> {
+                    // Open categories menu here
+                    p.openInventory(MenuManager.categoriesMenu.getInventory());
                 }));
 
         menuItems.add(2, new MenuItem(otherHeadBuilder.build(),
-                new MenuItemAction() {
-                    @Override
-                    public void execute(Player p) {
-                        // Give someone else's head here
-                        msg.info(p, ChatColor.GREEN + "Use: " + ChatColor.YELLOW + "/craftheads <player name>");
-                        p.closeInventory();
-                    }
+                p -> {
+                    // Give someone else's head here
+                    msg.info(p, ChatColor.GREEN + "Use: " + ChatColor.YELLOW + "/craftheads <player name>");
+                    p.closeInventory();
                 }));
 
         placeItems();

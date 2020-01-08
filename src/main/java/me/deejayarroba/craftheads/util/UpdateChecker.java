@@ -12,12 +12,6 @@ public class UpdateChecker {
     private int id;
     private Main plugin;
     private boolean update;
-
-    public UpdateChecker(int id, Main plugin) {
-        this.id = id;
-        this.plugin = plugin;
-    }
-
     public Thread checkUpdates = new Thread() {
         public void run() {
             try {
@@ -34,6 +28,11 @@ public class UpdateChecker {
             }
         }
     };
+
+    public UpdateChecker(int id, Main plugin) {
+        this.id = id;
+        this.plugin = plugin;
+    }
 
     public boolean isUpdate() {
         return update;

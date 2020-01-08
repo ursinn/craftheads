@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Enumeration;
+import java.util.Objects;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -129,10 +130,10 @@ public class Main extends JavaPlugin {
             saveConfig();
         }
 
-        for (File file : getDataFolder().listFiles())
+        for (File file : Objects.requireNonNull(getDataFolder().listFiles()))
             if (file.isDirectory())
                 if (file.getName().equals("categories"))
-                    for (File categoryFile : file.listFiles())
+                    for (File categoryFile : Objects.requireNonNull(file.listFiles()))
                         if (categoryFile.isFile())
                             try {
                                 HEAD_CATEGORIES.add(parser.parse(new String(Files.readAllBytes(categoryFile.toPath()), StandardCharsets.UTF_8)));

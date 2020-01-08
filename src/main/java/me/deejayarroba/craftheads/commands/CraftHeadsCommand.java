@@ -70,7 +70,6 @@ public class CraftHeadsCommand extends AbstractCommand {
                 } else {
                     // Open the menu
 
-                    @SuppressWarnings("ConstantConditions")
                     Inventory inv = MenuManager.mainMenu.getInventory();
                     p.openInventory(inv);
 

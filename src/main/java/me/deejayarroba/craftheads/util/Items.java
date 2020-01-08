@@ -61,7 +61,7 @@ public final class Items {
 
         private Material material;
 
-        private Armor(Material material) {
+        Armor(Material material) {
             this.material = material;
         }
 

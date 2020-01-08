@@ -16,13 +16,12 @@ import java.util.List;
  */
 public abstract class AbstractCommand implements CommandExecutor {
 
+    protected static CommandMap cmap;
     protected final String command;
     protected final String description;
     protected final List<String> alias;
     protected final String usage;
     protected final String permMessage;
-
-    protected static CommandMap cmap;
 
     public AbstractCommand(String command) {
         this(command, null, null, null, null);
@@ -72,7 +71,7 @@ public abstract class AbstractCommand implements CommandExecutor {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        } else if (cmap != null) {
+        } else {
             return cmap;
         }
         return getCommandMap();

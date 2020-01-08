@@ -25,7 +25,6 @@ public class CategoryMenu extends Menu {
         name = (String) category.get("Name");
         menuItems = new ArrayList<>();
 
-
         JSONArray heads = (JSONArray) category.get("Heads");
 
         for (Object o : heads) {
@@ -45,33 +44,30 @@ public class CategoryMenu extends Menu {
 
             final ItemStack itemStack = itemStackBuilder.build();
 
-            menuItems.add(new MenuItem(itemStack, new MenuItemAction() {
-                @Override
-                public void execute(Player p) {
-                    ItemStack headItem = Items.editor(Skulls.getCustomSkull((String) head.get("URL")))
-                            .setName(ChatColor.GOLD + "Head: " + ChatColor.AQUA + head.get("Name"))
-                            .build();
+            menuItems.add(new MenuItem(itemStack, p -> {
+                ItemStack headItem = Items.editor(Skulls.getCustomSkull((String) head.get("URL")))
+                        .setName(ChatColor.GOLD + "Head: " + ChatColor.AQUA + head.get("Name"))
+                        .build();
 
-                    if (Main.economy != null) {
-                        double balance = Main.economy.getBalance(p);
-                        if (balance < price) {
-                            // Player can't afford the head
-                            msg.bad(p, "You can't afford that head!");
-                            return;
-                        }
+                if (Main.economy != null) {
+                    double balance = Main.economy.getBalance(p);
+                    if (balance < price) {
+                        // Player can't afford the head
+                        msg.bad(p, "You can't afford that head!");
+                        return;
                     }
-                    // If the inventory is full
-                    if (p.getInventory().firstEmpty() == -1) {
-                        msg.bad(p, "Your inventory is full!");
-                    } else {
-                        if (Main.economy != null && price > 0) {
-                            // Player can afford the head
-                            Main.economy.withdrawPlayer(p, price);
-                            msg.good(p, "You bought a head for " + ChatColor.AQUA + price);
-                        }
-                        p.getInventory().addItem(headItem);
-                        msg.good(p, "You now have: " + itemStack.getItemMeta().getDisplayName());
+                }
+                // If the inventory is full
+                if (p.getInventory().firstEmpty() == -1) {
+                    msg.bad(p, "Your inventory is full!");
+                } else {
+                    if (Main.economy != null && price > 0) {
+                        // Player can afford the head
+                        Main.economy.withdrawPlayer(p, price);
+                        msg.good(p, "You bought a head for " + ChatColor.AQUA + price);
                     }
+                    p.getInventory().addItem(headItem);
+                    msg.good(p, "You now have: " + itemStack.getItemMeta().getDisplayName());
                 }
             }
             ));

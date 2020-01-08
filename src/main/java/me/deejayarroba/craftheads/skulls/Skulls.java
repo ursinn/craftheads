@@ -59,28 +59,6 @@ public class Skulls {
         return itemStack;
     }
 
-    /**
-     * Return the skull's id.
-     *
-     * @return id
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Return the skull of the enum.
-     *
-     * @return itemstack
-     */
-    public ItemStack getSkull() {
-        ItemStack itemStack = new ItemStack(getSkullMaterial(), 1, (short) 3);
-        SkullMeta meta = (SkullMeta) itemStack.getItemMeta();
-        meta.setOwner(id);
-        itemStack.setItemMeta(meta);
-        return itemStack;
-    }
-
     public static HashMap<String, Boolean> getVersions() {
         HashMap<String, Boolean> versions = new HashMap<>();
         versions.put("v1_4_6", true);
@@ -129,6 +107,28 @@ public class Skulls {
         }
 
         return Material.getMaterial("PLAYER_HEAD");
+    }
+
+    /**
+     * Return the skull's id.
+     *
+     * @return id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Return the skull of the enum.
+     *
+     * @return itemstack
+     */
+    public ItemStack getSkull() {
+        ItemStack itemStack = new ItemStack(getSkullMaterial(), 1, (short) 3);
+        SkullMeta meta = (SkullMeta) itemStack.getItemMeta();
+        meta.setOwner(id);
+        itemStack.setItemMeta(meta);
+        return itemStack;
     }
 
 }

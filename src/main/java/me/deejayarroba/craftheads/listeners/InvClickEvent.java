@@ -14,14 +14,11 @@ import org.bukkit.inventory.ItemStack;
 
 public class InvClickEvent implements Listener {
 
-    MessageManager msg = MessageManager.getInstance();
-
     @EventHandler
     public void click(InventoryClickEvent event) {
         Player p = (Player) event.getWhoClicked();
         Inventory inventory = event.getInventory();
         ItemStack clickedItem = event.getCurrentItem();
-
 
         // Check if the inventory is the menu
         if (MenuManager.getMenu(inventory) != null) {
@@ -29,9 +26,9 @@ public class InvClickEvent implements Listener {
             event.setCancelled(true);
             Menu menu = MenuManager.getMenu(inventory);
 
-
             if (clickedItem != null && clickedItem.getType() != Material.AIR) {
                 // Check if the menu contains the clicked item
+                assert menu != null;
                 if (menu.getInventory().contains(clickedItem)) {
                     MenuItem menuItem = menu.getMenuItem(clickedItem);
                     // Execute the menu item's action

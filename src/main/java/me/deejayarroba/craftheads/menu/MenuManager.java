@@ -13,12 +13,11 @@ import java.util.List;
 
 public class MenuManager {
 
-    private static MessageManager msg = MessageManager.getInstance();
-
-    private static List<Menu> menus = new ArrayList<>();
     public static MainMenu mainMenu;
     public static CategoriesMenu categoriesMenu;
     public static ArrayList<CategoryMenu> categoryMenus = new ArrayList<>();
+    private static MessageManager msg = MessageManager.getInstance();
+    private static List<Menu> menus = new ArrayList<>();
 
     // Shortcut to add a menu
     private static void add(Menu menu) {

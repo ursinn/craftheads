@@ -15,7 +15,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>https://dev.CrazyCraftLand.net/Spigot/CraftHeads</url>
+    <url>https://www.spigotmc.org/resources/craftheads.59481/</url>
 
     <build>
         <defaultGoal>clean package</defaultGoal>
@@ -77,8 +77,9 @@
             <url>http://nexus.hc.to/content/repositories/pub_releases</url>
         </repository>
         <repository>
-            <id>filli-it</id>
-            <url>https://nexus.filli-it.ch/nexus/content/groups/public/</url>
+            <id>nexus.filli-it.ch</id>
+            <name>Filli IT Nexus Repository</name>
+            <url>https://nexus.filli-it.ch/repository/maven-public/</url>
         </repository>
         <repository>
             <id>CodeMC</id>

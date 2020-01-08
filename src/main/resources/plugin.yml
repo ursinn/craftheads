@@ -4,7 +4,7 @@ main: me.deejayarroba.craftheads.Main
 softdepend: [Vault]
 authors: [DeejayArroba, ursinn]
 description: CraftHeads
-website: https://dev.CrazyCraftLand.net/Spigot/CraftHeads
+website: https://www.spigotmc.org/resources/craftheads.59481/
 api-version: 1.13
 permissions:
   craftheads.*:

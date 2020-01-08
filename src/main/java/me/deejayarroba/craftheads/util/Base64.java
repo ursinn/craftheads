@@ -1,5 +1,7 @@
 package me.deejayarroba.craftheads.util;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * <p>Encodes and decodes to and from Base64 notation.</p>
  * <p>Homepage: <a href="http://iharder.net/base64">http://iharder.net/base64</a>.</p>
@@ -424,6 +426,12 @@ public class Base64 {
 
 
     /**
+     * Defeats instantiation.
+     */
+    private Base64() {
+    }
+
+    /**
      * Returns one of the _SOMETHING_ALPHABET byte arrays depending on
      * the options specified.
      * It's possible, though silly, to specify ORDERED <b>and</b> URLSAFE
@@ -439,7 +447,6 @@ public class Base64 {
             return _STANDARD_ALPHABET;
         }
     }    // end getAlphabet
-
 
     /**
      * Returns one of the _SOMETHING_DECODABET byte arrays depending on
@@ -459,17 +466,9 @@ public class Base64 {
     }    // end getAlphabet
 
 
-    /**
-     * Defeats instantiation.
-     */
-    private Base64() {
-    }
-
-
 
 
     /* ********  E N C O D I N G   M E T H O D S  ******** */
-
 
     /**
      * Encodes up to the first three bytes of array <var>threeBytes</var>
@@ -1624,7 +1623,7 @@ public class Base64 {
         try {
             out = new java.io.BufferedOutputStream(
                     new java.io.FileOutputStream(outfile));
-            out.write(encoded.getBytes("US-ASCII")); // Strict, 7-bit output.
+            out.write(encoded.getBytes(StandardCharsets.US_ASCII)); // Strict, 7-bit output.
         }   // end try
         catch (java.io.IOException e) {
             throw e; // Catch and release to execute finally{}
