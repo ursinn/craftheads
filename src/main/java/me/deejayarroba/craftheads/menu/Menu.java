@@ -42,7 +42,7 @@ public abstract class Menu {
 
     public MenuItem getMenuItem(ItemStack itemStack) {
         for (MenuItem menuItem : menuItems) {
-            if (menuItem.getItemStack().equals(itemStack)) {
+            if (menuItem.getItemStack().getItemMeta().getDisplayName().equals(itemStack.getItemMeta().getDisplayName())) {
                 return menuItem;
             }
         }

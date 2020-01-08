@@ -107,6 +107,7 @@ public class Skulls {
         versions.put("v1_13_R1", false);
         versions.put("v1_13_R2", false);
         versions.put("v1_14_R1", false);
+        versions.put("v1_15_R1", false);
         return versions;
     }
 
