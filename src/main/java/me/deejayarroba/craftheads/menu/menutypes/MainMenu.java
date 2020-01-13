@@ -25,19 +25,19 @@ public class MainMenu extends Menu {
 
     public MainMenu() {
 
-        name = "CraftHeads menu";
+        name = "Меню";
         menuItems = new ArrayList<>();
 
         inventory = Bukkit.createInventory(null, 9, name);
 
         final Items.ItemStackBuilder ownHeadBuilder = Items.builder()
-                .setName(ChatColor.GOLD + "Get your own head")
+                .setName(ChatColor.GOLD + "Получит свою голову")
                 .setMaterial(Skulls.getPlayerSkullMaterial())
                 .setData((short) SkullType.PLAYER.ordinal());
 
         Items.ItemStackBuilder otherHeadBuilder = Items.editor(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
-                .setName(ChatColor.GOLD + "Get someone else's head")
-                .addLore(ChatColor.GREEN + "" + ChatColor.ITALIC + "Use: " + ChatColor.YELLOW + "" + ChatColor.ITALIC + "/craftheads <player name>");
+                .setName(ChatColor.GOLD + "Получить чью-то голову")
+                .addLore(ChatColor.GREEN + "" + ChatColor.ITALIC + "Используйте: " + ChatColor.YELLOW + "" + ChatColor.ITALIC + "/craftheads [никнейм]");
 
         final float ownHeadPrice = Main.instance.getConfig().getInt("player-own-head-price");
         final float otherHeadPrice = Main.instance.getConfig().getInt("player-other-head-price");
@@ -63,14 +63,14 @@ public class MainMenu extends Menu {
                         double balance = Main.economy.getBalance(p);
                         if (balance < ownHeadPrice) {
                             // Player can't afford the head
-                            msg.bad(p, "You can't your afford your own head!");
+                            msg.bad(p, "Не хватает средств!");
                             return;
                         }
                     }
 
                     // If the inventory is full
                     if (p.getInventory().firstEmpty() == -1) {
-                        msg.bad(p, "Your inventory is full!");
+                        msg.bad(p, "Инвентарь полон!");
                     } else {
                         ItemStack head = Items.editor(Skulls.getPlayerSkull(p.getName()))
                                 .setName(ChatColor.GOLD + "Head: " + ChatColor.AQUA + p.getName())
@@ -80,16 +80,16 @@ public class MainMenu extends Menu {
                         if (Main.economy != null && ownHeadPrice > 0) {
                             // Player can afford the head
                             Main.economy.withdrawPlayer(p, ownHeadPrice);
-                            msg.good(p, "You bought your own head for " + ChatColor.AQUA + ownHeadPrice);
+                            msg.good(p, "Вы купили свою голову за " + ChatColor.AQUA + ownHeadPrice);
                         }
 
-                        msg.good(p, "You now have your own head!");
+                        msg.good(p, "Вы получили свою голову!");
                         p.closeInventory();
                     }
                 }));
 
         menuItems.add(1, new MenuItem(Items.editor(Skulls.getCustomSkull(CATEGORIES_ITEM_URL))
-                .setName(ChatColor.GOLD + "Categories")
+                .setName(ChatColor.GOLD + "Категории")
                 .build(),
                 p -> {
                     // Open categories menu here
@@ -99,7 +99,7 @@ public class MainMenu extends Menu {
         menuItems.add(2, new MenuItem(otherHeadBuilder.build(),
                 p -> {
                     // Give someone else's head here
-                    msg.info(p, ChatColor.GREEN + "Use: " + ChatColor.YELLOW + "/craftheads <player name>");
+                    msg.info(p, ChatColor.GREEN + "Используйте: " + ChatColor.YELLOW + "/craftheads [никнейм]");
                     p.closeInventory();
                 }));
 
