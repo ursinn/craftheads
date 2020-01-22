@@ -71,7 +71,7 @@ public class Main extends JavaPlugin {
         // This takes care of auto-updating and metrics
         if (!devBuild) {
             if (getConfig().getBoolean("metrics"))
-                new Metrics(this);
+                new Metrics(this, 3033);
 
             if (getConfig().getBoolean("update-check")) {
                 updateChecker.checkUpdates.start();
