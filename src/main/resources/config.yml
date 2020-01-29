@@ -33,3 +33,6 @@ player-other-head-price: 100
 # This will overwrite any files in the "categories" folder that have the same name as the default ones
 # After the categories are reset, this value will be automatically set to false
 reset-categories: true
+
+# Language
+language: en

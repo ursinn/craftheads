@@ -3,7 +3,6 @@ package me.deejayarroba.craftheads.menu.menutypes;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
-import me.deejayarroba.craftheads.menu.MenuItemAction;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.util.Items;
@@ -11,7 +10,6 @@ import me.deejayarroba.craftheads.util.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.SkullType;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -31,16 +29,16 @@ public class MainMenu extends Menu {
         inventory = Bukkit.createInventory(null, 9, name);
 
         final Items.ItemStackBuilder ownHeadBuilder = Items.builder()
-                .setName(ChatColor.GOLD + "Get your own head")
+                .setName(Main.getLanguage().getLanguageConfig().getString("menu.main.own", "§6Get your own head"))
                 .setMaterial(Skulls.getPlayerSkullMaterial())
                 .setData((short) SkullType.PLAYER.ordinal());
 
         Items.ItemStackBuilder otherHeadBuilder = Items.editor(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
-                .setName(ChatColor.GOLD + "Get someone else's head")
-                .addLore(ChatColor.GREEN + "" + ChatColor.ITALIC + "Use: " + ChatColor.YELLOW + "" + ChatColor.ITALIC + "/craftheads <player name>");
+                .setName(Main.getLanguage().getLanguageConfig().getString("menu.main.other", "§6Get someone else's head"))
+                .addLore(Main.getLanguage().getLanguageConfig().getString("menu.main.lore.other", "§a§oUse: §e§o/craftheads <player name>"));
 
-        final float ownHeadPrice = Main.instance.getConfig().getInt("player-own-head-price");
-        final float otherHeadPrice = Main.instance.getConfig().getInt("player-other-head-price");
+        final float ownHeadPrice = Main.getInstance().getConfig().getInt("player-own-head-price");
+        final float otherHeadPrice = Main.getInstance().getConfig().getInt("player-other-head-price");
 
         if (Main.economy != null) {
 
@@ -70,7 +68,7 @@ public class MainMenu extends Menu {
 
                     // If the inventory is full
                     if (p.getInventory().firstEmpty() == -1) {
-                        msg.bad(p, "Your inventory is full!");
+                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv.full", "Your inventory is full!"));
                     } else {
                         ItemStack head = Items.editor(Skulls.getPlayerSkull(p.getName()))
                                 .setName(ChatColor.GOLD + "Head: " + ChatColor.AQUA + p.getName())
@@ -83,13 +81,13 @@ public class MainMenu extends Menu {
                             msg.good(p, "You bought your own head for " + ChatColor.AQUA + ownHeadPrice);
                         }
 
-                        msg.good(p, "You now have your own head!");
+                        msg.good(p, Main.getLanguage().getLanguageConfig().getString("give.own","You now have your own head!"));
                         p.closeInventory();
                     }
                 }));
 
         menuItems.add(1, new MenuItem(Items.editor(Skulls.getCustomSkull(CATEGORIES_ITEM_URL))
-                .setName(ChatColor.GOLD + "Categories")
+                .setName(ChatColor.GOLD + Main.getLanguage().getLanguageConfig().getString("menu.main.categories", "Categories"))
                 .build(),
                 p -> {
                     // Open categories menu here
@@ -99,7 +97,7 @@ public class MainMenu extends Menu {
         menuItems.add(2, new MenuItem(otherHeadBuilder.build(),
                 p -> {
                     // Give someone else's head here
-                    msg.info(p, ChatColor.GREEN + "Use: " + ChatColor.YELLOW + "/craftheads <player name>");
+                    msg.info(p, Main.getLanguage().getLanguageConfig().getString("give.other.help", "§aUse: §e/craftheads <player name>"));
                     p.closeInventory();
                 }));
 

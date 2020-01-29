@@ -38,7 +38,7 @@ public class CraftHeadsCommand extends AbstractCommand {
 
                     // TODO: implement buying other people's heads
 
-                    float otherHeadPrice = Main.instance.getConfig().getInt("player-other-head-price");
+                    float otherHeadPrice = Main.getInstance().getConfig().getInt("player-other-head-price");
 
                     if (Main.economy != null) {
                         double balance = Main.economy.getBalance(p);

@@ -34,12 +34,12 @@ public final class Strings {
     }
 
     public static String link(List<String> strings) {
-        String newString = "";
+        StringBuilder newString = new StringBuilder();
         for (String string : strings) {
-            newString += string + ", ";
+            newString.append(string).append(", ");
         }
-        newString = newString.substring(0, newString.length() - 2);
-        return newString;
+        newString = new StringBuilder(newString.substring(0, newString.length() - 2));
+        return newString.toString();
     }
 
     public static List<String> prefix(List<String> strings, String prefix) {
@@ -57,16 +57,16 @@ public final class Strings {
     public static String rainbowlize(String string) {
         int lastColor = 0;
         int currColor;
-        String newString = "";
+        StringBuilder newString = new StringBuilder();
         String colors = "123456789abcde";
         for (int i = 0; i < string.length(); i++) {
             do {
                 currColor = new Random().nextInt(colors.length() - 1) + 1;
             }
             while (currColor == lastColor);
-            newString += ChatColor.RESET.toString() + ChatColor.getByChar(colors.charAt(currColor)) + "" + string.charAt(i);
+            newString.append(ChatColor.RESET.toString()).append(ChatColor.getByChar(colors.charAt(currColor))).append(string.charAt(i));
         }
-        return newString;
+        return newString.toString();
     }
 
     public static String repeat(String string, int count) {

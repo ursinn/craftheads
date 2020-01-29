@@ -1,1 +1,14 @@
-
+menu:
+  main:
+    own: "&6Get your own head"
+    other: "&6Get someone else's head"
+    categories: "Categories"
+    lore:
+      other: "&a&oUse: &e&o/craftheads <player name>"
+give:
+  own: "You now have your own head!"
+  other:
+    helper: "&aUse: &e/craftheads <player name>"
+error:
+  inv:
+    full: "Your inventory is full!"

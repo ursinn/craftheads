@@ -6,6 +6,7 @@ import me.deejayarroba.craftheads.listeners.PlayerJoin;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.util.AbstractCommand;
+import me.deejayarroba.craftheads.util.Language;
 import me.deejayarroba.craftheads.util.UpdateChecker;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
@@ -24,6 +25,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Enumeration;
 import java.util.Objects;
+import java.util.concurrent.Callable;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -34,7 +36,8 @@ public class Main extends JavaPlugin {
     public static JSONArray HEAD_CATEGORIES = new JSONArray();
     public static Economy economy = null;
     public static float defaultHeadPrice;
-    public static Main instance;
+    private static Main instance;
+    private static Language language;
     public UpdateChecker updateChecker = new UpdateChecker(59481, this);
 
     @Override
@@ -42,7 +45,7 @@ public class Main extends JavaPlugin {
         String ver = Bukkit.getServer().getClass().getPackage().getName();
         ver = ver.substring(ver.lastIndexOf('.') + 1);
         if (!Skulls.getVersions().containsKey(ver)) {
-            System.err.println("unsupported Minecraft Server version! (" + ver + ")");
+            System.err.println("Unsupported Minecraft Server version! (" + ver + ")");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
@@ -50,6 +53,8 @@ public class Main extends JavaPlugin {
         saveDefaultConfig();
 
         instance = this;
+        language = new Language();
+        language.createLanguageFile();
 
         if (getConfig().getBoolean("economy"))
             setupEconomy();
@@ -70,8 +75,10 @@ public class Main extends JavaPlugin {
 
         // This takes care of auto-updating and metrics
         if (!devBuild) {
-            if (getConfig().getBoolean("metrics"))
-                new Metrics(this, 3033);
+            if (getConfig().getBoolean("metrics")) {
+                Metrics metrics = new Metrics(this, 3033);
+                metrics.addCustomChart(new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
+            }
 
             if (getConfig().getBoolean("update-check")) {
                 updateChecker.checkUpdates.start();
@@ -143,4 +150,11 @@ public class Main extends JavaPlugin {
     }
 
 
+    public static Main getInstance() {
+        return instance;
+    }
+
+    public static Language getLanguage() {
+        return language;
+    }
 }
