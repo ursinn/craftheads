@@ -1,0 +1,17 @@
+---
+give:
+  own: Вы получили свою голову!
+  other:
+    helper: "&aИспользуйте: &e/craftheads <никнейм>"
+error:
+  inv:
+    full: Инвентарь полон!
+menu:
+  name: CraftHeads Меню
+  own: "&6Получит свою голову"
+  other: "&6Получить чью-то голову"
+  categories: Категории
+  lore:
+    other: "&a&oИспользуйте: &e&o/craftheads <никнейм>"
+update:
+  notify: Доступно обновление для CraftHeads
