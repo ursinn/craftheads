@@ -23,19 +23,19 @@ public class MainMenu extends Menu {
 
     public MainMenu() {
 
-        name = "CraftHeads menu";
+        name = Main.getLanguage().getLanguageConfig().getString("menu.name", "CraftHeads menu");
         menuItems = new ArrayList<>();
 
         inventory = Bukkit.createInventory(null, 9, name);
 
         final Items.ItemStackBuilder ownHeadBuilder = Items.builder()
-                .setName(Main.getLanguage().getLanguageConfig().getString("menu.main.own", "§6Get your own head"))
+                .setName(Main.getLanguage().getLanguageConfig().getString("menu.own", "§6Get your own head"))
                 .setMaterial(Skulls.getPlayerSkullMaterial())
                 .setData((short) SkullType.PLAYER.ordinal());
 
         Items.ItemStackBuilder otherHeadBuilder = Items.editor(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
-                .setName(Main.getLanguage().getLanguageConfig().getString("menu.main.other", "§6Get someone else's head"))
-                .addLore(Main.getLanguage().getLanguageConfig().getString("menu.main.lore.other", "§a§oUse: §e§o/craftheads <player name>"));
+                .setName(Main.getLanguage().getLanguageConfig().getString("menu.other", "§6Get someone else's head"))
+                .addLore(Main.getLanguage().getLanguageConfig().getString("menu.lore.other", "§a§oUse: §e§o/craftheads <player name>"));
 
         final float ownHeadPrice = Main.getInstance().getConfig().getInt("player-own-head-price");
         final float otherHeadPrice = Main.getInstance().getConfig().getInt("player-other-head-price");
@@ -87,7 +87,7 @@ public class MainMenu extends Menu {
                 }));
 
         menuItems.add(1, new MenuItem(Items.editor(Skulls.getCustomSkull(CATEGORIES_ITEM_URL))
-                .setName(ChatColor.GOLD + Main.getLanguage().getLanguageConfig().getString("menu.main.categories", "Categories"))
+                .setName(ChatColor.GOLD + Main.getLanguage().getLanguageConfig().getString("menu.categories", "Categories"))
                 .build(),
                 p -> {
                     // Open categories menu here

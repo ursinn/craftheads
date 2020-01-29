@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class CategoriesMenu extends Menu {
 
     public CategoriesMenu() {
-        name = "Categories";
+        name = Main.getLanguage().getLanguageConfig().getString("menu.categories", "Categories");
         menuItems = new ArrayList<>();
 
         // Loop through all the categories

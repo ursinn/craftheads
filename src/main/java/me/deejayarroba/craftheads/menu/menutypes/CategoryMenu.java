@@ -59,7 +59,7 @@ public class CategoryMenu extends Menu {
                 }
                 // If the inventory is full
                 if (p.getInventory().firstEmpty() == -1) {
-                    msg.bad(p, "Your inventory is full!");
+                    msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv.full", "Your inventory is full!"));
                 } else {
                     if (Main.economy != null && price > 0) {
                         // Player can afford the head

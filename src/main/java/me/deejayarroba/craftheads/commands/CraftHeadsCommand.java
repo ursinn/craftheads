@@ -50,7 +50,7 @@ public class CraftHeadsCommand extends AbstractCommand {
 
                     // Check if the inventory is full
                     if (p.getInventory().firstEmpty() == -1) {
-                        msg.bad(p, "Your inventory is full!");
+                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv.full", "Your inventory is full!"));
                         return true;
                     } else {
                         String playerName = args[0];

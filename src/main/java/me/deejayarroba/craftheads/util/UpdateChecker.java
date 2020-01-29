@@ -21,7 +21,7 @@ public class UpdateChecker {
                 String newVersion = br.readLine();
                 if (!newVersion.equals(oldVersion)) {
                     update = true;
-                    plugin.getLogger().info("An update for CraftHeads is available");
+                    plugin.getLogger().info(Main.getLanguage().getLanguageConfig().getString("update.notify", "An update for CraftHeads is available"));
                 }
             } catch (Exception e) {
                 e.printStackTrace();
