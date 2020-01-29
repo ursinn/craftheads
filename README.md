@@ -1,10 +1,10 @@
 CraftHeads 
 ==========
 
-[![Build Status](https://travis-ci.com/ursinn/CraftHeads.svg?branch=master)](https://travis-ci.com/ursinn/CraftHeads)
-[![Build Status](https://ci.filli-it.ch/job/ursinn/job/Spigot/job/CraftHeads/job/master/badge/icon)](https://ci.filli-it.ch/job/ursinn/job/Spigot/job/CraftHeads/job/master/)
-![GitHub release](https://img.shields.io/github/release/ursinn/CraftHeads.svg)
-![GitHub All Releases](https://img.shields.io/github/downloads/ursinn/CraftHeads/total.svg)
+[![Build Status](https://img.shields.io/travis/com/ursinn/craftheads?logo=travis)](https://travis-ci.com/ursinn/CraftHeads)
+[![Build Status](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.filli-it.ch%2Fjob%2Fursinn%2Fjob%2FSpigot%2Fjob%2FCraftHeads%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.filli-it.ch/job/ursinn/job/Spigot/job/CraftHeads/job/master/)
+![GitHub release](https://img.shields.io/github/release/ursinn/CraftHeads.svg?logo=github)
+![GitHub All Releases](https://img.shields.io/github/downloads/ursinn/CraftHeads/total.svg?logo=github)
 
 ![CraftHeads logo](http://i.imgur.com/WqkRLhF.png)
 
