@@ -78,12 +78,11 @@
         </repository>
         <repository>
             <id>nexus.filli-it.ch</id>
-            <name>Filli IT Nexus Repository</name>
             <url>https://nexus.filli-it.ch/repository/maven-public/</url>
         </repository>
         <repository>
             <id>CodeMC</id>
-            <url>https://repo.codemc.org/repository/maven-public</url>
+            <url>https://repo.codemc.org/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -103,7 +102,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-            <version>1.8.8-R0.1</version>
+            <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
