@@ -28,7 +28,7 @@ public class CraftHeadsCommand extends AbstractCommand {
                 Player p = (Player) sender;
 
                 if (!sender.hasPermission("craftheads.use")) {
-                    msg.bad(p, "You don't have permission to use this command.");
+                    msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.permission", "You don't have permission to use this command."));
                     return false;
                 }
 
@@ -43,14 +43,14 @@ public class CraftHeadsCommand extends AbstractCommand {
                     if (Main.economy != null) {
                         double balance = Main.economy.getBalance(p);
                         if (balance < otherHeadPrice && otherHeadPrice > 0) {
-                            msg.bad(p, "You can't your afford this player's head!");
+                            msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.money.player", "You can't your afford this player's head!"));
                             return true;
                         }
                     }
 
                     // Check if the inventory is full
                     if (p.getInventory().firstEmpty() == -1) {
-                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv.full", "Your inventory is full!"));
+                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!"));
                         return true;
                     } else {
                         String playerName = args[0];
@@ -76,7 +76,7 @@ public class CraftHeadsCommand extends AbstractCommand {
                     return true;
                 }
             } else {
-                sender.sendMessage("You can only run this command as a player.");
+                sender.sendMessage(Main.getLanguage().getLanguageConfig().getString("error.console", "You can only run this command as a player."));
                 return true;
             }
         }

@@ -1,3 +1,15 @@
+give:
+  own: "You now have your own head!"
+  other:
+    helper: "&aUse: &e/craftheads <player name>"
+error:
+  inv: "Your inventory is full!"
+  permission: "You don't have permission to use this command."
+  money:
+    own: "You can't your afford your own head!"
+    other: "You can't afford that head!"
+    player: "You can't your afford this player's head!"
+  console: "You can only run this command as a player."
 menu:
   name: "CraftHeads menu"
   own: "&6Get your own head"
@@ -5,12 +17,5 @@ menu:
   categories: "Categories"
   lore:
     other: "&a&oUse: &e&o/craftheads <player name>"
-give:
-  own: "You now have your own head!"
-  other:
-    helper: "&aUse: &e/craftheads <player name>"
-error:
-  inv:
-    full: "Your inventory is full!"
 update:
   notify: "An update for CraftHeads is available"

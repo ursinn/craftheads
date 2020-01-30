@@ -53,13 +53,13 @@ public class CategoryMenu extends Menu {
                     double balance = Main.economy.getBalance(p);
                     if (balance < price) {
                         // Player can't afford the head
-                        msg.bad(p, "You can't afford that head!");
+                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.money.other", "You can't afford that head!"));
                         return;
                     }
                 }
                 // If the inventory is full
                 if (p.getInventory().firstEmpty() == -1) {
-                    msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv.full", "Your inventory is full!"));
+                    msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!"));
                 } else {
                     if (Main.economy != null && price > 0) {
                         // Player can afford the head

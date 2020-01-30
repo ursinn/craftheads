@@ -61,14 +61,14 @@ public class MainMenu extends Menu {
                         double balance = Main.economy.getBalance(p);
                         if (balance < ownHeadPrice) {
                             // Player can't afford the head
-                            msg.bad(p, "You can't your afford your own head!");
+                            msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.money.own", "You can't your afford your own head!"));
                             return;
                         }
                     }
 
                     // If the inventory is full
                     if (p.getInventory().firstEmpty() == -1) {
-                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv.full", "Your inventory is full!"));
+                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!"));
                     } else {
                         ItemStack head = Items.editor(Skulls.getPlayerSkull(p.getName()))
                                 .setName(ChatColor.GOLD + "Head: " + ChatColor.AQUA + p.getName())
