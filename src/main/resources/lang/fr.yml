@@ -1,0 +1,22 @@
+---
+give:
+  own: Vous avez maintenant votre propre tête!
+  other:
+    helper: "&aUtilisation: &e/craftheads"
+menu:
+  name: CraftHeads menu
+  own: "&6Obtenez votre propre tête"
+  other: "&6Obtenez la tête de quelqu'un d'autre"
+  categories: Les catégories
+  lore:
+    other: "&a&oUtilisation: &e&o/craftheads <nom de joueur>"
+update:
+  notify: Une mise à jour pour CraftHeads est disponible
+error:
+  inv: Votre inventaire est plein!
+  permission: Vous n'êtes pas autorisé à utiliser cette commande.
+  money:
+    own: Vous ne pouvez pas vous permettre votre propre tête!
+    other: Vous ne pouvez pas vous permettre cette tête!
+    player: Vous ne pouvez pas vous permettre la tête de ce joueur!
+  console: Vous ne pouvez exécuter cette commande qu'en tant que joueur.
