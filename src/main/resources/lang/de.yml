@@ -1,0 +1,22 @@
+---
+give:
+  own: Du hast jetzt deinen eigenen Kopf!
+  other:
+    helper: "&aBenutze: &e/craftheads <Spielername>"
+menu:
+  name: CraftHeads Menü
+  own: "&6Gib dir deinen eigenen Kopf"
+  other: "&6Gibt dir den Kopf eines anderen"
+  categories: Kategorien
+  lore:
+    other: "&a&oBenutze: &e&o/craftheads <Spielername>"
+update:
+  notify: Ein Update für CraftHeads ist verfügbar
+error:
+  inv: Dein Inventar ist voll!
+  permission: Du hast keine Berechtigung, diesen Befehl zu verwenden.
+  money:
+    own: Du kannst dir deinen eigenen Kopf nicht leisten!
+    other: Du kanst dir diesen Kopf nicht leisten!
+    player: Du kannst dir den Kopf dieses Spielers nicht leisten!
+  console: Du kanst diesen Befehl nur als Spieler ausführen.
