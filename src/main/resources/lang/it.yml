@@ -1,0 +1,22 @@
+---
+give:
+  own: Ora hai la tua testa!
+  other:
+    helper: "&aUso: &e/craftheads <nome del giocatore>"
+menu:
+  name: CraftHeads menù
+  own: "&6Prendi la tua testa"
+  other: "&6Prendi la testa di qualcun altro"
+  categories: categorie
+  lore:
+    other: "&a&oUso: &e&o/craftheads <nome del giocatore>"
+update:
+  notify: È disponibile un aggiornamento per CraftHeads
+error:
+  inv: Il tuo inventario è pieno!
+  permission: Non hai i permessi per usare questo comando.
+  money:
+    own: Non puoi permetterti la tua testa!
+    other: Non puoi permetterti quella testa!
+    player: Non puoi permetterti la testa di questo giocatore!
+  console: Puoi eseguire questo comando solo come giocatore.
