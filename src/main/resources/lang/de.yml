@@ -1,22 +1,33 @@
 ---
+error:
+  console: Du kanst diesen Befehl nur als Spieler ausführen.
+  inv: Dein Inventar ist voll!
+  money:
+    other: Du kanst dir diesen Kopf nicht leisten!
+    own: Du kannst dir deinen eigenen Kopf nicht leisten!
+    player: Du kannst dir den Kopf dieses Spielers nicht leisten!
+  permission: Du hast keine Berechtigung, diesen Befehl zu verwenden.
 give:
-  own: Du hast jetzt deinen eigenen Kopf!
   other:
     helper: "&aBenutze: &e/craftheads <Spielername>"
+  own: Du hast jetzt deinen eigenen Kopf!
+  give: Du hast jetzt den Kopf von %args0%!
+  buy: Du hast &b%playerName%&a'sKopf für &b%otherHeadPrice% &agekauft
+  item:
+    give: 'Du hast nun: %item%'
+    buy: Du hast einen kopf für &b%price% &agekauft
 menu:
-  name: CraftHeads Menue
-  own: "&6Gib dir deinen eigenen Kopf"
-  other: "&6Gibt dir den Kopf eines anderen"
   categories: Kategorien
   lore:
     other: "&a&oBenutze: &e&o/craftheads <Spielername>"
+  name: CraftHeads Menue
+  other: "&6Gibt dir den Kopf eines anderen"
+  own: "&6Gib dir deinen eigenen Kopf"
+  buy:
+    free: "&bPreis: &aGratis"
+    price: "&bPreis: &a%price%"
 update:
   notify: Ein Update für CraftHeads ist verfügbar
-error:
-  inv: Dein Inventar ist voll!
-  permission: Du hast keine Berechtigung, diesen Befehl zu verwenden.
-  money:
-    own: Du kannst dir deinen eigenen Kopf nicht leisten!
-    other: Du kanst dir diesen Kopf nicht leisten!
-    player: Du kannst dir den Kopf dieses Spielers nicht leisten!
-  console: Du kanst diesen Befehl nur als Spieler ausführen.
+buy:
+  own: Du hast deinen eigenen Kopf für &b%ownHeadPrice% gekauft
+item: "&6Kopf: &b%args0%"
