@@ -1,7 +1,14 @@
 give:
   own: "You now have your own head!"
+  give: "You now have %args0%'s head!"
+  buy: "You bought &b%playerName%&a's head for &b %otherHeadPrice%"
+  item:
+    give: "You now have: %item%"
+    buy: "You bought a head for &b%price%"
   other:
     helper: "&aUse: &e/craftheads <player name>"
+buy:
+  own: "You bought your own head for &b%ownHeadPrice%"
 error:
   inv: "Your inventory is full!"
   permission: "You don't have permission to use this command."
@@ -17,5 +24,9 @@ menu:
   categories: "Categories"
   lore:
     other: "&a&oUse: &e&o/craftheads <player name>"
+  buy:
+    free: "&bPrice: &aFREE"
+    price: "&bPrice: &a%price%"
+item: "&6Head: &b%args0%"
 update:
   notify: "An update for CraftHeads is available"

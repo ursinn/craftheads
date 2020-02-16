@@ -28,7 +28,7 @@ public class CraftHeadsCommand extends AbstractCommand {
                 Player p = (Player) sender;
 
                 if (!sender.hasPermission("craftheads.use")) {
-                    msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.permission", "You don't have permission to use this command."));
+                    msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.permission", "You don't have permission to use this command.")));
                     return false;
                 }
 
@@ -43,28 +43,28 @@ public class CraftHeadsCommand extends AbstractCommand {
                     if (Main.economy != null) {
                         double balance = Main.economy.getBalance(p);
                         if (balance < otherHeadPrice && otherHeadPrice > 0) {
-                            msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.money.player", "You can't your afford this player's head!"));
+                            msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.money.player", "You can't your afford this player's head!")));
                             return true;
                         }
                     }
 
                     // Check if the inventory is full
                     if (p.getInventory().firstEmpty() == -1) {
-                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!"));
+                        msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!")));
                         return true;
                     } else {
                         String playerName = args[0];
                         ItemStack head = Items.editor(Skulls.getPlayerSkull(playerName))
-                                .setName(ChatColor.GOLD + "Head: " + ChatColor.AQUA + args[0])
+                                .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%&args0%", args[0])))
                                 .build();
 
                         if (Main.economy != null && otherHeadPrice > 0) {
                             Main.economy.withdrawPlayer(p, otherHeadPrice);
-                            msg.good(p, "You bought " + ChatColor.AQUA + playerName + ChatColor.GREEN + "'s head for " + ChatColor.AQUA + otherHeadPrice);
+                            msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("give.buy", "You bought &b%playerName%&a's head for &b %otherHeadPrice%".replaceAll("%playerName%", playerName).replaceAll("%otherHeadPrice%", String.valueOf(otherHeadPrice)))));
                         }
 
                         p.getInventory().addItem(head);
-                        msg.good(p, "You now have " + args[0] + "'s head!");
+                        msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("give.give", "You now have %args0%'s head!").replaceAll("%args0%", args[0])));
                         return true;
                     }
                 } else {
@@ -76,7 +76,7 @@ public class CraftHeadsCommand extends AbstractCommand {
                     return true;
                 }
             } else {
-                sender.sendMessage(Main.getLanguage().getLanguageConfig().getString("error.console", "You can only run this command as a player."));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.console", "You can only run this command as a player.")));
                 return true;
             }
         }

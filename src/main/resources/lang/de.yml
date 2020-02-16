@@ -4,7 +4,7 @@ give:
   other:
     helper: "&aBenutze: &e/craftheads <Spielername>"
 menu:
-  name: CraftHeads Menü
+  name: CraftHeads Menue
   own: "&6Gib dir deinen eigenen Kopf"
   other: "&6Gibt dir den Kopf eines anderen"
   categories: Kategorien

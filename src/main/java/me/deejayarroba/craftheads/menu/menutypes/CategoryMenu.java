@@ -3,12 +3,10 @@ package me.deejayarroba.craftheads.menu.menutypes;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
-import me.deejayarroba.craftheads.menu.MenuItemAction;
 import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.util.Items;
 import me.deejayarroba.craftheads.util.MessageManager;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -36,9 +34,9 @@ public class CategoryMenu extends Menu {
 
             if (Main.economy != null) {
                 if (price > 0) {
-                    itemStackBuilder.addLore(ChatColor.AQUA + "Price: " + ChatColor.GREEN + price);
+                    itemStackBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.price", "&bPrice: &a%price%").replaceAll("%price%", String.valueOf(price))));
                 } else {
-                    itemStackBuilder.addLore(ChatColor.AQUA + "Price: " + ChatColor.GREEN + "FREE");
+                    itemStackBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.free", "&bPrice: &aFREE")));
                 }
             }
 
@@ -46,28 +44,28 @@ public class CategoryMenu extends Menu {
 
             menuItems.add(new MenuItem(itemStack, p -> {
                 ItemStack headItem = Items.editor(Skulls.getCustomSkull((String) head.get("URL")))
-                        .setName(ChatColor.GOLD + "Head: " + ChatColor.AQUA + head.get("Name"))
+                        .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%args0%", head.get("Name").toString())))
                         .build();
 
                 if (Main.economy != null) {
                     double balance = Main.economy.getBalance(p);
                     if (balance < price) {
                         // Player can't afford the head
-                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.money.other", "You can't afford that head!"));
+                        msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.money.other", "You can't afford that head!")));
                         return;
                     }
                 }
                 // If the inventory is full
                 if (p.getInventory().firstEmpty() == -1) {
-                    msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!"));
+                    msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!")));
                 } else {
                     if (Main.economy != null && price > 0) {
                         // Player can afford the head
                         Main.economy.withdrawPlayer(p, price);
-                        msg.good(p, "You bought a head for " + ChatColor.AQUA + price);
+                        msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("give.item.buy", "You bought a head for &b%price%").replaceAll("%price%", String.valueOf(price))));
                     }
                     p.getInventory().addItem(headItem);
-                    msg.good(p, "You now have: " + itemStack.getItemMeta().getDisplayName());
+                    msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("give.item.give", "You now have: %item%").replaceAll("%item%", itemStack.getItemMeta().getDisplayName())));
                 }
             }
             ));

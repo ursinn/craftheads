@@ -25,7 +25,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Enumeration;
 import java.util.Objects;
-import java.util.concurrent.Callable;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -39,6 +38,14 @@ public class Main extends JavaPlugin {
     private static Main instance;
     private static Language language;
     public UpdateChecker updateChecker = new UpdateChecker(59481, this);
+
+    public static Main getInstance() {
+        return instance;
+    }
+
+    public static Language getLanguage() {
+        return language;
+    }
 
     @Override
     public void onEnable() {
@@ -147,14 +154,5 @@ public class Main extends JavaPlugin {
                             } catch (IOException | ParseException e) {
                                 e.printStackTrace();
                             }
-    }
-
-
-    public static Main getInstance() {
-        return instance;
-    }
-
-    public static Language getLanguage() {
-        return language;
     }
 }

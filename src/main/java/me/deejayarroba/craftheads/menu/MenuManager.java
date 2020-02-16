@@ -4,7 +4,6 @@ import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.menutypes.CategoriesMenu;
 import me.deejayarroba.craftheads.menu.menutypes.CategoryMenu;
 import me.deejayarroba.craftheads.menu.menutypes.MainMenu;
-import me.deejayarroba.craftheads.util.MessageManager;
 import org.bukkit.inventory.Inventory;
 import org.json.simple.JSONObject;
 
@@ -16,7 +15,6 @@ public class MenuManager {
     public static MainMenu mainMenu;
     public static CategoriesMenu categoriesMenu;
     public static ArrayList<CategoryMenu> categoryMenus = new ArrayList<>();
-    private static MessageManager msg = MessageManager.getInstance();
     private static List<Menu> menus = new ArrayList<>();
 
     // Shortcut to add a menu
