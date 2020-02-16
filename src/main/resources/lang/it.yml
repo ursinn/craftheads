@@ -1,22 +1,33 @@
 ---
+error:
+  console: Puoi eseguire questo comando solo come giocatore.
+  inv: Il tuo inventario è pieno!
+  money:
+    other: Non puoi permetterti quella testa!
+    own: Non puoi permetterti la tua testa!
+    player: Non puoi permetterti la testa di questo giocatore!
+  permission: Non hai i permessi per usare questo comando.
 give:
-  own: Ora hai la tua testa!
   other:
     helper: "&aUso: &e/craftheads <nome del giocatore>"
+  own: Ora hai la tua testa!
+  give: Adesso hai  %args0%'s testa!
+  buy: Hai comprato &b%playerName%&a's testa per &b%otherHeadPrice%
+  item:
+    give: 'Adesso hai: %item%'
+    buy: Hai comprato una testa per &b%price%
 menu:
-  name: CraftHeads menù
-  own: "&6Prendi la tua testa"
-  other: "&6Prendi la testa di qualcun altro"
   categories: categorie
   lore:
     other: "&a&oUso: &e&o/craftheads <nome del giocatore>"
+  name: CraftHeads menù
+  other: "&6Prendi la testa di qualcun altro"
+  own: "&6Prendi la tua testa"
+  buy:
+    free: "&bPrezzo: &aGRATUITO"
+    price: "&bPrezzo: &a%price%"
 update:
   notify: È disponibile un aggiornamento per CraftHeads
-error:
-  inv: Il tuo inventario è pieno!
-  permission: Non hai i permessi per usare questo comando.
-  money:
-    own: Non puoi permetterti la tua testa!
-    other: Non puoi permetterti quella testa!
-    player: Non puoi permetterti la testa di questo giocatore!
-  console: Puoi eseguire questo comando solo come giocatore.
+buy:
+  own: Hai comprato la tua testa per &b%ownHeadPrice%
+item: "&6testa : &b%args0%"
