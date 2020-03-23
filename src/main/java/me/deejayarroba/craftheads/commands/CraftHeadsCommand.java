@@ -55,7 +55,7 @@ public class CraftHeadsCommand extends AbstractCommand {
                     } else {
                         String playerName = args[0];
                         ItemStack head = Items.editor(Skulls.getPlayerSkull(playerName))
-                                .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%&args0%", args[0])))
+                                .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%args0%", args[0])))
                                 .build();
 
                         if (Main.economy != null && otherHeadPrice > 0) {
