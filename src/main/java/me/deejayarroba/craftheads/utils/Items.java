@@ -1,4 +1,4 @@
-package me.deejayarroba.craftheads.util;
+package me.deejayarroba.craftheads.utils;
 
 import com.google.common.collect.Lists;
 import org.apache.commons.lang.WordUtils;

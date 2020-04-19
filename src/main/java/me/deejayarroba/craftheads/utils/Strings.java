@@ -1,4 +1,4 @@
-package me.deejayarroba.craftheads.util;
+package me.deejayarroba.craftheads.utils;
 
 import org.bukkit.ChatColor;
 

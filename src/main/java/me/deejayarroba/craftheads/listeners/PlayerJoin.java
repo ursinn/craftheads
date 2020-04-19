@@ -1,7 +1,7 @@
 package me.deejayarroba.craftheads.listeners;
 
 import me.deejayarroba.craftheads.Main;
-import me.deejayarroba.craftheads.util.MessageManager;
+import me.deejayarroba.craftheads.utils.MessageManager;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;

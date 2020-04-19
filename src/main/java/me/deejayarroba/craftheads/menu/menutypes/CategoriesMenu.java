@@ -5,7 +5,7 @@ import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
-import me.deejayarroba.craftheads.util.Items;
+import me.deejayarroba.craftheads.utils.Items;
 import org.bukkit.ChatColor;
 import org.json.simple.JSONObject;
 

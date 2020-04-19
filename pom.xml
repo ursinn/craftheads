@@ -37,7 +37,8 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>me.deejayarroba.craftheads.util</shadedPattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>me.deejayarroba.craftheads.utils</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
