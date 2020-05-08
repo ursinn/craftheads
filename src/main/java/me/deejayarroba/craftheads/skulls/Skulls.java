@@ -12,12 +12,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.UUID;
 
 public class Skulls {
 
-    private String id;
+    private final String id;
 
     private Skulls(String id) {
         this.id = id;
@@ -59,42 +59,37 @@ public class Skulls {
         return itemStack;
     }
 
-    public static HashMap<String, Boolean> getVersions() {
-        HashMap<String, Boolean> versions = new HashMap<>();
-        versions.put("v1_8_R1", true);
-        versions.put("v1_8_R2", true);
-        versions.put("v1_8_R3", true);
-        versions.put("v1_9_R1", true);
-        versions.put("v1_9_R2", true);
-        versions.put("v1_10_R1", true);
-        versions.put("v1_11_R1", true);
-        versions.put("v1_12_R1", true);
-        //------------------------------
-        versions.put("v1_13_R1", false);
-        versions.put("v1_13_R2", false);
-        versions.put("v1_14_R1", false);
-        versions.put("v1_15_R1", false);
+    public static ArrayList<String> get1_8Versions() {
+        ArrayList<String> versions = new ArrayList<>();
+        versions.add("v1_8_R1");
+        versions.add("v1_8_R2");
+        versions.add("v1_8_R3");
+        versions.add("v1_9_R1");
+        versions.add("v1_9_R2");
+        versions.add("v1_10_R1");
+        versions.add("v1_11_R1");
+        versions.add("v1_12_R1");
         return versions;
     }
 
     public static Material getSkullMaterial() {
-        String ver = Bukkit.getServer().getClass().getPackage().getName();
-        ver = ver.substring(ver.lastIndexOf('.') + 1);
-        if (getVersions().get(ver)) {
+        if (get1_8Versions().contains(getNmsVersion()))
             return Material.getMaterial("SKULL_ITEM");
-        }
 
         return Material.getMaterial("LEGACY_SKULL_ITEM");
     }
 
     public static Material getPlayerSkullMaterial() {
-        String ver = Bukkit.getServer().getClass().getPackage().getName();
-        ver = ver.substring(ver.lastIndexOf('.') + 1);
-        if (getVersions().get(ver)) {
+        if (get1_8Versions().contains(getNmsVersion()))
             return Material.getMaterial("SKULL_ITEM");
-        }
 
         return Material.getMaterial("PLAYER_HEAD");
+    }
+
+
+    public static String getNmsVersion() {
+        String ver = Bukkit.getServer().getClass().getPackage().getName();
+        return ver.substring(ver.lastIndexOf('.') + 1);
     }
 
     /**

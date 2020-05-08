@@ -49,13 +49,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        String ver = Bukkit.getServer().getClass().getPackage().getName();
-        ver = ver.substring(ver.lastIndexOf('.') + 1);
-        if (!Skulls.getVersions().containsKey(ver)) {
-            System.err.println("Unsupported Minecraft Server version! (" + ver + ")");
-            Bukkit.getPluginManager().disablePlugin(this);
-            return;
-        }
 
         saveDefaultConfig();
 
@@ -90,6 +83,14 @@ public class Main extends JavaPlugin {
             if (getConfig().getBoolean("update-check")) {
                 updateChecker.checkUpdates.start();
             }
+        }
+
+        if (devBuild) {
+            System.out.println("NMS Version: " + Skulls.getNmsVersion());
+            if (Skulls.get1_8Versions().contains(Skulls.getNmsVersion()))
+                System.out.println("Use 1.8 Heads");
+            else
+                System.out.println("Use 1.13 Heads");
         }
 
     }

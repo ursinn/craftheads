@@ -6,7 +6,7 @@
 
     <groupId>me.deejayarroba</groupId>
     <artifactId>CraftHeads</artifactId>
-    <version>4.3.0</version>
+    <version>4.4.0</version>
     <packaging>jar</packaging>
 
     <name>CraftHeads</name>
@@ -85,12 +85,12 @@
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
         <repository>
-            <id>vault-repo</id>
-            <url>http://nexus.hc.to/content/repositories/pub_releases</url>
-        </repository>
-        <repository>
             <id>nexus.filli-it.ch</id>
             <url>https://nexus.filli-it.ch/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
         <repository>
             <id>CodeMC</id>
