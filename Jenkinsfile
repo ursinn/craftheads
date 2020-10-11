@@ -10,7 +10,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-				sh 'mvn clean package -Djar.finalName=CraftHeads-#${BUILD_NUMBER}'
+				sh 'mvn clean package -Djar.finalName=CraftHeads-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
 			}
 			post {
 				success {
