@@ -13,7 +13,7 @@ public class PlayerJoin implements Listener {
         if (!Main.devBuild) {
             if (Main.getInstance().getConfig().getBoolean("update-check")) {
                 if (e.getPlayer().hasPermission("craftheads.updater") || e.getPlayer().isOp()) {
-                    if (Main.getInstance().updateChecker.isUpdate())
+                    if (Main.getInstance().updateChecker.isUpdateAvailable())
                         MessageManager.getInstance().info(e.getPlayer(), Main.getLanguage().getLanguageConfig().getString("update.notify", "An update for CraftHeads is available"));
                 }
             }

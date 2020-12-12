@@ -81,7 +81,7 @@ public class Main extends JavaPlugin {
             }
 
             if (getConfig().getBoolean("update-check")) {
-                updateChecker.checkUpdates.start();
+                updateChecker.checkUpdate();
             }
         }
 
