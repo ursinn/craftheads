@@ -9,8 +9,8 @@ import java.net.URLConnection;
 
 public class UpdateChecker {
 
-    private int id;
-    private Main plugin;
+    private final int id;
+    private final Main plugin;
     private boolean update;
     public Thread checkUpdates = new Thread() {
         public void run() {

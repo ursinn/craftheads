@@ -5,8 +5,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class MenuItem {
 
-    private ItemStack itemStack;
-    private MenuItemAction action;
+    private final ItemStack itemStack;
+    private final MenuItemAction action;
 
     public MenuItem(ItemStack itemStack, MenuItemAction action) {
         this.itemStack = itemStack;

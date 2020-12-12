@@ -15,7 +15,7 @@ public class MenuManager {
     public static MainMenu mainMenu;
     public static CategoriesMenu categoriesMenu;
     public static ArrayList<CategoryMenu> categoryMenus = new ArrayList<>();
-    private static List<Menu> menus = new ArrayList<>();
+    private static final List<Menu> menus = new ArrayList<>();
 
     // Shortcut to add a menu
     private static void add(Menu menu) {

@@ -59,7 +59,7 @@ public final class Items {
         LEGGINGS(Material.LEATHER_LEGGINGS),
         BOOTS(Material.LEATHER_BOOTS);
 
-        private Material material;
+        private final Material material;
 
         Armor(Material material) {
             this.material = material;
@@ -192,7 +192,7 @@ public final class Items {
     public static class BookBuilder {
 
         private final ItemStack itemStack = new ItemStack(Material.WRITTEN_BOOK);
-        private BookMeta meta;
+        private final BookMeta meta;
 
         BookBuilder() {
             meta = (BookMeta) itemStack.clone().getItemMeta();
