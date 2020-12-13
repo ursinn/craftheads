@@ -24,6 +24,7 @@ public final class Reflections {
     private static final Pattern MATCH_VARIABLE = Pattern.compile("\\{([^\\}]+)\\}");
 
     private Reflections() {
+        throw new IllegalStateException("Utility class");
     }
 
     /**

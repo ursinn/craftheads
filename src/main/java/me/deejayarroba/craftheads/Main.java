@@ -30,38 +30,45 @@ import java.util.jar.JarFile;
 
 public class Main extends JavaPlugin {
 
-    public static boolean devBuild = true;
+    private static final boolean DEV_BUILD = true;
+    private static final int SPIGOT_PLUGIN_ID = 59481;
+    private static final int METRICS_PLUGIN_ID = 3033;
 
-    public static JSONArray HEAD_CATEGORIES = new JSONArray();
-    public static Economy economy = null;
-    public static float defaultHeadPrice;
     private static Main instance;
-    private static Language language;
-    public UpdateChecker updateChecker = new UpdateChecker(59481, this);
+    private UpdateChecker updateChecker;
+    private Language language;
+    private Economy economy;
+    private float defaultHeadPrice;
+    private JSONArray headCategories;
 
     public static Main getInstance() {
         return instance;
     }
 
-    public static Language getLanguage() {
-        return language;
+    public static boolean isDevBuild() {
+        return DEV_BUILD;
     }
 
     @Override
     public void onEnable() {
+        instance = this;
 
         saveDefaultConfig();
 
-        instance = this;
+        updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this);
+
         language = new Language();
         language.createLanguageFile();
 
-        if (getConfig().getBoolean("economy"))
+        economy = null;
+        if (getConfig().getBoolean("economy")) {
             setupEconomy();
-
-        loadCategories();
+        }
 
         defaultHeadPrice = getConfig().getInt("default-price");
+
+        headCategories = new JSONArray();
+        loadCategories();
 
         MenuManager.setup();
 
@@ -70,14 +77,16 @@ public class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 
         // Register the command
-        AbstractCommand craftHeadsCommand = new CraftHeadsCommand("craftheads", "/<command>", "The main CraftHeads command.");
+        AbstractCommand craftHeadsCommand =
+                new CraftHeadsCommand("craftheads", "/<command>", "The main CraftHeads command.");
         craftHeadsCommand.register();
 
         // This takes care of auto-updating and metrics
-        if (!devBuild) {
+        if (!isDevBuild()) {
             if (getConfig().getBoolean("metrics")) {
-                Metrics metrics = new Metrics(this, 3033);
-                metrics.addCustomChart(new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
+                Metrics metrics = new Metrics(this, METRICS_PLUGIN_ID);
+                metrics.addCustomChart(
+                        new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
             }
 
             if (getConfig().getBoolean("update-check")) {
@@ -85,12 +94,13 @@ public class Main extends JavaPlugin {
             }
         }
 
-        if (devBuild) {
-            System.out.println("NMS Version: " + Skulls.getNmsVersion());
-            if (Skulls.get1_8Versions().contains(Skulls.getNmsVersion()))
-                System.out.println("Use 1.8 Heads");
-            else
-                System.out.println("Use 1.13 Heads");
+        if (isDevBuild()) {
+            getLogger().info("NMS Version: " + Skulls.getNmsVersion());
+            if (Skulls.get18Versions().contains(Skulls.getNmsVersion())) {
+                getLogger().info("Use 1.8 Heads");
+            } else {
+                getLogger().info("Use 1.13 Heads");
+            }
         }
 
     }
@@ -99,9 +109,12 @@ public class Main extends JavaPlugin {
     public void onDisable() {
         for (Player p : Bukkit.getOnlinePlayers()) {
             Inventory inv = p.getOpenInventory().getTopInventory();
-            if (inv != null)
-                if (MenuManager.getMenu(inv) != null)
-                    p.closeInventory();
+            if (inv != null) {
+                if (MenuManager.getMenu(inv) == null) {
+                    continue;
+                }
+                p.closeInventory();
+            }
         }
     }
 
@@ -109,15 +122,16 @@ public class Main extends JavaPlugin {
         return getFile();
     }
 
-    private boolean setupEconomy() {
-        if (getServer().getPluginManager().getPlugin("Vault") == null)
-            return false;
+    private void setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return;
+        }
 
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null)
-            return false;
+        if (rsp == null) {
+            return;
+        }
         economy = rsp.getProvider();
-        return economy != null;
     }
 
     private void loadCategories() {
@@ -132,28 +146,54 @@ public class Main extends JavaPlugin {
                 Enumeration<JarEntry> entries = jarfile.entries();
                 while (entries.hasMoreElements()) {
                     final String name = entries.nextElement().getName();
-                    if (name.startsWith("categories/") && !name.equals("categories/")) {
+                    if (name.startsWith("categories/") && !"categories/".equals(name)) {
                         saveResource(name, true);
                     }
                 }
                 jarfile.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                getLogger().warning(String.valueOf(e));
             }
 
             getConfig().set("reset-categories", false);
             saveConfig();
         }
 
-        for (File file : Objects.requireNonNull(getDataFolder().listFiles()))
-            if (file.isDirectory())
-                if (file.getName().equals("categories"))
-                    for (File categoryFile : Objects.requireNonNull(file.listFiles()))
-                        if (categoryFile.isFile())
+        for (File file : Objects.requireNonNull(getDataFolder().listFiles())) {
+            if (file.isDirectory()) {
+                if ("categories".equals(file.getName())) {
+                    for (File categoryFile : Objects.requireNonNull(file.listFiles())) {
+                        if (categoryFile.isFile()) {
                             try {
-                                HEAD_CATEGORIES.add(parser.parse(new String(Files.readAllBytes(categoryFile.toPath()), StandardCharsets.UTF_8)));
+                                headCategories.add(parser.parse(
+                                        new String(Files.readAllBytes(categoryFile.toPath()), StandardCharsets.UTF_8)));
                             } catch (IOException | ParseException e) {
-                                e.printStackTrace();
+                                getLogger().warning(String.valueOf(e));
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public UpdateChecker getUpdateChecker() {
+        return updateChecker;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public Economy getEconomy() {
+        return economy;
+    }
+
+    public float getDefaultHeadPrice() {
+        return defaultHeadPrice;
+    }
+
+    public JSONArray getHeadCategories() {
+        return headCategories;
     }
 }

@@ -1,5 +1,6 @@
 package me.deejayarroba.craftheads.utils;
 
+import me.deejayarroba.craftheads.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -8,6 +9,7 @@ import org.bukkit.command.CommandSender;
 
 import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * For a How-To on how to use AbstractCommand see this post @ http://forums.bukkit.org/threads/195990/
@@ -23,53 +25,28 @@ public abstract class AbstractCommand implements CommandExecutor {
     protected final String usage;
     protected final String permMessage;
 
-    public AbstractCommand(String command) {
-        this(command, null, null, null, null);
-    }
-
-    public AbstractCommand(String command, String usage) {
-        this(command, usage, null, null, null);
-    }
-
-    public AbstractCommand(String command, String usage, String description) {
+    protected AbstractCommand(String command, String usage, String description) {
         this(command, usage, description, null, null);
     }
 
-    public AbstractCommand(String command, String usage, String description, String permissionMessage) {
-        this(command, usage, description, permissionMessage, null);
-    }
-
-    public AbstractCommand(String command, String usage, String description, List<String> aliases) {
-        this(command, usage, description, null, aliases);
-    }
-
-    public AbstractCommand(String command, String usage, String description, String permissionMessage, List<String> aliases) {
-        this.command = command.toLowerCase();
+    protected AbstractCommand(String command, String usage, String description, String permissionMessage,
+                              List<String> aliases) {
+        this.command = command.toLowerCase(Locale.getDefault());
         this.usage = usage;
         this.description = description;
         this.permMessage = permissionMessage;
         this.alias = aliases;
     }
 
-    public void register() {
-        ReflectCommand cmd = new ReflectCommand(this.command);
-        if (this.alias != null) cmd.setAliases(this.alias);
-        if (this.description != null) cmd.setDescription(this.description);
-        if (this.usage != null) cmd.setUsage(this.usage);
-        if (this.permMessage != null) cmd.setPermissionMessage(this.permMessage);
-        getCommandMap().register("", cmd);
-        cmd.setExecutor(this);
-    }
-
-    final CommandMap getCommandMap() {
+    private static CommandMap getCommandMap() {
         if (cmap == null) {
             try {
                 final Field f = Bukkit.getServer().getClass().getDeclaredField("commandMap");
                 f.setAccessible(true);
                 cmap = (CommandMap) f.get(Bukkit.getServer());
                 return getCommandMap();
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IllegalAccessException | IllegalArgumentException | NoSuchFieldException | SecurityException e) {
+                Main.getInstance().getLogger().warning(String.valueOf(e));
             }
         } else {
             return cmap;
@@ -77,11 +54,30 @@ public abstract class AbstractCommand implements CommandExecutor {
         return getCommandMap();
     }
 
-    private final class ReflectCommand extends Command {
-        private CommandExecutor exe = null;
+    public void register() {
+        ReflectCommand cmd = new ReflectCommand(this.command);
+        if (this.alias != null) {
+            cmd.setAliases(this.alias);
+        }
+        if (this.description != null) {
+            cmd.setDescription(this.description);
+        }
+        if (this.usage != null) {
+            cmd.setUsage(this.usage);
+        }
+        if (this.permMessage != null) {
+            cmd.setPermissionMessage(this.permMessage);
+        }
+        getCommandMap().register("", cmd);
+        cmd.setExecutor(this);
+    }
+
+    private static final class ReflectCommand extends Command {
+        private CommandExecutor exe;
 
         protected ReflectCommand(String command) {
             super(command);
+            exe = null;
         }
 
         public void setExecutor(CommandExecutor exe) {

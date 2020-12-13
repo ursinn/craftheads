@@ -1,5 +1,6 @@
 package me.deejayarroba.craftheads.menu;
 
+import me.deejayarroba.craftheads.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -7,14 +8,16 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Menu {
+public class Menu {
 
     protected String name;
     protected Inventory inventory;
-    protected ArrayList<MenuItem> menuItems = new ArrayList<>();
+    protected ArrayList<MenuItem> menuItems;
+    protected Main mainInstance;
 
     public Menu() {
-
+        menuItems = new ArrayList<>();
+        mainInstance = Main.getInstance();
     }
 
     // Places the MenuItems in the inventory
@@ -23,10 +26,11 @@ public abstract class Menu {
         int slotCount;
         int itemCount = getMenuItems().size();
         int rest = itemCount % 9;
-        if (rest == 0)
+        if (rest == 0) {
             slotCount = itemCount;
-        else
+        } else {
             slotCount = itemCount + (9 - rest);
+        }
 
         inventory = Bukkit.createInventory(null, slotCount, name);
 
@@ -42,7 +46,8 @@ public abstract class Menu {
 
     public MenuItem getMenuItem(ItemStack itemStack) {
         for (MenuItem menuItem : menuItems) {
-            if (menuItem.getItemStack().getItemMeta().getDisplayName().equals(itemStack.getItemMeta().getDisplayName())) {
+            if (menuItem.getItemStack().getItemMeta().getDisplayName().equals(
+                    itemStack.getItemMeta().getDisplayName())) {
                 return menuItem;
             }
         }

@@ -8,14 +8,19 @@ import org.bukkit.inventory.Inventory;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-public class MenuManager {
+public final class MenuManager {
 
-    public static MainMenu mainMenu;
-    public static CategoriesMenu categoriesMenu;
-    public static ArrayList<CategoryMenu> categoryMenus = new ArrayList<>();
     private static final List<Menu> menus = new ArrayList<>();
+    private static final ArrayList<CategoryMenu> categoryMenus = new ArrayList<>();
+    private static CategoriesMenu categoriesMenu;
+    private static MainMenu mainMenu;
+
+    private MenuManager() {
+        throw new IllegalStateException("Utility class");
+    }
 
     // Shortcut to add a menu
     private static void add(Menu menu) {
@@ -29,8 +34,8 @@ public class MenuManager {
         categoriesMenu = new CategoriesMenu();
         add(categoriesMenu);
 
-        for (int i = 0; i < Main.HEAD_CATEGORIES.size(); i++) {
-            JSONObject category = (JSONObject) Main.HEAD_CATEGORIES.get(i);
+        for (int i = 0; i < Main.getInstance().getHeadCategories().size(); i++) {
+            JSONObject category = (JSONObject) Main.getInstance().getHeadCategories().get(i);
             CategoryMenu categoryMenu = new CategoryMenu(category);
             categoryMenus.add(categoryMenu);
             add(categoryMenu);
@@ -39,14 +44,15 @@ public class MenuManager {
 
     // Get all the menus
     public static List<Menu> getMenus() {
-        return menus;
+        return Collections.unmodifiableList(menus);
     }
 
     // Get a menu from its name
     public static Menu getMenu(String name) {
         for (Menu menu : getMenus()) {
-            if (menu.getName().equals(name))
+            if (menu.getName().equals(name)) {
                 return menu;
+            }
         }
         return null;
     }
@@ -54,10 +60,23 @@ public class MenuManager {
     // Get a menu from its inventory
     public static Menu getMenu(Inventory inv) {
         for (Menu menu : getMenus()) {
-            if (menu.getInventory().equals(inv))
+            if (menu.getInventory().equals(inv)) {
                 return menu;
+            }
         }
         return null;
     }
 
+
+    public static List<CategoryMenu> getCategoryMenus() {
+        return Collections.unmodifiableList(categoryMenus);
+    }
+
+    public static CategoriesMenu getCategoriesMenu() {
+        return categoriesMenu;
+    }
+
+    public static MainMenu getMainMenu() {
+        return mainMenu;
+    }
 }
