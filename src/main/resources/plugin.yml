@@ -3,8 +3,8 @@ version: ${project.version}
 main: me.deejayarroba.craftheads.Main
 softdepend: [ Vault ]
 authors: [ DeejayArroba, ursinn ]
-description: CraftHeads
-website: https://www.spigotmc.org/resources/craftheads.59481/
+description: ${project.description}
+website: ${project.url}
 api-version: 1.13
 permissions:
   craftheads.*:
