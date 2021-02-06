@@ -1,6 +1,5 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
-import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.menu.MenuManager;
@@ -10,102 +9,134 @@ import me.deejayarroba.craftheads.utils.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.SkullType;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
 public class MainMenu extends Menu {
 
-    private static final String CATEGORIES_ITEM_URL = "http://textures.minecraft.net/texture/3e8aad673157c92317a88b1f86f5271f1cd7397d7fc8ec3281f733f751634";
-    private static final String OTHER_PLAYER_ITEM_URL = "http://textures.minecraft.net/texture/f937e1c45bb8da29b2c564dd9a7da780dd2fe54468a5dfb4113b4ff658f043e1";
+    private static final String CATEGORIES_ITEM_URL =
+            "http://textures.minecraft.net/texture/3e8aad673157c92317a88b1f86f5271f1cd7397d7fc8ec3281f733f751634";
+    private static final String OTHER_PLAYER_ITEM_URL =
+            "http://textures.minecraft.net/texture/f937e1c45bb8da29b2c564dd9a7da780dd2fe54468a5dfb4113b4ff658f043e1";
 
-    MessageManager msg = MessageManager.getInstance();
+    private final MessageManager msg;
 
     public MainMenu() {
-
-        name = Main.getLanguage().getLanguageConfig().getString("menu.name", "CraftHeads menu");
+        msg = MessageManager.getInstance();
+        name = mainInstance.getLanguage().getLanguageConfig().getString("menu.name", "CraftHeads menu");
         menuItems = new ArrayList<>();
-
         inventory = Bukkit.createInventory(null, 9, name);
 
+        run();
+    }
+
+    private void run() {
         final Items.ItemStackBuilder ownHeadBuilder = Items.builder()
-                .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.own", "§6Get your own head")))
+                .setName(ChatColor.translateAlternateColorCodes('&',
+                        mainInstance.getLanguage().getLanguageConfig().getString(
+                                "menu.own", "§6Get your own head")))
                 .setMaterial(Skulls.getPlayerSkullMaterial())
                 .setData((short) SkullType.PLAYER.ordinal());
 
         Items.ItemStackBuilder otherHeadBuilder = Items.editor(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
-                .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.other", "§6Get someone else's head")))
-                .addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.lore.other", "§a§oUse: §e§o/craftheads <player name>")));
+                .setName(ChatColor.translateAlternateColorCodes('&',
+                        mainInstance.getLanguage().getLanguageConfig().getString(
+                                "menu.other", "§6Get someone else's head")))
+                .addLore(ChatColor.translateAlternateColorCodes('&',
+                        mainInstance.getLanguage().getLanguageConfig().getString(
+                                "menu.lore.other", "§a§oUse: §e§o/craftheads <player name>")));
 
-        final float ownHeadPrice = Main.getInstance().getConfig().getInt("player-own-head-price");
-        final float otherHeadPrice = Main.getInstance().getConfig().getInt("player-other-head-price");
+        final float ownHeadPrice = mainInstance.getConfig().getInt("player-own-head-price");
+        final float otherHeadPrice = mainInstance.getConfig().getInt("player-other-head-price");
 
-        if (Main.economy != null) {
+        if (mainInstance.getEconomy() != null) {
 
             if (ownHeadPrice > 0) {
-                ownHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.price", "&bPrice: &a%price%").replaceAll("%price%", String.valueOf(ownHeadPrice))));
+                ownHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&',
+                        mainInstance.getLanguage().getLanguageConfig().getString("menu.buy.price",
+                                "&bPrice: &a%price%").replace("%price%", String.valueOf(ownHeadPrice))));
             } else {
-                ownHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.free", "&bPrice: &aFREE")));
+                ownHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&',
+                        mainInstance.getLanguage().getLanguageConfig().getString(
+                                "menu.buy.free", "&bPrice: &aFREE")));
             }
 
             if (otherHeadPrice > 0) {
-                otherHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.price", "&bPrice: &a%price%").replaceAll("%price%", String.valueOf(otherHeadPrice))));
+                otherHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&',
+                        mainInstance.getLanguage().getLanguageConfig().getString("menu.buy.price",
+                                "&bPrice: &a%price%").replace("%price%", String.valueOf(otherHeadPrice))));
             } else {
-                otherHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.free", "&bPrice: &aFREE")));
+                otherHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&',
+                        mainInstance.getLanguage().getLanguageConfig().getString(
+                                "menu.buy.free", "&bPrice: &aFREE")));
             }
         }
 
         menuItems.add(0, new MenuItem(ownHeadBuilder.build(),
-                p -> {
-                    if (Main.economy != null) {
-                        double balance = Main.economy.getBalance(p);
+                (Player p) -> {
+                    if (mainInstance.getEconomy() != null) {
+                        double balance = mainInstance.getEconomy().getBalance(p);
                         if (balance < ownHeadPrice) {
                             // Player can't afford the head
-                            msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.money.own", "You can't your afford your own head!")));
+                            msg.bad(p, ChatColor.translateAlternateColorCodes('&',
+                                    mainInstance.getLanguage().getLanguageConfig().getString(
+                                            "error.money.own", "You can't your afford your own head!")));
                             return;
                         }
                     }
 
                     // If the inventory is full
                     if (p.getInventory().firstEmpty() == -1) {
-                        msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!")));
+                        msg.bad(p, ChatColor.translateAlternateColorCodes('&',
+                                mainInstance.getLanguage().getLanguageConfig().getString(
+                                        "error.inv", "Your inventory is full!")));
                     } else {
                         ItemStack head = Items.editor(Skulls.getPlayerSkull(p.getName()))
-                                .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%args0%", p.getName())))
+                                .setName(ChatColor.translateAlternateColorCodes('&',
+                                        mainInstance.getLanguage().getLanguageConfig().getString(
+                                                "item", "&6Head: &b%args0%").replace("%args0%", p.getName())))
                                 .build();
                         p.getInventory().addItem(head);
 
-                        if (Main.economy != null && ownHeadPrice > 0) {
+                        if (mainInstance.getEconomy() != null && ownHeadPrice > 0) {
                             // Player can afford the head
-                            Main.economy.withdrawPlayer(p, ownHeadPrice);
-                            msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("buy.own", "You bought your own head for &b%ownHeadPrice%").replaceAll("%ownHeadPrice%", String.valueOf(ownHeadPrice))));
+                            mainInstance.getEconomy().withdrawPlayer(p, ownHeadPrice);
+                            msg.good(p, ChatColor.translateAlternateColorCodes('&',
+                                    mainInstance.getLanguage().getLanguageConfig().getString(
+                                            "buy.own", "You bought your own head for &b%ownHeadPrice%")
+                                            .replace("%ownHeadPrice%", String.valueOf(ownHeadPrice))));
                         }
 
-                        msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("give.own", "You now have your own head!")));
+                        msg.good(p, ChatColor.translateAlternateColorCodes('&',
+                                mainInstance.getLanguage().getLanguageConfig().getString(
+                                        "give.own", "You now have your own head!")));
                         p.closeInventory();
                     }
                 }));
 
         menuItems.add(1, new MenuItem(Items.editor(Skulls.getCustomSkull(CATEGORIES_ITEM_URL))
-                .setName(ChatColor.GOLD + Main.getLanguage().getLanguageConfig().getString("menu.categories", "Categories"))
+                .setName(ChatColor.GOLD + mainInstance.getLanguage().getLanguageConfig().getString(
+                        "menu.categories", "Categories"))
                 .build(),
-                p -> {
+                (Player p) -> {
                     // Open categories menu here
-                    p.openInventory(MenuManager.categoriesMenu.getInventory());
+                    p.openInventory(MenuManager.getCategoriesMenu().getInventory());
                 }));
 
         menuItems.add(2, new MenuItem(otherHeadBuilder.build(),
-                p -> {
+                (Player p) -> {
                     // Give someone else's head here
-                    msg.info(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("give.other.helper", "§aUse: §e/craftheads <player name>")));
+                    msg.info(p, ChatColor.translateAlternateColorCodes('&',
+                            mainInstance.getLanguage().getLanguageConfig().getString(
+                                    "give.other.helper", "§aUse: §e/craftheads <player name>")));
                     p.closeInventory();
                 }));
 
         placeItems();
-
     }
 
-    // x x X x X x X x x
     @Override
     protected void placeItems() {
         inventory.setItem(2, menuItems.get(0).getItemStack());
@@ -114,6 +145,5 @@ public class MainMenu extends Menu {
 
         inventory.setItem(6, menuItems.get(2).getItemStack());
     }
-
 
 }

@@ -13,38 +13,53 @@ import java.util.jar.JarFile;
 
 public class Language {
 
-    private FileConfiguration languageConfig;
+    private final FileConfiguration languageConfig;
+    private final File languageFile;
+    private final Main mainInstance;
 
-    public FileConfiguration getLanguageConfig() {
-        return languageConfig;
+    public Language() {
+        languageConfig = new YamlConfiguration();
+        languageFile = new File(Main.getInstance().getDataFolder() + "/lang",
+                Main.getInstance().getConfig().getString("language", "en") + ".yml");
+        mainInstance = Main.getInstance();
     }
 
     public void createLanguageFile() {
-        File languageFile = new File(Main.getInstance().getDataFolder() + "/lang", Main.getInstance().getConfig().getString("language", "en") + ".yml");
         if (!languageFile.exists()) {
-            JarFile jarfile;
-            try {
-                jarfile = new JarFile(Main.getInstance().getPluginFile());
-
-                Enumeration<JarEntry> entries = jarfile.entries();
-                while (entries.hasMoreElements()) {
-                    final String name = entries.nextElement().getName();
-                    if (name.startsWith("lang/") && !name.equals("lang/")) {
-                        Main.getInstance().saveResource(name, false);
-                    }
-                }
-                jarfile.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            extractFiles();
         }
 
-        languageConfig = new YamlConfiguration();
+        load();
+    }
+
+    private void extractFiles() {
+        JarFile jarfile;
+        try {
+            jarfile = new JarFile(mainInstance.getPluginFile());
+
+            Enumeration<JarEntry> entries = jarfile.entries();
+            while (entries.hasMoreElements()) {
+                final String name = entries.nextElement().getName();
+                if (name.startsWith("lang/") && !"lang/".equals(name)) {
+                    mainInstance.saveResource(name, false);
+                }
+            }
+            jarfile.close();
+        } catch (IOException e) {
+            mainInstance.getLogger().warning(String.valueOf(e));
+        }
+    }
+
+    private void load() {
         try {
             languageConfig.load(languageFile);
         } catch (IOException | InvalidConfigurationException e) {
-            e.printStackTrace();
+            mainInstance.getLogger().warning(String.valueOf(e));
         }
+    }
+
+    public FileConfiguration getLanguageConfig() {
+        return languageConfig;
     }
 
 }

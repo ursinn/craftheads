@@ -1,11 +1,9 @@
 version: 2
 updates:
-- package-ecosystem: maven
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  reviewers:
-  - ursinn
-  assignees:
-  - ursinn
+  - package-ecosystem: maven
+    directory: "/"
+    schedule:
+      interval: daily
+    target-branch: "develop"
+    assignees:
+      - ursinn

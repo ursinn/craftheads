@@ -1,40 +1,86 @@
 package me.deejayarroba.craftheads.utils;
 
-import me.deejayarroba.craftheads.Main;
+import org.bukkit.plugin.Plugin;
 
+import javax.annotation.Nonnull;
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
+/**
+ * @author Ursin Filli
+ * @version 1.0
+ */
 public class UpdateChecker {
 
-    private int id;
-    private Main plugin;
-    private boolean update;
-    public Thread checkUpdates = new Thread() {
-        public void run() {
-            try {
-                URLConnection conn = new URL("https://api.spigotmc.org/legacy/update.php?resource=" + id).openConnection();
-                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String oldVersion = plugin.getDescription().getVersion();
-                String newVersion = br.readLine();
-                if (!newVersion.equals(oldVersion)) {
-                    update = true;
-                    plugin.getLogger().info(Main.getLanguage().getLanguageConfig().getString("update.notify", "An update for CraftHeads is available"));
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    };
+    private final int id;
+    private final Plugin plugin;
+    private boolean updateAvailable;
+    private String updateNotifyText;
 
-    public UpdateChecker(int id, Main plugin) {
+    /**
+     * Constructor.
+     *
+     * @param id     Spigot Plugin Id
+     * @param plugin Instance of {@link Plugin}
+     */
+    public UpdateChecker(int id, @Nonnull Plugin plugin) {
         this.id = id;
         this.plugin = plugin;
+        this.updateAvailable = false;
+        this.updateNotifyText = "An update for %PLUGIN_NAME% is available";
     }
 
-    public boolean isUpdate() {
-        return update;
+    /**
+     * @return result of UpdateCheck
+     */
+    public boolean isUpdateAvailable() {
+        return updateAvailable;
+    }
+
+    /**
+     * Checks for Update on Spigot
+     */
+    public void checkUpdate() {
+        new Thread(() -> {
+            try {
+                URLConnection connection = new URL(
+                        "https://api.spigotmc.org/legacy/update.php?resource=" + id).openConnection();
+                checkVersion(connection);
+            } catch (IOException e) {
+                plugin.getLogger().warning(String.valueOf(e));
+            }
+        }).start();
+    }
+
+    private void checkVersion(URLConnection connection) throws IOException {
+        InputStreamReader reader = new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8);
+        BufferedReader br = new BufferedReader(reader);
+        String oldVersion = plugin.getDescription().getVersion();
+        String newVersion = br.readLine();
+        if (!newVersion.equals(oldVersion)) {
+            updateAvailable = true;
+            plugin.getLogger().info(getFormattedUpdateNotifyText());
+        }
+    }
+
+    /**
+     * Placeholders:
+     * %PLUGIN_NAME% - Plugin Name
+     *
+     * @param updateNotifyText UpdateNotifyText
+     */
+    public void setUpdateNotifyText(String updateNotifyText) {
+        this.updateNotifyText = updateNotifyText;
+    }
+
+    /**
+     * @return Formatted UpdateNotifyText
+     */
+    public String getFormattedUpdateNotifyText() {
+        return updateNotifyText.replace("%PLUGIN_NAME%", plugin.getDescription().getName());
     }
 }

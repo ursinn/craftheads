@@ -1,35 +1,32 @@
 package me.deejayarroba.craftheads.utils;
 
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import org.bukkit.command.CommandSender;
 
-public class MessageManager {
+public final class MessageManager {
 
-    private static MessageManager instance = new MessageManager();
-    String prefix = ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + "CraftHeads" + ChatColor.DARK_GRAY + "] " + ChatColor.RESET;
-
-    private MessageManager() {
-    }
+    private static final MessageManager instance = new MessageManager();
+    private static final String PREFIX =
+            ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + "CraftHeads" + ChatColor.DARK_GRAY + "] " + ChatColor.RESET;
 
     public static MessageManager getInstance() {
         return instance;
     }
 
-    public void info(Player p, String msg) {
-        msg(p, ChatColor.YELLOW, msg);
+    public void info(CommandSender sender, String msg) {
+        msg(sender, ChatColor.YELLOW, msg);
     }
 
-    public void good(Player p, String msg) {
-        msg(p, ChatColor.GREEN, msg);
+    public void good(CommandSender sender, String msg) {
+        msg(sender, ChatColor.GREEN, msg);
     }
 
-    public void bad(Player p, String msg) {
-        msg(p, ChatColor.RED, msg);
+    public void bad(CommandSender sender, String msg) {
+        msg(sender, ChatColor.RED, msg);
     }
 
-    public void msg(Player p, ChatColor color, String msg) {
-
-        p.sendMessage(prefix + color + msg);
-
+    public void msg(CommandSender sender, ChatColor color, String msg) {
+        sender.sendMessage(PREFIX + color + msg);
     }
+
 }

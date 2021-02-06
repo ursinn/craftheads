@@ -10,14 +10,25 @@ public class PlayerJoin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        if (!Main.devBuild) {
-            if (Main.getInstance().getConfig().getBoolean("update-check")) {
-                if (e.getPlayer().hasPermission("craftheads.updater") || e.getPlayer().isOp()) {
-                    if (Main.getInstance().updateChecker.isUpdate())
-                        MessageManager.getInstance().info(e.getPlayer(), Main.getLanguage().getLanguageConfig().getString("update.notify", "An update for CraftHeads is available"));
-                }
-            }
+        if (Main.isDevBuild()) {
+            return;
         }
+
+        if (!Main.getInstance().getConfig().getBoolean("update-check")) {
+            return;
+        }
+
+        if (!e.getPlayer().hasPermission("craftheads.updater") && !e.getPlayer().isOp()) {
+            return;
+        }
+
+        if (!Main.getInstance().getUpdateChecker().isUpdateAvailable()) {
+            return;
+        }
+
+        MessageManager.getInstance().info(e.getPlayer(),
+                Main.getInstance().getLanguage().getLanguageConfig().getString("update.notify",
+                        "An update for CraftHeads is available"));
     }
 
 }
