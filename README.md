@@ -2,7 +2,7 @@ CraftHeads
 ==========
 
 [![Build Status](https://img.shields.io/travis/com/ursinn/craftheads?logo=travis)](https://travis-ci.com/ursinn/CraftHeads)
-[![Build Status](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.filli-it.ch%2Fjob%2Fursinn%2Fjob%2FCraftHeads%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.filli-it.ch/job/ursinn/job/spigot/job/CraftHeads)
+[![Build Status](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.filli-it.ch%2Fjob%2Fursinn%2Fjob%2FCraftHeads%2Fjob%2Fmaster%2F&logo=jenkins)](https://ci.filli-it.ch/job/ursinn/job/CraftHeads)
 [![GitHub release](https://img.shields.io/github/release/ursinn/CraftHeads.svg?logo=github)](https://github.com/ursinn/CraftHeads/releases/latest)
 [![GitHub All Releases](https://img.shields.io/github/downloads/ursinn/CraftHeads/total.svg?logo=github)](https://github.com/ursinn/CraftHeads/releases)
 
