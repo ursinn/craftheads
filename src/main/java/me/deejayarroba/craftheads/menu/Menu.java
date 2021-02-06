@@ -1,8 +1,11 @@
 package me.deejayarroba.craftheads.menu;
 
+import com.mojang.authlib.GameProfile;
+import me.deejayarroba.craftheads.utils.Reflections;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +45,21 @@ public abstract class Menu {
 
     public MenuItem getMenuItem(ItemStack itemStack) {
         for (MenuItem menuItem : menuItems) {
-            if (menuItem.getItemStack().getItemMeta().getDisplayName().equals(itemStack.getItemMeta().getDisplayName())) {
+            ItemMeta itemStackItemMeta = itemStack.getItemMeta();
+            Class<?> itemStackItemMetaClass = itemStackItemMeta.getClass();
+            Object itemStackProfile = Reflections.getField(itemStackItemMetaClass, "profile", GameProfile.class)
+                    .get(itemStackItemMeta);
+
+            if (itemStackProfile == null) {
+                return menuItem;
+            }
+
+            ItemMeta menuItemMeta = menuItem.getItemStack().getItemMeta();
+            Class<?> menuItemMetaClass = menuItemMeta.getClass();
+            Object menuItemProfile = Reflections.getField(menuItemMetaClass, "profile", GameProfile.class)
+                    .get(menuItemMeta);
+
+            if (itemStackProfile.equals(menuItemProfile)) {
                 return menuItem;
             }
         }
