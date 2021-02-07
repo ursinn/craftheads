@@ -87,6 +87,8 @@ public class Main extends JavaPlugin {
                 Metrics metrics = new Metrics(this, METRICS_PLUGIN_ID);
                 metrics.addCustomChart(
                         new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
+                metrics.addCustomChart(
+                        new Metrics.SimplePie("economy", () -> getConfig().getString("economy", "false")));
             }
 
             if (getConfig().getBoolean("update-check")) {
