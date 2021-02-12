@@ -6,7 +6,7 @@
 
     <groupId>me.deejayarroba</groupId>
     <artifactId>craftheads</artifactId>
-    <version>4.4.0</version>
+    <version>4.5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>CraftHeads</name>
@@ -22,11 +22,13 @@
     <build>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
+            <!-- Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
             </plugin>
+            <!-- Shade Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
