@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>CraftHeads</name>
-    <description>CraftHeads Description</description>
+    <description>Head decoration plugin</description>
     <url>https://github.com/ursinn/craftheads</url>
 
     <properties>
