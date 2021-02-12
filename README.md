@@ -3,8 +3,8 @@ CraftHeads
 
 [![Build Status Travis Master](https://img.shields.io/travis/com/ursinn/craftheads/master?logo=travis&label=build%20master)](https://travis-ci.com/ursinn/craftheads)
 [![Build Status Travis Develop](https://img.shields.io/travis/com/ursinn/craftheads/develop?logo=travis&label=build%20develop)](https://travis-ci.com/ursinn/craftheads)
-[![Build Status Travis Master](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.filli-it.ch%2Fjob%2Fursinn%2Fjob%2FCraftHeads%2Fjob%2Fmaster%2F&label=build%20master&logo=jenkins)](https://ci.filli-it.ch/job/ursinn/job/craftheads)
-[![Build Status Travis Develop](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.filli-it.ch%2Fjob%2Fursinn%2Fjob%2FCraftHeads%2Fjob%2Fdevelop%2F&label=build%20develop&logo=jenkins)](https://ci.filli-it.ch/job/ursinn/job/craftheads)
+[![Build Status Jenkins Main](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.filli-it.ch%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fmain%2F&label=build%20master&logo=jenkins)](https://ci.filli-it.ch/job/ursinn/job/craftheads)
+[![Build Status Jenkins Develop](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.filli-it.ch%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fdevelop%2F&label=build%20develop&logo=jenkins)](https://ci.filli-it.ch/job/ursinn/job/craftheads)
 
 [![GitHub release](https://img.shields.io/github/release/ursinn/CraftHeads.svg?logo=github)](https://github.com/ursinn/CraftHeads/releases/latest)
 [![GitHub All Releases](https://img.shields.io/github/downloads/ursinn/CraftHeads/total.svg?logo=github)](https://github.com/ursinn/CraftHeads/releases)
