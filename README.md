@@ -1,9 +1,9 @@
 CraftHeads
 ==========
 
-[![Build Status Travis Master](https://img.shields.io/travis/com/ursinn/craftheads/master?logo=travis&label=build%20master)](https://travis-ci.com/ursinn/craftheads)
+[![Build Status Travis Main](https://img.shields.io/travis/com/ursinn/craftheads/main?logo=travis&label=build%20main)](https://travis-ci.com/ursinn/craftheads)
 [![Build Status Travis Develop](https://img.shields.io/travis/com/ursinn/craftheads/develop?logo=travis&label=build%20develop)](https://travis-ci.com/ursinn/craftheads)
-[![Build Status Jenkins Main](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fmain%2F&label=build%20master&logo=jenkins)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
+[![Build Status Jenkins Main](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fmain%2F&label=build%20main&logo=jenkins)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
 [![Build Status Jenkins Develop](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fdevelop%2F&label=build%20develop&logo=jenkins)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
 
 [![GitHub release](https://img.shields.io/github/release/ursinn/CraftHeads.svg?logo=github)](https://github.com/ursinn/CraftHeads/releases/latest)
