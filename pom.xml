@@ -6,11 +6,11 @@
 
     <groupId>me.deejayarroba</groupId>
     <artifactId>craftheads</artifactId>
-    <version>4.4.0</version>
+    <version>4.5-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>CraftHeads</name>
-    <description>CraftHeads</description>
+    <description>Head decoration plugin</description>
     <url>https://github.com/ursinn/craftheads</url>
 
     <properties>
@@ -22,11 +22,13 @@
     <build>
         <defaultGoal>clean package</defaultGoal>
         <plugins>
+            <!-- Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
             </plugin>
+            <!-- Shade Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -62,47 +64,56 @@
     </build>
 
     <repositories>
-        <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
+        <!-- Spigot -->
+<!--        <repository>-->
+<!--            <id>spigotmc-repo</id>-->
+<!--            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>-->
+<!--        </repository>-->
+        <!-- Bukkit -->
+<!--        <repository>-->
+<!--            <id>codemc-nms</id>-->
+<!--            <url>https://repo.codemc.io/repository/nms/</url>-->
+<!--        </repository>-->
+        <!-- Vault -->
+<!--        <repository>-->
+<!--            <id>jitpack.io</id>-->
+<!--            <url>https://jitpack.io</url>-->
+<!--        </repository>-->
+        <!-- bStats -->
+<!--        <repository>-->
+<!--            <id>codemc-repo</id>-->
+<!--            <url>https://repo.codemc.org/repository/maven-public/</url>-->
+<!--        </repository>-->
+        <!-- Mirror -->
         <repository>
             <id>nexus.filli-it.ch</id>
             <url>https://nexus.filli-it.ch/repository/maven-public/</url>
         </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-        <repository>
-            <id>CodeMC</id>
-            <url>https://repo.codemc.org/repository/maven-public/</url>
-        </repository>
     </repositories>
 
     <dependencies>
+        <!-- Spigot -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>net.milkbowl.vault</groupId>
-            <artifactId>VaultAPI</artifactId>
-            <version>1.7</version>
-            <scope>provided</scope>
-        </dependency>
+        <!-- Bukkit -->
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Vault -->
+        <dependency>
+            <groupId>net.milkbowl.vault</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.7</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- bStats -->
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
