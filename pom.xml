@@ -86,8 +86,8 @@
 <!--        </repository>-->
         <!-- Mirror -->
         <repository>
-            <id>nexus.filli-it.ch</id>
-            <url>https://nexus.filli-it.ch/repository/maven-public/</url>
+            <id>ursinn-repo</id>
+            <url>https://repo.ursinn.dev/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -124,12 +124,12 @@
 
     <distributionManagement>
         <repository>
-            <id>nexus.filli-it.ch</id>
-            <url>https://nexus.filli-it.ch/repository/maven-releases/</url>
+            <id>ursinn-repo</id>
+            <url>https://repo.ursinn.dev/repository/maven-releases/</url>
         </repository>
         <snapshotRepository>
-            <id>nexus.filli-it.ch</id>
-            <url>https://nexus.filli-it.ch/repository/maven-snapshots/</url>
+            <id>ursinn-repo</id>
+            <url>https://repo.ursinn.dev/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
