@@ -4,14 +4,30 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>me.deejayarroba</groupId>
-    <artifactId>craftheads</artifactId>
-    <version>4.5-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <groupId>dev.ursinn.minecraft</groupId>
+    <artifactId>craftheads-parent</artifactId>
+    <version>HEAD-jre-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-    <name>CraftHeads</name>
+    <name>CraftHeads Maven Parent</name>
     <description>Head decoration plugin</description>
     <url>https://github.com/ursinn/craftheads</url>
+
+    <scm>
+        <connection>scm:git:git://github.com/ursinn/craftheads.git</connection>
+        <developerConnection>scm:git:git://github.com/ursinn/craftheads.git</developerConnection>
+        <url>https://github.com/ursinn/craftheads</url>
+    </scm>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/ursinn/craftheads/issues</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>Travis CI</system>
+        <url>https://travis-ci.com/github/ursinn/craftheads</url>
+    </ciManagement>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -19,71 +35,31 @@
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
     </properties>
 
-    <build>
-        <defaultGoal>clean package</defaultGoal>
-        <plugins>
-            <!-- Compiler Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-            </plugin>
-            <!-- Shade Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <configuration>
-                    <relocations>
-                        <relocation>
-                            <pattern>org.bstats</pattern>
-                            <!-- Replace this with your package! -->
-                            <shadedPattern>me.deejayarroba.craftheads.utils</shadedPattern>
-                        </relocation>
-                    </relocations>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <minimizeJar>true</minimizeJar>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
+    <modules>
+        <module>spigot</module>
+    </modules>
 
     <repositories>
         <!-- Spigot -->
-<!--        <repository>-->
-<!--            <id>spigotmc-repo</id>-->
-<!--            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>-->
-<!--        </repository>-->
+        <!--        <repository>-->
+        <!--            <id>spigotmc-repo</id>-->
+        <!--            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>-->
+        <!--        </repository>-->
         <!-- Bukkit -->
-<!--        <repository>-->
-<!--            <id>codemc-nms</id>-->
-<!--            <url>https://repo.codemc.io/repository/nms/</url>-->
-<!--        </repository>-->
+        <!--        <repository>-->
+        <!--            <id>codemc-nms</id>-->
+        <!--            <url>https://repo.codemc.io/repository/nms/</url>-->
+        <!--        </repository>-->
         <!-- Vault -->
-<!--        <repository>-->
-<!--            <id>jitpack.io</id>-->
-<!--            <url>https://jitpack.io</url>-->
-<!--        </repository>-->
+        <!--        <repository>-->
+        <!--            <id>jitpack.io</id>-->
+        <!--            <url>https://jitpack.io</url>-->
+        <!--        </repository>-->
         <!-- bStats -->
-<!--        <repository>-->
-<!--            <id>codemc-repo</id>-->
-<!--            <url>https://repo.codemc.org/repository/maven-public/</url>-->
-<!--        </repository>-->
+        <!--        <repository>-->
+        <!--            <id>codemc-repo</id>-->
+        <!--            <url>https://repo.codemc.org/repository/maven-public/</url>-->
+        <!--        </repository>-->
         <!-- Mirror -->
         <repository>
             <id>ursinn-repo</id>
@@ -91,36 +67,109 @@
         </repository>
     </repositories>
 
-    <dependencies>
-        <!-- Spigot -->
-        <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- Bukkit -->
-        <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>craftbukkit</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- Vault -->
-        <dependency>
-            <groupId>net.milkbowl.vault</groupId>
-            <artifactId>VaultAPI</artifactId>
-            <version>1.7</version>
-            <scope>provided</scope>
-        </dependency>
-        <!-- bStats -->
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>1.7</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spigot -->
+            <dependency>
+                <groupId>org.spigotmc</groupId>
+                <artifactId>spigot-api</artifactId>
+                <version>1.8.8-R0.1-SNAPSHOT</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Bukkit -->
+            <dependency>
+                <groupId>org.bukkit</groupId>
+                <artifactId>craftbukkit</artifactId>
+                <version>1.8.8-R0.1-SNAPSHOT</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Vault -->
+            <dependency>
+                <groupId>net.milkbowl.vault</groupId>
+                <artifactId>VaultAPI</artifactId>
+                <version>1.7</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- bStats -->
+            <dependency>
+                <groupId>org.bstats</groupId>
+                <artifactId>bstats-bukkit</artifactId>
+                <version>1.7</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- Annotation -->
+            <dependency>
+                <groupId>com.google.code.findbugs</groupId>
+                <artifactId>jsr305</artifactId>
+                <version>3.0.2</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <pluginManagement>
+            <plugins>
+                <!-- Compiler Plugin -->
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
+                </plugin>
+                <!-- Shade Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-shade-plugin</artifactId>
+                    <version>3.2.4</version>
+                    <executions>
+                        <execution>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>shade</goal>
+                            </goals>
+                            <configuration>
+                                <minimizeJar>true</minimizeJar>
+                                <createDependencyReducedPom>false</createDependencyReducedPom>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Surefire Plugin -->
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.22.2</version>
+                </plugin>
+                <!-- Javadoc Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <executions>
+                        <execution>
+                            <id>attach-javadocs</id>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <!-- Source Plugin -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>2.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
     <distributionManagement>
         <repository>
