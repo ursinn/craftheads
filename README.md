@@ -1,13 +1,17 @@
-CraftHeads
-==========
+# CraftHeads
+[![Build status (Travis)](https://img.shields.io/travis/com/ursinn/craftheads/develop?label=Travis&logo=travis)](https://travis-ci.com/ursinn/craftheads)
+[![Build status (Jenkins)](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fdevelop%2F&label=Jenkins&logo=jenkins)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
+[![Github last commit date](https://img.shields.io/github/last-commit/ursinn/craftheads?label=Updated&logo=github)](https://github.com/gmcbm/gmcbm/commits)
 
-[![Build Status Travis Main](https://img.shields.io/travis/com/ursinn/craftheads/main?logo=travis&label=build%20main)](https://travis-ci.com/ursinn/craftheads)
-[![Build Status Travis Develop](https://img.shields.io/travis/com/ursinn/craftheads/develop?logo=travis&label=build%20develop)](https://travis-ci.com/ursinn/craftheads)
-[![Build Status Jenkins Main](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fmain%2F&label=build%20main&logo=jenkins)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
-[![Build Status Jenkins Develop](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fdevelop%2F&label=build%20develop&logo=jenkins)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
+[![GitHub stable release version](https://img.shields.io/github/release/ursinn/craftheads?label=Stable&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
+[![GitHub stable release date](https://img.shields.io/github/release-date/ursinn/craftheads?label=Released&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
+[![Github stable release downloads](https://img.shields.io/github/downloads/ursinn/craftheads/latest/total?label=Downloads&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
 
-[![GitHub release](https://img.shields.io/github/release/ursinn/CraftHeads.svg?logo=github)](https://github.com/ursinn/CraftHeads/releases/latest)
-[![GitHub All Releases](https://img.shields.io/github/downloads/ursinn/CraftHeads/total.svg?logo=github)](https://github.com/ursinn/CraftHeads/releases)
+[![GitHub experimental release version](https://img.shields.io/github/release/ursinn/craftheads/all?label=Experimental&logo=github)](https://github.com/ursinn/craftheads/releases)
+[![GitHub experimental release date](https://img.shields.io/github/release-date-pre/ursinn/craftheads?label=Released&logo=github)](https://github.com/ursinn/craftheads/releases)
+[![Github experimental release downloads](https://img.shields.io/github/downloads-pre/ursinn/craftheads/latest/total?label=Downloads&logo=github)](https://github.com/ursinn/craftheads/releases)
+
+---
 
 ![CraftHeads logo](http://i.imgur.com/WqkRLhF.png)
 
