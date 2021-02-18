@@ -60,6 +60,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>me.deejayarroba.craftheads.utils</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
             </plugin>
             <!-- Surefire Plugin -->
             <plugin>
