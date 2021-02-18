@@ -16,6 +16,7 @@
 
     <name>CraftHeads</name>
     <description>Head decoration plugin</description>
+<!--    <url>https://github.com/ursinn/craftheads</url>-->
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -96,5 +97,11 @@
 <!--                <artifactId>maven-release-plugin</artifactId>-->
 <!--            </plugin>-->
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
 </project>
