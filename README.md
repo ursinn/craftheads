@@ -4,6 +4,7 @@
 [![Github last commit date](https://img.shields.io/github/last-commit/ursinn/craftheads?label=Updated&logo=github)](https://github.com/gmcbm/gmcbm/commits)
 [![Codecov](https://img.shields.io/codecov/c/gh/ursinn/craftheads?label=Coverage&logo=codecov)](https://app.codecov.io/gh/ursinn/craftheads)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/ursinn/craftheads?label=Maintainability)](https://codeclimate.com/github/ursinn/craftheads)
+[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ursinn/craftheads?label=Vulnerabilities)](https://snyk.io/test/github/ursinn/craftheads)
 
 [![GitHub stable release version](https://img.shields.io/github/release/ursinn/craftheads?label=Stable&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
 [![GitHub stable release date](https://img.shields.io/github/release-date/ursinn/craftheads?label=Released&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
