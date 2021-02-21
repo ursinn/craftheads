@@ -38,7 +38,7 @@
 
     <modules>
         <module>core</module>
-        <module>spigot</module>
+        <module>bukkit</module>
     </modules>
 
     <repositories>
