@@ -82,18 +82,16 @@ public class Main extends JavaPlugin {
         craftHeadsCommand.register();
 
         // This takes care of auto-updating and metrics
-        if (!isDevBuild()) {
-            if (getConfig().getBoolean("metrics")) {
-                Metrics metrics = new Metrics(this, METRICS_PLUGIN_ID);
-                metrics.addCustomChart(
-                        new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
-                metrics.addCustomChart(
-                        new Metrics.SimplePie("economy", () -> getConfig().getString("economy", "false")));
-            }
+        if (getConfig().getBoolean("metrics")) {
+            Metrics metrics = new Metrics(this, METRICS_PLUGIN_ID);
+            metrics.addCustomChart(
+                    new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
+            metrics.addCustomChart(
+                    new Metrics.SimplePie("economy", () -> getConfig().getString("economy", "false")));
+        }
 
-            if (getConfig().getBoolean("update-check")) {
-                updateChecker.checkUpdate();
-            }
+        if (getConfig().getBoolean("update-check")) {
+            updateChecker.checkUpdate();
         }
 
         if (isDevBuild()) {

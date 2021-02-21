@@ -10,10 +10,6 @@ public class PlayerJoin implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-        if (Main.isDevBuild()) {
-            return;
-        }
-
         if (!Main.getInstance().getConfig().getBoolean("update-check")) {
             return;
         }
