@@ -7,9 +7,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.CommandSender;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * For a How-To on how to use AbstractCommand see this post @ http://forums.bukkit.org/threads/195990/
@@ -25,12 +28,12 @@ public abstract class AbstractCommand implements CommandExecutor {
     protected final String usage;
     protected final String permMessage;
 
-    protected AbstractCommand(String command, String usage, String description) {
+    protected AbstractCommand(@Nonnull String command, @Nonnull String usage, @Nonnull String description) {
         this(command, usage, description, null, null);
     }
 
-    protected AbstractCommand(String command, String usage, String description, String permissionMessage,
-                              List<String> aliases) {
+    protected AbstractCommand(@Nonnull String command, @Nonnull String usage, @Nonnull String description,
+                              @Nullable String permissionMessage, @Nullable List<String> aliases) {
         this.command = command.toLowerCase(Locale.getDefault());
         this.usage = usage;
         this.description = description;
@@ -38,7 +41,7 @@ public abstract class AbstractCommand implements CommandExecutor {
         this.alias = aliases;
     }
 
-    private static CommandMap getCommandMap() {
+    private static @Nonnull CommandMap getCommandMap() {
         if (cmap == null) {
             try {
                 final Field f = Bukkit.getServer().getClass().getDeclaredField("commandMap");
@@ -75,13 +78,13 @@ public abstract class AbstractCommand implements CommandExecutor {
     private static final class ReflectCommand extends Command {
         private CommandExecutor exe;
 
-        protected ReflectCommand(String command) {
+        protected ReflectCommand(@Nonnull String command) {
             super(command);
             exe = null;
         }
 
-        public void setExecutor(CommandExecutor exe) {
-            this.exe = exe;
+        public void setExecutor(@Nonnull CommandExecutor exe) {
+            this.exe = Objects.requireNonNull(exe);
         }
 
         public boolean execute(CommandSender sender, String commandLabel, String[] args) {

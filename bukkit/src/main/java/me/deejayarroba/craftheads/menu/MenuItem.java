@@ -3,21 +3,24 @@ package me.deejayarroba.craftheads.menu;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
+import java.util.Objects;
+
 public class MenuItem {
 
     private final ItemStack itemStack;
     private final MenuItemAction action;
 
-    public MenuItem(ItemStack itemStack, MenuItemAction action) {
-        this.itemStack = itemStack;
-        this.action = action;
+    public MenuItem(@Nonnull ItemStack itemStack, @Nonnull MenuItemAction action) {
+        this.itemStack = Objects.requireNonNull(itemStack);
+        this.action = Objects.requireNonNull(action);
     }
 
-    public ItemStack getItemStack() {
+    public @Nonnull ItemStack getItemStack() {
         return itemStack;
     }
 
-    public String getName() {
+    public @Nonnull String getName() {
         return itemStack.getItemMeta().getDisplayName();
     }
 

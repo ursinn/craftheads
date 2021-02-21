@@ -8,6 +8,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,11 +44,11 @@ public class Menu {
         }
     }
 
-    public List<MenuItem> getMenuItems() {
+    public @Nonnull List<MenuItem> getMenuItems() {
         return menuItems;
     }
 
-    public MenuItem getMenuItem(ItemStack itemStack) {
+    public @Nonnull MenuItem getMenuItem(@Nonnull ItemStack itemStack) {
         for (MenuItem menuItem : menuItems) {
             ItemMeta itemStackItemMeta = itemStack.getItemMeta();
             Class<?> itemStackItemMetaClass = itemStackItemMeta.getClass();
@@ -70,11 +71,13 @@ public class Menu {
         return null;
     }
 
-    public Inventory getInventory() {
+    public @Nonnull
+    Inventory getInventory() {
         return inventory;
     }
 
-    public String getName() {
+    public @Nonnull
+    String getName() {
         return name;
     }
 }

@@ -2,6 +2,7 @@ package me.deejayarroba.craftheads.utils;
 
 import org.bukkit.ChatColor;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -17,15 +18,15 @@ public final class Strings {
         throw new IllegalStateException("Utility class");
     }
 
-    public static String format(String string) {
+    public static @Nonnull String format(@Nonnull String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    public static String[] format(String[] strings) {
+    public static @Nonnull String[] format(@Nonnull String[] strings) {
         return format(Arrays.asList(strings)).toArray(new String[strings.length]);
     }
 
-    public static List<String> format(List<String> strings) {
+    public static @Nonnull List<String> format(@Nonnull List<String> strings) {
         List<String> collection = new ArrayList<>();
         for (String string : strings) {
             collection.add(format(string));
@@ -33,7 +34,7 @@ public final class Strings {
         return collection;
     }
 
-    public static String repeat(String string, int count) {
+    public static @Nonnull String repeat(@Nonnull String string, int count) {
         if (count == 0) {
             return "";
         }

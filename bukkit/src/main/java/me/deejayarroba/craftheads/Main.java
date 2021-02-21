@@ -19,6 +19,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -118,7 +119,8 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public File getPluginFile() {
+    public @Nonnull
+    File getPluginFile() {
         return getFile();
     }
 
@@ -177,15 +179,15 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public UpdateChecker getUpdateChecker() {
+    public @Nonnull UpdateChecker getUpdateChecker() {
         return updateChecker;
     }
 
-    public Language getLanguage() {
+    public @Nonnull Language getLanguage() {
         return language;
     }
 
-    public Economy getEconomy() {
+    public @Nonnull Economy getEconomy() {
         return economy;
     }
 
@@ -193,7 +195,7 @@ public class Main extends JavaPlugin {
         return defaultHeadPrice;
     }
 
-    public JSONArray getHeadCategories() {
+    public @Nonnull JSONArray getHeadCategories() {
         return headCategories;
     }
 }

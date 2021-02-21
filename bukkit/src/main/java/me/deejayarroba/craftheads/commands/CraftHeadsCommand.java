@@ -14,6 +14,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public class CraftHeadsCommand extends AbstractCommand {
 
     private static final String BASE_COMMAND = "craftheads";
@@ -23,7 +25,7 @@ public class CraftHeadsCommand extends AbstractCommand {
     private final Main mainInstance;
     private final FileConfiguration languageConfig;
 
-    public CraftHeadsCommand(String command, String usage, String description) {
+    public CraftHeadsCommand(@Nonnull String command, @Nonnull String usage, @Nonnull String description) {
         super(command, usage, description);
         msg = MessageManager.getInstance();
         mainInstance = Main.getInstance();
@@ -31,7 +33,8 @@ public class CraftHeadsCommand extends AbstractCommand {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    public boolean onCommand(@Nonnull CommandSender sender, @Nonnull Command cmd,
+                             @Nonnull String label, @Nonnull String[] args) {
         if (!cmd.getName().equalsIgnoreCase(BASE_COMMAND)) {
             return false;
         }

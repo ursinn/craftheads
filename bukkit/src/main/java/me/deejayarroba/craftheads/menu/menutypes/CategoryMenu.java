@@ -11,16 +11,17 @@ import org.bukkit.inventory.ItemStack;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javax.annotation.Nonnull;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CategoryMenu extends Menu {
 
     private final JSONObject category;
     private final MessageManager msg;
 
-
-    public CategoryMenu(JSONObject category) {
-        this.category = category;
+    public CategoryMenu(@Nonnull JSONObject category) {
+        this.category = Objects.requireNonNull(category);
         this.msg = MessageManager.getInstance();
         name = (String) category.get("Name");
         menuItems = new ArrayList<>();
@@ -100,7 +101,7 @@ public class CategoryMenu extends Menu {
         placeItems();
     }
 
-    public JSONObject getCategory() {
+    public @Nonnull JSONObject getCategory() {
         return category;
     }
 }
