@@ -9,8 +9,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building..'
+                echo 'Building...'
                 sh 'mvn -pl . clean install'
+                dir('core') {
+                    echo "Building Core..."
+                    sh 'mvn clean install -Djar.finalName=CraftHeads_Core-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
+                }
                 dir('spigot') {
                     echo "Building Spigot Plugin..."
                     sh 'mvn clean package -Djar.finalName=CraftHeads_Spigot-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'

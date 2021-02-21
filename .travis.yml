@@ -8,6 +8,10 @@ jobs:
     - stage: "Build Parent"
       script:
         - mvn -pl . clean install
+    - stage: "Build Core"
+      script:
+        - cd core
+        - mvn clean install
     - stage: "Build Plugin"
       script:
         - cd spigot
