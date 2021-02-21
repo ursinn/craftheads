@@ -16,11 +16,13 @@ public class MenuItem {
         this.action = Objects.requireNonNull(action);
     }
 
-    public @Nonnull ItemStack getItemStack() {
+    public @Nonnull
+    ItemStack getItemStack() {
         return itemStack;
     }
 
-    public @Nonnull String getName() {
+    public @Nonnull
+    String getName() {
         return itemStack.getItemMeta().getDisplayName();
     }
 

@@ -101,7 +101,8 @@ public class CategoryMenu extends Menu {
         placeItems();
     }
 
-    public @Nonnull JSONObject getCategory() {
+    public @Nonnull
+    JSONObject getCategory() {
         return category;
     }
 }

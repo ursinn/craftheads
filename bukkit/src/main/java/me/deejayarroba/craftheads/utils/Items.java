@@ -26,7 +26,8 @@ public final class Items {
         return new ItemStackBuilder();
     }
 
-    public static @Nonnull ItemStackBuilder editor(@Nonnull ItemStack itemStack) {
+    public static @Nonnull
+    ItemStackBuilder editor(@Nonnull ItemStack itemStack) {
         return new ItemStackBuilder(itemStack);
     }
 
@@ -42,24 +43,28 @@ public final class Items {
             this.itemStack = Objects.requireNonNull(itemStack);
         }
 
-        public @Nonnull ItemStackBuilder setMaterial(@Nonnull Material material) {
+        public @Nonnull
+        ItemStackBuilder setMaterial(@Nonnull Material material) {
             itemStack.setType(material);
             return this;
         }
 
-        public @Nonnull ItemStackBuilder setData(@Nonnull short data) {
+        public @Nonnull
+        ItemStackBuilder setData(@Nonnull short data) {
             itemStack.setDurability(data);
             return this;
         }
 
-        public @Nonnull ItemStackBuilder setName(@Nonnull String name) {
+        public @Nonnull
+        ItemStackBuilder setName(@Nonnull String name) {
             ItemMeta itemMeta = itemStack.getItemMeta();
             itemMeta.setDisplayName(name.equals("") ? " " : Strings.format(name));
             itemStack.setItemMeta(itemMeta);
             return this;
         }
 
-        public @Nonnull ItemStackBuilder addLore(@Nonnull String... lore) {
+        public @Nonnull
+        ItemStackBuilder addLore(@Nonnull String... lore) {
             ItemMeta itemMeta = itemStack.getItemMeta();
             List<String> original = itemMeta.getLore();
             if (original == null) {
@@ -71,7 +76,8 @@ public final class Items {
             return this;
         }
 
-        public @Nonnull ItemStack build() {
+        public @Nonnull
+        ItemStack build() {
             return itemStack;
         }
     }

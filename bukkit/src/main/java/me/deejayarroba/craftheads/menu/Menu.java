@@ -44,11 +44,13 @@ public class Menu {
         }
     }
 
-    public @Nonnull List<MenuItem> getMenuItems() {
+    public @Nonnull
+    List<MenuItem> getMenuItems() {
         return menuItems;
     }
 
-    public @Nonnull MenuItem getMenuItem(@Nonnull ItemStack itemStack) {
+    public @Nonnull
+    MenuItem getMenuItem(@Nonnull ItemStack itemStack) {
         for (MenuItem menuItem : menuItems) {
             ItemMeta itemStackItemMeta = itemStack.getItemMeta();
             Class<?> itemStackItemMetaClass = itemStackItemMeta.getClass();

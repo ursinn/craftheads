@@ -45,7 +45,8 @@ public final class MenuManager {
     }
 
     // Get all the menus
-    public static @Nonnull List<Menu> getMenus() {
+    public static @Nonnull
+    List<Menu> getMenus() {
         return Collections.unmodifiableList(menus);
     }
 
@@ -61,7 +62,8 @@ public final class MenuManager {
     }
 
     // Get a menu from its inventory
-    public static @Nullable Menu getMenu(@Nonnull Inventory inv) {
+    public static @Nullable
+    Menu getMenu(@Nonnull Inventory inv) {
         for (Menu menu : getMenus()) {
             if (menu.getInventory().equals(inv)) {
                 return menu;
@@ -71,15 +73,18 @@ public final class MenuManager {
     }
 
 
-    public static @Nonnull List<CategoryMenu> getCategoryMenus() {
+    public static @Nonnull
+    List<CategoryMenu> getCategoryMenus() {
         return Collections.unmodifiableList(categoryMenus);
     }
 
-    public static @Nonnull CategoriesMenu getCategoriesMenu() {
+    public static @Nonnull
+    CategoriesMenu getCategoriesMenu() {
         return categoriesMenu;
     }
 
-    public static @Nonnull MainMenu getMainMenu() {
+    public static @Nonnull
+    MainMenu getMainMenu() {
         return mainMenu;
     }
 }

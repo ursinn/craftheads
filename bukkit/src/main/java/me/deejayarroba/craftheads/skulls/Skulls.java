@@ -30,7 +30,8 @@ public final class Skulls {
      * @param url skin url
      * @return itemstack
      */
-    public static @Nonnull ItemStack getCustomSkull(@Nonnull String url) {
+    public static @Nonnull
+    ItemStack getCustomSkull(@Nonnull String url) {
         GameProfile profile = new GameProfile(UUID.randomUUID(), null);
         PropertyMap propertyMap = profile.getProperties();
         if (propertyMap == null) {
@@ -53,7 +54,8 @@ public final class Skulls {
      * @param name player's name
      * @return itemstack
      */
-    public static @Nonnull ItemStack getPlayerSkull(@Nonnull String name) {
+    public static @Nonnull
+    ItemStack getPlayerSkull(@Nonnull String name) {
         ItemStack itemStack = new ItemStack(getSkullMaterial(), 1, (short) SkullType.PLAYER.ordinal());
         SkullMeta meta = (SkullMeta) itemStack.getItemMeta();
         meta.setOwner(name);
@@ -61,7 +63,8 @@ public final class Skulls {
         return itemStack;
     }
 
-    public static @Nonnull List<String> get18Versions() {
+    public static @Nonnull
+    List<String> get18Versions() {
         List<String> versions = new ArrayList<>();
         versions.add("v1_8_R1");
         versions.add("v1_8_R2");
@@ -74,7 +77,8 @@ public final class Skulls {
         return versions;
     }
 
-    public static @Nonnull Material getSkullMaterial() {
+    public static @Nonnull
+    Material getSkullMaterial() {
         if (get18Versions().contains(getNmsVersion())) {
             return Material.getMaterial("SKULL_ITEM");
         }
@@ -82,7 +86,8 @@ public final class Skulls {
         return Material.getMaterial("LEGACY_SKULL_ITEM");
     }
 
-    public static @Nonnull Material getPlayerSkullMaterial() {
+    public static @Nonnull
+    Material getPlayerSkullMaterial() {
         if (get18Versions().contains(getNmsVersion())) {
             return Material.getMaterial("SKULL_ITEM");
         }
@@ -90,7 +95,8 @@ public final class Skulls {
         return Material.getMaterial("PLAYER_HEAD");
     }
 
-    public static @Nonnull String getNmsVersion() {
+    public static @Nonnull
+    String getNmsVersion() {
         String ver = Bukkit.getServer().getClass().getPackage().getName();
         return ver.substring(ver.lastIndexOf('.') + 1);
     }

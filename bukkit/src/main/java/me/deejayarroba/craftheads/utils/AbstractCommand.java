@@ -41,7 +41,8 @@ public abstract class AbstractCommand implements CommandExecutor {
         this.alias = aliases;
     }
 
-    private static @Nonnull CommandMap getCommandMap() {
+    private static @Nonnull
+    CommandMap getCommandMap() {
         if (cmap == null) {
             try {
                 final Field f = Bukkit.getServer().getClass().getDeclaredField("commandMap");

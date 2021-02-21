@@ -18,15 +18,18 @@ public final class Strings {
         throw new IllegalStateException("Utility class");
     }
 
-    public static @Nonnull String format(@Nonnull String string) {
+    public static @Nonnull
+    String format(@Nonnull String string) {
         return ChatColor.translateAlternateColorCodes('&', string);
     }
 
-    public static @Nonnull String[] format(@Nonnull String[] strings) {
+    public static @Nonnull
+    String[] format(@Nonnull String[] strings) {
         return format(Arrays.asList(strings)).toArray(new String[strings.length]);
     }
 
-    public static @Nonnull List<String> format(@Nonnull List<String> strings) {
+    public static @Nonnull
+    List<String> format(@Nonnull List<String> strings) {
         List<String> collection = new ArrayList<>();
         for (String string : strings) {
             collection.add(format(string));
@@ -34,7 +37,8 @@ public final class Strings {
         return collection;
     }
 
-    public static @Nonnull String repeat(@Nonnull String string, int count) {
+    public static @Nonnull
+    String repeat(@Nonnull String string, int count) {
         if (count == 0) {
             return "";
         }

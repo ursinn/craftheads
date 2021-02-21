@@ -114,6 +114,7 @@ public class Main extends JavaPlugin {
                 if (MenuManager.getMenu(inv) == null) {
                     continue;
                 }
+
                 p.closeInventory();
             }
         }
@@ -137,7 +138,6 @@ public class Main extends JavaPlugin {
     }
 
     private void loadCategories() {
-
         JSONParser parser = new JSONParser();
 
         if (getConfig().getBoolean("reset-categories")) {
@@ -179,15 +179,18 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public @Nonnull UpdateChecker getUpdateChecker() {
+    public @Nonnull
+    UpdateChecker getUpdateChecker() {
         return updateChecker;
     }
 
-    public @Nonnull Language getLanguage() {
+    public @Nonnull
+    Language getLanguage() {
         return language;
     }
 
-    public @Nonnull Economy getEconomy() {
+    public @Nonnull
+    Economy getEconomy() {
         return economy;
     }
 
@@ -195,7 +198,8 @@ public class Main extends JavaPlugin {
         return defaultHeadPrice;
     }
 
-    public @Nonnull JSONArray getHeadCategories() {
+    public @Nonnull
+    JSONArray getHeadCategories() {
         return headCategories;
     }
 }

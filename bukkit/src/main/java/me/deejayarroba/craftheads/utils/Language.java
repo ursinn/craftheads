@@ -59,7 +59,8 @@ public class Language {
         }
     }
 
-    public @Nonnull FileConfiguration getLanguageConfig() {
+    public @Nonnull
+    FileConfiguration getLanguageConfig() {
         return languageConfig;
     }
 }

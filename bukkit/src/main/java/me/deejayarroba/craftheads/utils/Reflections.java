@@ -71,7 +71,8 @@ public final class Reflections {
      * @param canonicalName the canonical name
      * @return the class
      */
-    private static @Nonnull Class<?> getCanonicalClass(@Nonnull String canonicalName) {
+    private static @Nonnull
+    Class<?> getCanonicalClass(@Nonnull String canonicalName) {
         try {
             return Class.forName(canonicalName);
         } catch (ClassNotFoundException e) {
@@ -108,7 +109,8 @@ public final class Reflections {
      * @return the looked up class
      * @throws IllegalArgumentException If a variable or class could not be found
      */
-    public static @Nonnull Class<?> getClass(@Nonnull String lookupName) {
+    public static @Nonnull
+    Class<?> getClass(@Nonnull String lookupName) {
         return getCanonicalClass(expandVariables(lookupName));
     }
 
@@ -120,7 +122,8 @@ public final class Reflections {
      * @return an object that invokes this constructor
      * @throws IllegalStateException If we cannot find this method
      */
-    public static @Nonnull ConstructorInvoker getConstructor(@Nonnull String className, @Nonnull Class<?>... params) {
+    public static @Nonnull
+    ConstructorInvoker getConstructor(@Nonnull String className, @Nonnull Class<?>... params) {
         return getConstructor(getClass(className), params);
     }
 
@@ -132,7 +135,8 @@ public final class Reflections {
      * @return an object that invokes this constructor
      * @throws IllegalStateException If we cannot find this method
      */
-    public static @Nonnull ConstructorInvoker getConstructor(@Nonnull Class<?> clazz, @Nonnull Class<?>... params) {
+    public static @Nonnull
+    ConstructorInvoker getConstructor(@Nonnull Class<?> clazz, @Nonnull Class<?>... params) {
         for (final Constructor<?> constructor : clazz.getDeclaredConstructors()) {
             if (Arrays.equals(constructor.getParameterTypes(), params)) {
 
@@ -156,7 +160,8 @@ public final class Reflections {
      * @param name the name of the class, excluding the package
      * @throws IllegalArgumentException If the class doesn't exist
      */
-    public static @Nonnull Class<?> getCraftBukkitClass(@Nonnull String name) {
+    public static @Nonnull
+    Class<?> getCraftBukkitClass(@Nonnull String name) {
         return getCanonicalClass(OBC_PREFIX + "." + name);
     }
 
@@ -168,8 +173,9 @@ public final class Reflections {
      * @param fieldType a compatible field type
      * @return the field accessor
      */
-    public static @Nonnull <T> FieldAccessor<T> getField(@Nonnull Class<?> target, @Nonnull String name,
-                                                         @Nonnull Class<T> fieldType) {
+    public static @Nonnull
+    <T> FieldAccessor<T> getField(@Nonnull Class<?> target, @Nonnull String name,
+                                  @Nonnull Class<T> fieldType) {
         return getField(target, name, fieldType, 0);
     }
 
@@ -181,8 +187,9 @@ public final class Reflections {
      * @param fieldType a compatible field type
      * @return the field accessor
      */
-    public static @Nonnull <T> FieldAccessor<T> getField(@Nonnull String className, @Nonnull String name,
-                                                         @Nonnull Class<T> fieldType) {
+    public static @Nonnull
+    <T> FieldAccessor<T> getField(@Nonnull String className, @Nonnull String name,
+                                  @Nonnull Class<T> fieldType) {
         return getField(getClass(className), name, fieldType, 0);
     }
 
@@ -194,8 +201,9 @@ public final class Reflections {
      * @param index     the number of compatible fields to skip
      * @return the field accessor
      */
-    public static @Nonnull <T> FieldAccessor<T> getField(@Nonnull Class<?> target, @Nonnull Class<T> fieldType,
-                                                         int index) {
+    public static @Nonnull
+    <T> FieldAccessor<T> getField(@Nonnull Class<?> target, @Nonnull Class<T> fieldType,
+                                  int index) {
         return getField(target, null, fieldType, index);
     }
 
@@ -207,14 +215,16 @@ public final class Reflections {
      * @param index     the number of compatible fields to skip
      * @return the field accessor
      */
-    public static @Nonnull <T> FieldAccessor<T> getField(@Nonnull String className, @Nonnull Class<T> fieldType,
-                                                         int index) {
+    public static @Nonnull
+    <T> FieldAccessor<T> getField(@Nonnull String className, @Nonnull Class<T> fieldType,
+                                  int index) {
         return getField(getClass(className), fieldType, index);
     }
 
     // Common method
-    private static @Nonnull <T> FieldAccessor<T> getField(@Nonnull Class<?> target, @Nullable String name,
-                                                          @Nonnull Class<T> fieldType, int index) {
+    private static @Nonnull
+    <T> FieldAccessor<T> getField(@Nonnull Class<?> target, @Nullable String name,
+                                  @Nonnull Class<T> fieldType, int index) {
         for (final Field field : target.getDeclaredFields()) {
             if ((name == null || field.getName().equals(name)) &&
                     fieldType.isAssignableFrom(field.getType()) && index-- <= 0) {
@@ -266,8 +276,9 @@ public final class Reflections {
      * @return an object that invokes this specific method
      * @throws IllegalStateException If we cannot find this method
      */
-    public static @Nonnull MethodInvoker getMethod(@Nonnull String className, @Nonnull String methodName,
-                                                   @Nonnull Class<?>... params) {
+    public static @Nonnull
+    MethodInvoker getMethod(@Nonnull String className, @Nonnull String methodName,
+                            @Nonnull Class<?>... params) {
         return getTypedMethod(getClass(className), methodName, null, params);
     }
 
@@ -280,8 +291,9 @@ public final class Reflections {
      * @return an object that invokes this specific method
      * @throws IllegalStateException If we cannot find this method
      */
-    public static @Nonnull MethodInvoker getMethod(Class<?> clazz, @Nonnull String methodName,
-                                                   @Nonnull Class<?>... params) {
+    public static @Nonnull
+    MethodInvoker getMethod(Class<?> clazz, @Nonnull String methodName,
+                            @Nonnull Class<?>... params) {
         return getTypedMethod(clazz, methodName, null, params);
     }
 
@@ -292,7 +304,8 @@ public final class Reflections {
      * @param method the method name
      * @return the method found
      */
-    public static @Nullable Method getMethodSimply(@Nonnull Class<?> clazz, @Nonnull String method) {
+    public static @Nullable
+    Method getMethodSimply(@Nonnull Class<?> clazz, @Nonnull String method) {
         for (Method m : clazz.getMethods()) {
             if (m.getName().equals(method)) {
                 return m;
@@ -307,7 +320,8 @@ public final class Reflections {
      * @param name the name of the class, excluding the package
      * @throws IllegalArgumentException If the class doesn't exist
      */
-    public static @Nonnull Class<?> getMinecraftClass(@Nonnull String name) {
+    public static @Nonnull
+    Class<?> getMinecraftClass(@Nonnull String name) {
         return getCanonicalClass(NMS_PREFIX + "." + name);
     }
 
@@ -321,8 +335,9 @@ public final class Reflections {
      * @return an object that invokes this specific method
      * @throws IllegalStateException If we cannot find this method
      */
-    public static @Nonnull MethodInvoker getTypedMethod(@Nonnull Class<?> clazz, @Nullable String methodName,
-                                                        @Nullable Class<?> returnType, @Nonnull Class<?>... params) {
+    public static @Nonnull
+    MethodInvoker getTypedMethod(@Nonnull Class<?> clazz, @Nullable String methodName,
+                                 @Nullable Class<?> returnType, @Nonnull Class<?>... params) {
         for (final Method method : clazz.getDeclaredMethods()) {
             if ((methodName == null || method.getName().equals(methodName)) &&
                     (returnType == null) || method.getReturnType().equals(returnType) &&
@@ -356,7 +371,8 @@ public final class Reflections {
      * @return the class
      * @see {@link #getClass()} for more information
      */
-    public static @Nonnull Class<Object> getUntypedClass(@Nonnull String lookupName) {
+    public static @Nonnull
+    Class<Object> getUntypedClass(@Nonnull String lookupName) {
         @SuppressWarnings({"unchecked"})
         Class<Object> clazz = (Class<Object>) getClass(lookupName);
         return clazz;
