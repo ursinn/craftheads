@@ -10,7 +10,7 @@
         <version>4.5.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>craftheads-spigot</artifactId>
+    <artifactId>craftheads-bukkit</artifactId>
     <version>4.5.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 

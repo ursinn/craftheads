@@ -15,9 +15,9 @@ pipeline {
                     echo "Building Core..."
                     sh 'mvn clean install -Djar.finalName=CraftHeads_Core-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
                 }
-                dir('spigot') {
-                    echo "Building Spigot Plugin..."
-                    sh 'mvn clean package -Djar.finalName=CraftHeads_Spigot-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
+                dir('bukkit') {
+                    echo "Building Bukkit Plugin..."
+                    sh 'mvn clean package -Djar.finalName=CraftHeads_Bukkit-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
                 }
             }
             post {
