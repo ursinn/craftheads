@@ -37,6 +37,7 @@
     </properties>
 
     <modules>
+        <module>core</module>
         <module>spigot</module>
     </modules>
 
