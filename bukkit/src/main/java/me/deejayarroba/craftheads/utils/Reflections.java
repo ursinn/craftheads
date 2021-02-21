@@ -414,5 +414,4 @@ public final class Reflections {
          */
         boolean hasField(Object target);
     }
-
 }

@@ -101,5 +101,4 @@ public class CraftHeadsCommand extends AbstractCommand {
 
         return true;
     }
-
 }

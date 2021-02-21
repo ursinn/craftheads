@@ -77,5 +77,4 @@ public class Menu {
     public String getName() {
         return name;
     }
-
 }

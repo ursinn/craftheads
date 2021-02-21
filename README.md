@@ -1,4 +1,5 @@
 # CraftHeads
+
 [![Build status (Travis)](https://img.shields.io/travis/com/ursinn/craftheads/develop?label=Travis&logo=travis)](https://travis-ci.com/ursinn/craftheads)
 [![Build status (Jenkins)](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fdevelop%2F&label=Jenkins&logo=jenkins)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
 [![Github last commit date](https://img.shields.io/github/last-commit/ursinn/craftheads?label=Updated&logo=github)](https://github.com/gmcbm/gmcbm/commits)
@@ -25,18 +26,25 @@ This plugin allows you to get player heads with an easy to use in-game GUI
 ![](http://i.imgur.com/PWqekGh.png)
 
 ## **Commands**
+
 * **/craftheads** Opens the CraftHeads menu
 * **/craftheads** **<player** **name>** Gives you the head of the player you specified
 
 ## **Permissions**
+
 * **craftheads.use** Allows the use of **/craftheads**
 * **craftheads.updater** Users that have this permission will get notifications of new updates
 
 ## **Configuration**
-You can read the documentation for the default configuration file [here](https://github.com/ursinn/CraftHeads/blob/master/src/main/resources/config.yml).
+
+You can read the documentation for the default configuration
+file [here](https://github.com/ursinn/CraftHeads/blob/master/src/main/resources/config.yml).
 
 ## **Metrics**
-This plugin utilizes bStats plugin metrics system, which means that the following information is collected and sent to bstats.org:
+
+This plugin utilizes bStats plugin metrics system, which means that the following information is collected and sent to
+bstats.org:
+
 * Your server's randomly generated UUID
 * The amount of players on your server
 * The online mode of your server

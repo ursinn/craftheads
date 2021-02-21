@@ -28,5 +28,4 @@ public final class MessageManager {
     public void msg(CommandSender sender, ChatColor color, String msg) {
         sender.sendMessage(PREFIX + color + msg);
     }
-
 }

@@ -24,5 +24,4 @@ public class MenuItem {
     public void executeAction(Player p) {
         action.execute(p);
     }
-
 }

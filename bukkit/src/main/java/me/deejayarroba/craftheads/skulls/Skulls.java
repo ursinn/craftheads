@@ -89,10 +89,8 @@ public final class Skulls {
         return Material.getMaterial("PLAYER_HEAD");
     }
 
-
     public static String getNmsVersion() {
         String ver = Bukkit.getServer().getClass().getPackage().getName();
         return ver.substring(ver.lastIndexOf('.') + 1);
     }
-
 }

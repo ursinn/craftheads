@@ -26,5 +26,4 @@ public class PlayerJoin implements Listener {
                 Main.getInstance().getLanguage().getLanguageConfig().getString("update.notify",
                         "An update for CraftHeads is available"));
     }
-
 }

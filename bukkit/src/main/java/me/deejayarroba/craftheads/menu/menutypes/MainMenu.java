@@ -145,5 +145,4 @@ public class MainMenu extends Menu {
 
         inventory.setItem(6, menuItems.get(2).getItemStack());
     }
-
 }

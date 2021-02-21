@@ -103,5 +103,4 @@ public class CategoryMenu extends Menu {
     public JSONObject getCategory() {
         return category;
     }
-
 }

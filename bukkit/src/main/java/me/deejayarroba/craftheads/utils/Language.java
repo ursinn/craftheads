@@ -61,5 +61,4 @@ public class Language {
     public FileConfiguration getLanguageConfig() {
         return languageConfig;
     }
-
 }
