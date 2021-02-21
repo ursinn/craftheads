@@ -14,7 +14,7 @@
     <version>4.5.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>CraftHeads</name>
+    <name>CraftHeads Bukkit</name>
     <description>Head decoration plugin</description>
     <url>https://github.com/ursinn/craftheads</url>
 
