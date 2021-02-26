@@ -50,6 +50,13 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- CraftHeads Core -->
+            <dependency>
+                <groupId>dev.ursinn.minecraft</groupId>
+                <artifactId>craftheads-core</artifactId>
+                <version>4.5.0-SNAPSHOT</version>
+                <scope>compile</scope>
+            </dependency>
             <!-- Bukkit -->
             <dependency>
                 <groupId>org.bukkit</groupId>
@@ -71,19 +78,19 @@
                 <version>1.7</version>
                 <scope>compile</scope>
             </dependency>
+            <!-- Guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>30.1-jre</version>
+                <scope>provided</scope>
+            </dependency>
             <!-- Annotation -->
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
                 <artifactId>jsr305</artifactId>
                 <version>3.0.2</version>
                 <scope>provided</scope>
-            </dependency>
-            <!-- CraftHeads Core -->
-            <dependency>
-                <groupId>dev.ursinn.minecraft</groupId>
-                <artifactId>craftheads-core</artifactId>
-                <version>4.5.0-SNAPSHOT</version>
-                <scope>compile</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
