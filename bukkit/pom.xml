@@ -23,6 +23,11 @@
     </properties>
 
     <dependencies>
+        <!-- CraftHeads Core -->
+        <dependency>
+            <groupId>dev.ursinn.minecraft</groupId>
+            <artifactId>craftheads-core</artifactId>
+        </dependency>
         <!-- Bukkit -->
         <dependency>
             <groupId>org.bukkit</groupId>
@@ -38,15 +43,26 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
         </dependency>
-        <!-- Annotation -->
+        <!-- Annotation - JSR305 -->
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
+            <scope>provided</scope>
         </dependency>
-        <!-- CraftHeads Core -->
+        <!-- Annotation - API -->
         <dependency>
-            <groupId>dev.ursinn.minecraft</groupId>
-            <artifactId>craftheads-core</artifactId>
+            <groupId>org.apiguardian</groupId>
+            <artifactId>apiguardian-api</artifactId>
+            <version>1.1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.18</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
