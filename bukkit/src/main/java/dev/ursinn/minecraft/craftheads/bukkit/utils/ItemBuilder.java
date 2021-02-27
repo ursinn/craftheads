@@ -73,6 +73,7 @@ public class ItemBuilder {
 
     /**
      * @param name item name
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder setName(@Nonnull String name) {
@@ -84,6 +85,7 @@ public class ItemBuilder {
 
     /**
      * @param lore item lore
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder addLore(@Nonnull List<String> lore) {
@@ -93,6 +95,10 @@ public class ItemBuilder {
         return this;
     }
 
+    /**
+     * @param lore item lore
+     * @return ItemBuilder
+     */
     public @Nonnull
     ItemBuilder addLore(@Nonnull String... lore) {
         ItemMeta itemMeta = itemStack.getItemMeta();
@@ -116,6 +122,7 @@ public class ItemBuilder {
 
     /**
      * @param itemFlags item Flags
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder addItemFlags(@Nonnull ItemFlag... itemFlags) {
@@ -143,6 +150,7 @@ public class ItemBuilder {
 
     /**
      * @param type item material
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder setMaterial(@Nonnull Material type) {
@@ -159,6 +167,7 @@ public class ItemBuilder {
 
     /**
      * @param amount item amount
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder setAmount(int amount) {
@@ -175,6 +184,7 @@ public class ItemBuilder {
 
     /**
      * @param damage durability / damage
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder setDurability(short damage) {
@@ -192,6 +202,7 @@ public class ItemBuilder {
 
     /**
      * @param data item material data
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder setData(@Nonnull MaterialData data) {
@@ -202,6 +213,7 @@ public class ItemBuilder {
     /**
      * @param enchantment enchantment ({@link Enchantment})
      * @param level       enchantment level
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder addEnchantment(@Nonnull Enchantment enchantment, int level) {
@@ -211,6 +223,7 @@ public class ItemBuilder {
 
     /**
      * @param enchantments enchantments
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder addEnchantments(@Nonnull Map<Enchantment, Integer> enchantments) {
@@ -221,6 +234,7 @@ public class ItemBuilder {
     /**
      * @param enchantment enchantment ({@link Enchantment})
      * @param level       enchantment level
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder addUnsafeEnchantment(@Nonnull Enchantment enchantment, int level) {
@@ -230,6 +244,7 @@ public class ItemBuilder {
 
     /**
      * @param enchantments enchantments
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder addUnsafeEnchantments(@Nonnull Map<Enchantment, Integer> enchantments) {
@@ -255,6 +270,7 @@ public class ItemBuilder {
 
     /**
      * @param meta item meta
+     * @return ItemBuilder
      */
     public @Nonnull
     ItemBuilder setItemMeta(@Nonnull ItemMeta meta) {
