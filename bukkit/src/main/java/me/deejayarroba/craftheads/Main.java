@@ -1,6 +1,6 @@
 package me.deejayarroba.craftheads;
 
-import dev.ursinn.minecraft.craftheads.bukkit.UpdateChecker;
+import dev.ursinn.minecraft.craftheads.bukkit.utils.UpdateChecker;
 import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
 import me.deejayarroba.craftheads.listeners.InvClickEvent;
 import me.deejayarroba.craftheads.listeners.PlayerJoin;
