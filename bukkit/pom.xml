@@ -93,10 +93,10 @@
                 <version>2.22.2</version>
             </plugin>
             <!-- Javadoc Plugin -->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-javadoc-plugin</artifactId>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
             <!-- Source Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
