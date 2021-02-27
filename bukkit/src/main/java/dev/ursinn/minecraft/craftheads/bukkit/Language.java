@@ -1,6 +1,8 @@
-package me.deejayarroba.craftheads.utils;
+package dev.ursinn.minecraft.craftheads.bukkit;
 
+import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
+import org.apiguardian.api.API;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -12,9 +14,16 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+/**
+ * @author Ursin Filli
+ * @version 1.0
+ */
+@API(status = API.Status.MAINTAINED, since = "1.0")
 public class Language {
 
-    private final FileConfiguration languageConfig;
+    @Getter
+    private final @Nonnull
+    FileConfiguration languageConfig;
     private final File languageFile;
     private final Main mainInstance;
 
@@ -34,9 +43,8 @@ public class Language {
     }
 
     private void extractFiles() {
-        JarFile jarfile;
         try {
-            jarfile = new JarFile(mainInstance.getPluginFile());
+            JarFile jarfile = new JarFile(mainInstance.getPluginFile());
 
             Enumeration<JarEntry> entries = jarfile.entries();
             while (entries.hasMoreElements()) {
@@ -57,10 +65,5 @@ public class Language {
         } catch (IOException | InvalidConfigurationException e) {
             mainInstance.getLogger().warning(String.valueOf(e));
         }
-    }
-
-    public @Nonnull
-    FileConfiguration getLanguageConfig() {
-        return languageConfig;
     }
 }
