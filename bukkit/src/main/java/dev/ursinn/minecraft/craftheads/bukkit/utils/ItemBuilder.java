@@ -1,4 +1,4 @@
-package dev.ursinn.minecraft.craftheads.bukkit;
+package dev.ursinn.minecraft.craftheads.bukkit.utils;
 
 import org.apiguardian.api.API;
 import org.bukkit.Material;

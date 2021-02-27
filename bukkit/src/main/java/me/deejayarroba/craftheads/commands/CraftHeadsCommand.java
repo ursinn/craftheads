@@ -4,7 +4,7 @@ import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.utils.AbstractCommand;
-import dev.ursinn.minecraft.craftheads.bukkit.ItemBuilder;
+import dev.ursinn.minecraft.craftheads.bukkit.utils.ItemBuilder;
 import me.deejayarroba.craftheads.utils.MessageManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
