@@ -1,4 +1,4 @@
-package dev.ursinn.minecraft.craftheads.bukkit;
+package dev.ursinn.minecraft.craftheads.bukkit.utils;
 
 import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
