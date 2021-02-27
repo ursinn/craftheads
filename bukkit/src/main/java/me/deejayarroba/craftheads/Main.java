@@ -1,5 +1,6 @@
 package me.deejayarroba.craftheads;
 
+import dev.ursinn.minecraft.craftheads.bukkit.UpdateChecker;
 import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
 import me.deejayarroba.craftheads.listeners.InvClickEvent;
 import me.deejayarroba.craftheads.listeners.PlayerJoin;
@@ -7,7 +8,6 @@ import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.utils.AbstractCommand;
 import me.deejayarroba.craftheads.utils.Language;
-import me.deejayarroba.craftheads.utils.UpdateChecker;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
