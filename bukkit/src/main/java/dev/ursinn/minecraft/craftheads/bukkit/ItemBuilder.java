@@ -1,5 +1,6 @@
-package me.deejayarroba.craftheads.utils;
+package dev.ursinn.minecraft.craftheads.bukkit;
 
+import org.apiguardian.api.API;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
@@ -13,8 +14,8 @@ import java.util.*;
 /**
  * @author Ursin Filli
  * @version 1.0
- * @since 1.0
  */
+@API(status = API.Status.MAINTAINED, since = "1.0")
 public class ItemBuilder {
 
     private final ItemStack itemStack;
@@ -36,7 +37,7 @@ public class ItemBuilder {
      */
     public @Nonnull
     ItemBuilder(@Nonnull Material type) {
-        this.itemStack = new ItemStack(type);
+        this.itemStack = new ItemStack(Objects.requireNonNull(type));
     }
 
     /**
@@ -47,7 +48,7 @@ public class ItemBuilder {
      */
     public @Nonnull
     ItemBuilder(@Nonnull Material type, int amount) {
-        this.itemStack = new ItemStack(type, amount);
+        this.itemStack = new ItemStack(Objects.requireNonNull(type), amount);
     }
 
     /**
@@ -59,7 +60,7 @@ public class ItemBuilder {
      */
     public @Nonnull
     ItemBuilder(@Nonnull Material type, int amount, short damage) {
-        this.itemStack = new ItemStack(type, amount, damage);
+        this.itemStack = new ItemStack(Objects.requireNonNull(type), amount, damage);
     }
 
     /**
@@ -269,3 +270,4 @@ public class ItemBuilder {
         return itemStack;
     }
 }
+

@@ -3,7 +3,7 @@ package me.deejayarroba.craftheads.menu.menutypes;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.skulls.Skulls;
-import me.deejayarroba.craftheads.utils.ItemBuilder;
+import dev.ursinn.minecraft.craftheads.bukkit.ItemBuilder;
 import me.deejayarroba.craftheads.utils.MessageManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
