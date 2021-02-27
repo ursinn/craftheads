@@ -82,28 +82,21 @@ public final class Reflections {
 
     /**
      * Retrieve a class from its full name.
-     * <p/>
+     * <p>
      * Strings enclosed with curly brackets such as {TEXT} will be replaced according
      * to the following table:
-     * <p/>
-     * <table border="1">
-     * <tr>
-     * <th>Variable</th>
-     * <th>Content</th>
-     * </tr>
-     * <tr>
-     * <td>{nms}</td>
-     * <td>Actual package name of net.minecraft.server.VERSION</td>
-     * </tr>
-     * <tr>
-     * <td>{obc}</td>
-     * <td>Actual pacakge name of org.bukkit.craftbukkit.VERSION</td>
-     * </tr>
-     * <tr>
-     * <td>{version}</td>
-     * <td>The current Minecraft package VERSION, if any.</td>
-     * </tr>
-     * </table>
+     * <p>
+     * Variable
+     * Content
+     * <p>
+     * {nms}
+     * Actual package name of net.minecraft.server.VERSION
+     * <p>
+     * {obc}
+     * Actual pacakge name of org.bukkit.craftbukkit.VERSION
+     * <p>
+     * {version}
+     * The current Minecraft package VERSION, if any.
      *
      * @param lookupName the class name with variables
      * @return the looked up class
@@ -158,6 +151,7 @@ public final class Reflections {
      * Retrieve a class in the org.bukkit.craftbukkit.VERSION.* package.
      *
      * @param name the name of the class, excluding the package
+     * @return Class
      * @throws IllegalArgumentException If the class doesn't exist
      */
     public static @Nonnull
@@ -168,6 +162,7 @@ public final class Reflections {
     /**
      * Retrieve a field accessor for a specific field type and name.
      *
+     * @param <T>       Class
      * @param target    the target type
      * @param name      the name of the field, or NULL to ignore
      * @param fieldType a compatible field type
@@ -182,6 +177,7 @@ public final class Reflections {
     /**
      * Retrieve a field accessor for a specific field type and name.
      *
+     * @param <T>       Class
      * @param className lookup name of the class, see {@link #getClass(String)}
      * @param name      the name of the field, or NULL to ignore
      * @param fieldType a compatible field type
@@ -196,6 +192,7 @@ public final class Reflections {
     /**
      * Retrieve a field accessor for a specific field type and name.
      *
+     * @param <T>       Class
      * @param target    the target type
      * @param fieldType a compatible field type
      * @param index     the number of compatible fields to skip
@@ -210,6 +207,7 @@ public final class Reflections {
     /**
      * Retrieve a field accessor for a specific field type and name.
      *
+     * @param <T>       Class
      * @param className lookup name of the class, see {@link #getClass(String)}
      * @param fieldType a compatible field type
      * @param index     the number of compatible fields to skip
@@ -318,6 +316,7 @@ public final class Reflections {
      * Retrieve a class in the net.minecraft.server.VERSION.* package.
      *
      * @param name the name of the class, excluding the package
+     * @return Class
      * @throws IllegalArgumentException If the class doesn't exist
      */
     public static @Nonnull
@@ -363,13 +362,12 @@ public final class Reflections {
 
     /**
      * Retrieve a class from its full name, without knowing its type on compile time.
-     * <p/>
+     * <p>
      * This is useful when looking up fields by a NMS or OBC type.
-     * <p/>
      *
      * @param lookupName the class name with variables
      * @return the class
-     * @see {@link #getClass()} for more information
+     * @see #getClass() for more information
      */
     public static @Nonnull
     Class<Object> getUntypedClass(@Nonnull String lookupName) {
