@@ -1,6 +1,6 @@
 package me.deejayarroba.craftheads.commands;
 
-import dev.ursinn.minecraft.craftheads.bukkit.utils.ItemBuilder;
+import dev.ursinn.utils.bukkit.ItemBuilder;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;

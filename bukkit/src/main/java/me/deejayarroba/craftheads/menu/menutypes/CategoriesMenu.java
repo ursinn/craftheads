@@ -1,6 +1,6 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
-import dev.ursinn.minecraft.craftheads.bukkit.utils.ItemBuilder;
+import dev.ursinn.utils.bukkit.ItemBuilder;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.menu.MenuManager;

@@ -1,4 +1,4 @@
-package dev.ursinn.minecraft.craftheads.bukkit.utils;
+package dev.ursinn.utils.bukkit;
 
 import org.apiguardian.api.API;
 import org.bukkit.Material;
@@ -15,7 +15,7 @@ import java.util.*;
  * @author Ursin Filli
  * @version 1.0
  */
-@API(status = API.Status.MAINTAINED, since = "1.0")
+@API(status = API.Status.MAINTAINED)
 public class ItemBuilder {
 
     private final ItemStack itemStack;
