@@ -1,4 +1,4 @@
-package dev.ursinn.minecraft.craftheads.bukkit.utils;
+package dev.ursinn.utils.bukkit;
 
 import lombok.Cleanup;
 import lombok.Getter;
@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Ursin Filli
  * @version 1.0
  */
-@API(status = API.Status.STABLE, since = "1.0")
+@API(status = API.Status.STABLE)
 public class UpdateChecker {
 
     private final int id;
