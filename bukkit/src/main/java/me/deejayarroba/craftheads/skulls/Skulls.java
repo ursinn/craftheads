@@ -3,8 +3,8 @@ package me.deejayarroba.craftheads.skulls;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
+import dev.ursinn.utils.bukkit.Utils;
 import me.deejayarroba.craftheads.utils.Reflections;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
 import org.bukkit.inventory.ItemStack;
@@ -37,6 +37,7 @@ public final class Skulls {
         if (propertyMap == null) {
             throw new IllegalStateException("Profile doesn't contain a property map");
         }
+
         String encodedData = Base64.getEncoder().encodeToString(
                 String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes(Charset.defaultCharset()));
         propertyMap.put("textures", new Property("textures", encodedData));
@@ -79,7 +80,7 @@ public final class Skulls {
 
     public static @Nonnull
     Material getSkullMaterial() {
-        if (get18Versions().contains(getNmsVersion())) {
+        if (get18Versions().contains(Utils.getNmsVersion())) {
             return Material.getMaterial("SKULL_ITEM");
         }
 
@@ -88,16 +89,10 @@ public final class Skulls {
 
     public static @Nonnull
     Material getPlayerSkullMaterial() {
-        if (get18Versions().contains(getNmsVersion())) {
+        if (get18Versions().contains(Utils.getNmsVersion())) {
             return Material.getMaterial("SKULL_ITEM");
         }
 
         return Material.getMaterial("PLAYER_HEAD");
-    }
-
-    public static @Nonnull
-    String getNmsVersion() {
-        String ver = Bukkit.getServer().getClass().getPackage().getName();
-        return ver.substring(ver.lastIndexOf('.') + 1);
     }
 }
