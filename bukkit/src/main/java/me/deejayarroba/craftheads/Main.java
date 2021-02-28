@@ -1,10 +1,9 @@
 package me.deejayarroba.craftheads;
 
 import dev.ursinn.minecraft.craftheads.bukkit.utils.Language;
-import dev.ursinn.minecraft.craftheads.bukkit.utils.UpdateChecker;
+import dev.ursinn.utils.bukkit.UpdateChecker;
+import dev.ursinn.utils.bukkit.Utils;
 import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
-import me.deejayarroba.craftheads.listeners.InvClickEvent;
-import me.deejayarroba.craftheads.listeners.PlayerJoin;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.utils.AbstractCommand;
@@ -73,9 +72,7 @@ public class Main extends JavaPlugin {
 
         MenuManager.setup();
 
-        // Register the events
-        getServer().getPluginManager().registerEvents(new InvClickEvent(), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
+        Utils.registerListener("me.deejayarroba.craftheads.listeners", this);
 
         // Register the command
         AbstractCommand craftHeadsCommand =
@@ -96,8 +93,8 @@ public class Main extends JavaPlugin {
         }
 
         if (isDevBuild()) {
-            getLogger().info("NMS Version: " + Skulls.getNmsVersion());
-            if (Skulls.get18Versions().contains(Skulls.getNmsVersion())) {
+            getLogger().info("NMS Version: " + Utils.getNmsVersion());
+            if (Skulls.get18Versions().contains(Utils.getNmsVersion())) {
                 getLogger().info("Use 1.8 Heads");
             } else {
                 getLogger().info("Use 1.13 Heads");
