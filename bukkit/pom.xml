@@ -38,31 +38,35 @@
             <groupId>net.milkbowl.vault</groupId>
             <artifactId>VaultAPI</artifactId>
         </dependency>
-        <!-- bStats - Bukkit -->
+        <!-- bStats Bukkit -->
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
         </dependency>
-        <!-- Annotation - JSR305 -->
+        <!-- Bukkit Utils -->
+        <dependency>
+            <groupId>dev.ursinn.utils</groupId>
+            <artifactId>bukkit-checker</artifactId>
+        </dependency>
+        <!-- Bukkit Utils -->
+        <dependency>
+            <groupId>dev.ursinn.utils</groupId>
+            <artifactId>bukkit-builder</artifactId>
+        </dependency>
+        <!-- JSR305 [Annotation] -->
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
-            <version>3.0.2</version>
-            <scope>provided</scope>
         </dependency>
-        <!-- Annotation - API -->
+        <!-- API [Annotation] -->
         <dependency>
             <groupId>org.apiguardian</groupId>
             <artifactId>apiguardian-api</artifactId>
-            <version>1.1.1</version>
-            <scope>provided</scope>
         </dependency>
-        <!-- Lombok -->
+        <!-- Lombok [Annotation] -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.18</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

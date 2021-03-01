@@ -34,6 +34,16 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+        <!-- Dependency Versions -->
+        <dependency.bukkit.version>1.8.8-R0.1-SNAPSHOT</dependency.bukkit.version>
+        <dependency.vault.version>1.7</dependency.vault.version>
+        <dependency.bstats.version>1.7</dependency.bstats.version>
+        <dependency.utils.version>1.0.0-SNAPSHOT</dependency.utils.version>
+        <dependency.guava.version>30.1-jre</dependency.guava.version>
+        <!-- Dependency Versions [Annotation] -->
+        <dependency.jsr305.version>3.0.2</dependency.jsr305.version>
+        <dependency.apiguardian.version>1.1.1</dependency.apiguardian.version>
+        <dependency.lombok.version>1.18.18</dependency.lombok.version>
     </properties>
 
     <modules>
@@ -54,71 +64,64 @@
             <dependency>
                 <groupId>dev.ursinn.minecraft.craftheads</groupId>
                 <artifactId>core</artifactId>
-                <version>4.5.0-SNAPSHOT</version>
+                <version>${project.version}</version>
                 <scope>compile</scope>
             </dependency>
             <!-- Bukkit -->
             <dependency>
                 <groupId>org.bukkit</groupId>
                 <artifactId>craftbukkit</artifactId>
-                <version>1.8.8-R0.1-SNAPSHOT</version>
+                <version>${dependency.bukkit.version}</version>
                 <scope>provided</scope>
             </dependency>
             <!-- Vault -->
             <dependency>
                 <groupId>net.milkbowl.vault</groupId>
                 <artifactId>VaultAPI</artifactId>
-                <version>1.7</version>
+                <version>${dependency.vault.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <!-- bStats - Bukkit -->
+            <!-- bStats Bukkit -->
             <dependency>
                 <groupId>org.bstats</groupId>
                 <artifactId>bstats-bukkit</artifactId>
-                <version>1.7</version>
+                <version>${dependency.bstats.version}</version>
                 <scope>compile</scope>
             </dependency>
-            <!-- Annotation - JSR305 -->
+            <!-- Bukkit Utils -->
+            <dependency>
+                <groupId>dev.ursinn.utils</groupId>
+                <artifactId>bukkit-checker</artifactId>
+                <version>${dependency.utils.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- Bukkit Utils -->
+            <dependency>
+                <groupId>dev.ursinn.utils</groupId>
+                <artifactId>bukkit-builder</artifactId>
+                <version>${dependency.utils.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- JSR305 [Annotation] -->
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>
                 <artifactId>jsr305</artifactId>
-                <version>3.0.2</version>
+                <version>${dependency.jsr305.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <!-- Annotation - API -->
+            <!-- API [Annotation] -->
             <dependency>
                 <groupId>org.apiguardian</groupId>
                 <artifactId>apiguardian-api</artifactId>
-                <version>1.1.1</version>
+                <version>${dependency.apiguardian.version}</version>
                 <scope>provided</scope>
             </dependency>
-            <!-- Guava -->
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>30.1-jre</version>
-                <scope>provided</scope>
-            </dependency>
-            <!-- Lombok -->
+            <!-- Lombok [Annotation] -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.18</version>
+                <version>${dependency.lombok.version}</version>
                 <scope>provided</scope>
-            </dependency>
-            <!-- Testing - Junit -->
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter</artifactId>
-                <version>5.7.1</version>
-                <scope>test</scope>
-            </dependency>
-            <!-- Testing - Mockito -->
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>3.8.0</version>
-                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
