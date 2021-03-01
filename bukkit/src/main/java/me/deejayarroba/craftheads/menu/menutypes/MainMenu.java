@@ -1,6 +1,6 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
-import dev.ursinn.utils.bukkit.ItemBuilder;
+import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.menu.MenuManager;
@@ -33,13 +33,13 @@ public class MainMenu extends Menu {
     }
 
     private void run() {
-        final ItemBuilder ownHeadBuilder = new ItemBuilder(Skulls.getPlayerSkullMaterial())
+        final ItemBuilderBukkit ownHeadBuilder = new ItemBuilderBukkit(Skulls.getPlayerSkullMaterial())
                 .setName(ChatColor.translateAlternateColorCodes('&',
                         mainInstance.getLanguage().getLanguageConfig().getString(
                                 "menu.own", "§6Get your own head")))
                 .setDurability((short) SkullType.PLAYER.ordinal());
 
-        ItemBuilder otherHeadBuilder = new ItemBuilder(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
+        ItemBuilderBukkit otherHeadBuilder = new ItemBuilderBukkit(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
                 .setName(ChatColor.translateAlternateColorCodes('&',
                         mainInstance.getLanguage().getLanguageConfig().getString(
                                 "menu.other", "§6Get someone else's head")))
@@ -92,7 +92,7 @@ public class MainMenu extends Menu {
                                 mainInstance.getLanguage().getLanguageConfig().getString(
                                         "error.inv", "Your inventory is full!")));
                     } else {
-                        ItemStack head = new ItemBuilder(Skulls.getPlayerSkull(p.getName()))
+                        ItemStack head = new ItemBuilderBukkit(Skulls.getPlayerSkull(p.getName()))
                                 .setName(ChatColor.translateAlternateColorCodes('&',
                                         mainInstance.getLanguage().getLanguageConfig().getString(
                                                 "item", "&6Head: &b%args0%").replace("%args0%", p.getName())))
@@ -115,7 +115,7 @@ public class MainMenu extends Menu {
                     }
                 }));
 
-        menuItems.add(1, new MenuItem(new ItemBuilder(Skulls.getCustomSkull(CATEGORIES_ITEM_URL))
+        menuItems.add(1, new MenuItem(new ItemBuilderBukkit(Skulls.getCustomSkull(CATEGORIES_ITEM_URL))
                 .setName(ChatColor.GOLD + mainInstance.getLanguage().getLanguageConfig().getString(
                         "menu.categories", "Categories"))
                 .build(),

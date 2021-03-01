@@ -1,6 +1,6 @@
 package me.deejayarroba.craftheads.commands;
 
-import dev.ursinn.utils.bukkit.ItemBuilder;
+import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
@@ -82,7 +82,7 @@ public class CraftHeadsCommand extends AbstractCommand {
         }
 
         String playerName = args[0];
-        ItemStack head = new ItemBuilder(Skulls.getPlayerSkull(playerName))
+        ItemStack head = new ItemBuilderBukkit(Skulls.getPlayerSkull(playerName))
                 .setName(ChatColor.translateAlternateColorCodes('&',
                         languageConfig.getString("item", "&6Head: &b%args0%")
                                 .replace("%args0%", args[0])))

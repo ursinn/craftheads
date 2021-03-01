@@ -1,6 +1,6 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
-import dev.ursinn.utils.bukkit.ItemBuilder;
+import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.skulls.Skulls;
@@ -41,7 +41,7 @@ public class CategoryMenu extends Menu {
                 price = mainInstance.getDefaultHeadPrice();
             }
 
-            ItemBuilder itemStackBuilder = new ItemBuilder(Skulls.getCustomSkull((String) head.get("URL")))
+            ItemBuilderBukkit itemStackBuilder = new ItemBuilderBukkit(Skulls.getCustomSkull((String) head.get("URL")))
                     .setName(ChatColor.AQUA + "" + ChatColor.BOLD + head.get("Name"));
 
             if (mainInstance.getEconomy() != null) {
@@ -82,7 +82,7 @@ public class CategoryMenu extends Menu {
                                 mainInstance.getLanguage().getLanguageConfig().getString("give.item.buy",
                                         "You bought a head for &b%price%").replace("%price%", String.valueOf(price))));
                     }
-                    ItemStack headItem = new ItemBuilder(Skulls.getCustomSkull((String) head.get("URL")))
+                    ItemStack headItem = new ItemBuilderBukkit(Skulls.getCustomSkull((String) head.get("URL")))
                             .setName(ChatColor.translateAlternateColorCodes('&',
                                     mainInstance.getLanguage().getLanguageConfig().getString("item",
                                             "&6Head: &b%args0%").replace("%args0%", head.get("Name").toString())))

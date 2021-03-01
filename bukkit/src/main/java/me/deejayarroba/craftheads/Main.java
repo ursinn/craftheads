@@ -1,8 +1,8 @@
 package me.deejayarroba.craftheads;
 
 import dev.ursinn.minecraft.craftheads.bukkit.utils.Language;
-import dev.ursinn.utils.bukkit.UpdateChecker;
 import dev.ursinn.utils.bukkit.Utils;
+import dev.ursinn.utils.bukkit.checker.UpdateChecker;
 import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
