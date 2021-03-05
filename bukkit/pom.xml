@@ -46,6 +46,11 @@
         <!-- Bukkit Utils -->
         <dependency>
             <groupId>dev.ursinn.utils</groupId>
+            <artifactId>bukkit-utils</artifactId>
+        </dependency>
+        <!-- Bukkit Utils -->
+        <dependency>
+            <groupId>dev.ursinn.utils</groupId>
             <artifactId>bukkit-checker</artifactId>
         </dependency>
         <!-- Bukkit Utils -->

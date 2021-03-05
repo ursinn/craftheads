@@ -1,8 +1,8 @@
 package me.deejayarroba.craftheads;
 
 import dev.ursinn.minecraft.craftheads.bukkit.utils.Language;
-import dev.ursinn.utils.bukkit.Utils;
 import dev.ursinn.utils.bukkit.checker.UpdateChecker;
+import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
 import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
@@ -72,7 +72,7 @@ public class Main extends JavaPlugin {
 
         MenuManager.setup();
 
-        Utils.registerListener("me.deejayarroba.craftheads.listeners", this);
+        UtilsBukkit.registerListener("me.deejayarroba.craftheads.listeners", this);
 
         // Register the command
         AbstractCommand craftHeadsCommand =
@@ -93,8 +93,8 @@ public class Main extends JavaPlugin {
         }
 
         if (isDevBuild()) {
-            getLogger().info("NMS Version: " + Utils.getNmsVersion());
-            if (Skulls.get18Versions().contains(Utils.getNmsVersion())) {
+            getLogger().info("NMS Version: " + UtilsBukkit.getNmsVersion());
+            if (Skulls.get18Versions().contains(UtilsBukkit.getNmsVersion())) {
                 getLogger().info("Use 1.8 Heads");
             } else {
                 getLogger().info("Use 1.13 Heads");

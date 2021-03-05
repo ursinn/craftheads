@@ -3,7 +3,7 @@ package me.deejayarroba.craftheads.skulls;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.mojang.authlib.properties.PropertyMap;
-import dev.ursinn.utils.bukkit.Utils;
+import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
 import me.deejayarroba.craftheads.utils.Reflections;
 import org.bukkit.Material;
 import org.bukkit.SkullType;
@@ -80,7 +80,7 @@ public final class Skulls {
 
     public static @Nonnull
     Material getSkullMaterial() {
-        if (get18Versions().contains(Utils.getNmsVersion())) {
+        if (get18Versions().contains(UtilsBukkit.getNmsVersion())) {
             return Material.getMaterial("SKULL_ITEM");
         }
 
@@ -89,7 +89,7 @@ public final class Skulls {
 
     public static @Nonnull
     Material getPlayerSkullMaterial() {
-        if (get18Versions().contains(Utils.getNmsVersion())) {
+        if (get18Versions().contains(UtilsBukkit.getNmsVersion())) {
             return Material.getMaterial("SKULL_ITEM");
         }
 

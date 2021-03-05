@@ -91,6 +91,13 @@
             <!-- Bukkit Utils -->
             <dependency>
                 <groupId>dev.ursinn.utils</groupId>
+                <artifactId>bukkit-utils</artifactId>
+                <version>${dependency.utils.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- Bukkit Utils -->
+            <dependency>
+                <groupId>dev.ursinn.utils</groupId>
                 <artifactId>bukkit-checker</artifactId>
                 <version>${dependency.utils.version}</version>
                 <scope>compile</scope>
