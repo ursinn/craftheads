@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +50,7 @@ public class Menu {
         return menuItems;
     }
 
-    public @Nonnull
+    public @Nullable
     MenuItem getMenuItem(@Nonnull ItemStack itemStack) {
         for (MenuItem menuItem : menuItems) {
             ItemMeta itemStackItemMeta = itemStack.getItemMeta();
