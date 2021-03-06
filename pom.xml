@@ -109,6 +109,13 @@
                 <version>${dependency.utils.version}</version>
                 <scope>compile</scope>
             </dependency>
+            <!-- Bukkit Utils -->
+            <dependency>
+                <groupId>dev.ursinn.utils</groupId>
+                <artifactId>bukkit-skull</artifactId>
+                <version>${dependency.utils.version}</version>
+                <scope>compile</scope>
+            </dependency>
             <!-- JSR305 [Annotation] -->
             <dependency>
                 <groupId>com.google.code.findbugs</groupId>

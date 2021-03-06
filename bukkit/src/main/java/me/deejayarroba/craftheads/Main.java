@@ -2,10 +2,10 @@ package me.deejayarroba.craftheads;
 
 import dev.ursinn.minecraft.craftheads.bukkit.utils.Language;
 import dev.ursinn.utils.bukkit.checker.UpdateChecker;
+import dev.ursinn.utils.bukkit.skull.SkullBukkit;
 import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
 import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
 import me.deejayarroba.craftheads.menu.MenuManager;
-import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.utils.AbstractCommand;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
@@ -94,7 +94,7 @@ public class Main extends JavaPlugin {
 
         if (isDevBuild()) {
             getLogger().info("NMS Version: " + UtilsBukkit.getNmsVersion());
-            if (Skulls.get18Versions().contains(UtilsBukkit.getNmsVersion())) {
+            if (SkullBukkit.get18Versions().contains(UtilsBukkit.getNmsVersion())) {
                 getLogger().info("Use 1.8 Heads");
             } else {
                 getLogger().info("Use 1.13 Heads");

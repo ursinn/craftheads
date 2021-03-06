@@ -58,6 +58,11 @@
             <groupId>dev.ursinn.utils</groupId>
             <artifactId>bukkit-builder</artifactId>
         </dependency>
+        <!-- Bukkit Utils -->
+        <dependency>
+            <groupId>dev.ursinn.utils</groupId>
+            <artifactId>bukkit-skull</artifactId>
+        </dependency>
         <!-- JSR305 [Annotation] -->
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
