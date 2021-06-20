@@ -30,6 +30,19 @@
         <url>https://travis-ci.com/github/ursinn/craftheads</url>
     </ciManagement>
 
+    <developers>
+        <developer>
+            <id>ursinn</id>
+            <name>Ursin Filli</name>
+            <email>mail@ursinn.dev</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>1</timezone>
+            <url>https://ursinn.dev</url>
+        </developer>
+    </developers>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -52,9 +65,20 @@
     </modules>
 
     <repositories>
+        <!-- Bukkit Dependency -->
         <repository>
-            <id>ursinn-repo</id>
-            <url>https://repo.ursinn.dev/repository/maven-public/</url>
+            <id>nms-repo</id>
+            <url>https://repo.codemc.io/repository/nms/</url>
+        </repository>
+        <!-- bStats Dependency -->
+        <repository>
+            <id>codemc-repo</id>
+            <url>https://repo.codemc.org/repository/maven-public/</url>
+        </repository>
+        <!-- Vault Dependency -->
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
     </repositories>
 
@@ -76,7 +100,7 @@
             </dependency>
             <!-- Vault -->
             <dependency>
-                <groupId>net.milkbowl.vault</groupId>
+                <groupId>com.github.MilkBowl</groupId>
                 <artifactId>VaultAPI</artifactId>
                 <version>${dependency.vault.version}</version>
                 <scope>provided</scope>
@@ -253,13 +277,13 @@
     </build>
 
     <distributionManagement>
-        <repository>
-            <id>ursinn-repo</id>
-            <url>https://repo.ursinn.dev/repository/maven-releases/</url>
-        </repository>
         <snapshotRepository>
-            <id>ursinn-repo</id>
-            <url>https://repo.ursinn.dev/repository/maven-snapshots/</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
     </distributionManagement>
 </project>
