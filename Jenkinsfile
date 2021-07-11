@@ -1,50 +1,38 @@
 pipeline {
-    agent none
+    agent {
+      label 'maven-jdk11-openj9'
+    }
+
+    environment {
+        POM_VERSION = readMavenPom().getVersion()
+    }
 
     stages {
-        stage('Build Java 8') {
-            agent {
-                docker {
-                    image 'maven:3-openjdk-8'
-                    args '-v /root/.m2:/root/.m2'
-                }
-            }
+        stage("Initialization") {
             steps {
-                echo 'Building..'
-                sh 'mvn -pl . clean install'
-                dir('core') {
-                    echo "Building Core..."
-                    sh 'mvn clean install -Djar.finalName=CraftHeads_Core-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
-                }
-                dir('bukkit') {
-                    echo "Building Bukkit Plugin..."
-                    sh 'mvn clean package -Djar.finalName=CraftHeads_Bukkit-${GIT_BRANCH#*/}-#${BUILD_NUMBER}'
-                }
+                buildName "#${BUILD_NUMBER} ${POM_VERSION}"
+                scmSkip(deleteBuild: true, skipPattern:'.*\\[ci skip\\].*')
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'mvn -B -U -DskipTests -P jenkins clean install'
             }
             post {
                 success {
-                    archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
+                    archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
                 }
             }
         }
 
-        stage('Build Java 11') {
-            agent {
-                docker {
-                    image 'maven:3-openjdk-11'
-                    args '-v /root/.m2:/root/.m2'
-                }
-            }
+        stage('Test') {
             steps {
-                echo 'Building..'
-                sh 'mvn -pl . clean install'
-                dir('core') {
-                    echo "Building Core..."
-                    sh 'mvn clean verify'
-                }
-                dir('bukkit') {
-                    echo "Building Bukkit Plugin..."
-                    sh 'mvn clean verify'
+                sh 'mvn -B test'
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
                 }
             }
         }
