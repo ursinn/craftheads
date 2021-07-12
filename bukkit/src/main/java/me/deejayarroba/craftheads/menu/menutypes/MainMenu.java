@@ -33,7 +33,7 @@ public class MainMenu extends Menu {
     }
 
     private void run() {
-        final ItemBuilderBukkit ownHeadBuilder = new ItemBuilderBukkit(SkullBukkit.getPlayerSkullMaterial())
+        final ItemBuilderBukkit ownHeadBuilder = new ItemBuilderBukkit(SkullBukkit.getSkullMaterial())
                 .setName(ChatColor.translateAlternateColorCodes('&',
                         mainInstance.getLanguage().getLanguageConfig().getString(
                                 "menu.own", "§6Get your own head")))
