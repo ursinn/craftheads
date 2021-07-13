@@ -2,7 +2,6 @@ package dev.ursinn.minecraft.craftheads.bukkit.utils;
 
 import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
-import org.apiguardian.api.API;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -18,7 +17,6 @@ import java.util.jar.JarFile;
  * @author Ursin Filli
  * @version 1.0
  */
-@API(status = API.Status.MAINTAINED, since = "1.0")
 public class Language {
 
     @Getter
