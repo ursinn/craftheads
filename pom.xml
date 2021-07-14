@@ -164,7 +164,7 @@
 
     <build>
         <defaultGoal>clean package</defaultGoal>
-        <finalName>GMCBM_${project.artifactId}-${ci.build.version}</finalName>
+        <finalName>CraftHeads_${project.artifactId}-${ci.build.version}</finalName>
         <pluginManagement>
             <plugins>
                 <!-- Compiler Plugin -->
