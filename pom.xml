@@ -53,7 +53,7 @@
         <dependency.bukkit.version>1.8.8-R0.1-SNAPSHOT</dependency.bukkit.version>
         <dependency.vault.version>1.7</dependency.vault.version>
         <dependency.bstats.version>1.7</dependency.bstats.version>
-        <dependency.commands.version>0.5.1</dependency.commands.version>
+        <dependency.commands.version>0.5.2</dependency.commands.version>
         <dependency.utils.version>1.0.0-SNAPSHOT</dependency.utils.version>
         <!-- Dependency Versions [Annotation] -->
         <dependency.jsr305.version>3.0.2</dependency.jsr305.version>
