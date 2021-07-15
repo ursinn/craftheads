@@ -11,12 +11,10 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import javax.annotation.Nonnull;
-
 public class InvClickEvent implements Listener {
 
     @EventHandler
-    public void click(@Nonnull InventoryClickEvent event) {
+    public void click(InventoryClickEvent event) {
         Inventory inventory = event.getInventory();
 
         // Check if the inventory is the menu

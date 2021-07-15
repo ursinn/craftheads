@@ -43,22 +43,27 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
         </dependency>
-        <!-- Bukkit Utils -->
+        <!-- Commands Paper -->
+        <dependency>
+            <groupId>net.gmcbm.dependencies</groupId>
+            <artifactId>acf-paper</artifactId>
+        </dependency>
+        <!-- Utils -->
         <dependency>
             <groupId>dev.ursinn.utils</groupId>
             <artifactId>bukkit-utils</artifactId>
         </dependency>
-        <!-- Bukkit Utils -->
+        <!-- Utils -->
         <dependency>
             <groupId>dev.ursinn.utils</groupId>
-            <artifactId>bukkit-checker</artifactId>
+            <artifactId>minecraft-checker</artifactId>
         </dependency>
-        <!-- Bukkit Utils -->
+        <!-- Utils -->
         <dependency>
             <groupId>dev.ursinn.utils</groupId>
             <artifactId>bukkit-builder</artifactId>
         </dependency>
-        <!-- Bukkit Utils -->
+        <!-- Utils -->
         <dependency>
             <groupId>dev.ursinn.utils</groupId>
             <artifactId>bukkit-skull</artifactId>
@@ -91,7 +96,17 @@
                         <relocation>
                             <pattern>org.bstats</pattern>
                             <!-- Replace this with your package! -->
-                            <shadedPattern>me.deejayarroba.craftheads.utils</shadedPattern>
+                            <shadedPattern>dev.ursinn.minecraft.craftheads.bukkit.lib.metrics</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>co.aikar.commands</pattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>dev.ursinn.minecraft.craftheads.bukkit.lib.acf</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>co.aikar.locales</pattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>dev.ursinn.minecraft.craftheads.bukkit.lib.locales</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

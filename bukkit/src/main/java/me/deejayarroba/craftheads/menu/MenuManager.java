@@ -7,8 +7,6 @@ import me.deejayarroba.craftheads.menu.menutypes.MainMenu;
 import org.bukkit.inventory.Inventory;
 import org.json.simple.JSONObject;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,7 +23,7 @@ public final class MenuManager {
     }
 
     // Shortcut to add a menu
-    private static void add(@Nonnull Menu menu) {
+    private static void add(Menu menu) {
         menus.add(menu);
     }
 
@@ -45,14 +43,12 @@ public final class MenuManager {
     }
 
     // Get all the menus
-    public static @Nonnull
-    List<Menu> getMenus() {
+    public static List<Menu> getMenus() {
         return Collections.unmodifiableList(menus);
     }
 
     // Get a menu from its name
-    public static @Nullable
-    Menu getMenu(@Nonnull String name) {
+    public static Menu getMenu(String name) {
         for (Menu menu : getMenus()) {
             if (menu.getName().equals(name)) {
                 return menu;
@@ -62,8 +58,7 @@ public final class MenuManager {
     }
 
     // Get a menu from its inventory
-    public static @Nullable
-    Menu getMenu(@Nonnull Inventory inv) {
+    public static Menu getMenu(Inventory inv) {
         for (Menu menu : getMenus()) {
             if (menu.getInventory().equals(inv)) {
                 return menu;
@@ -73,18 +68,15 @@ public final class MenuManager {
     }
 
 
-    public static @Nonnull
-    List<CategoryMenu> getCategoryMenus() {
+    public static List<CategoryMenu> getCategoryMenus() {
         return Collections.unmodifiableList(categoryMenus);
     }
 
-    public static @Nonnull
-    CategoriesMenu getCategoriesMenu() {
+    public static CategoriesMenu getCategoriesMenu() {
         return categoriesMenu;
     }
 
-    public static @Nonnull
-    MainMenu getMainMenu() {
+    public static MainMenu getMainMenu() {
         return mainMenu;
     }
 }

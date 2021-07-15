@@ -1,11 +1,12 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
+import dev.ursinn.minecraft.craftheads.core.utils.MessageManager;
 import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import dev.ursinn.utils.bukkit.skull.SkullBukkit;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.menu.MenuManager;
-import me.deejayarroba.craftheads.utils.MessageManager;
+import me.deejayarroba.craftheads.utils.MessageManagerImpl;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.SkullType;
@@ -17,15 +18,15 @@ import java.util.ArrayList;
 public class MainMenu extends Menu {
 
     private static final String CATEGORIES_ITEM_URL =
-            "http://textures.minecraft.net/texture/3e8aad673157c92317a88b1f86f5271f1cd7397d7fc8ec3281f733f751634";
+            "https://textures.minecraft.net/texture/3e8aad673157c92317a88b1f86f5271f1cd7397d7fc8ec3281f733f751634";
     private static final String OTHER_PLAYER_ITEM_URL =
-            "http://textures.minecraft.net/texture/f937e1c45bb8da29b2c564dd9a7da780dd2fe54468a5dfb4113b4ff658f043e1";
+            "https://textures.minecraft.net/texture/f937e1c45bb8da29b2c564dd9a7da780dd2fe54468a5dfb4113b4ff658f043e1";
 
     private final MessageManager msg;
 
     public MainMenu() {
-        msg = MessageManager.getInstance();
-        name = mainInstance.getLanguage().getLanguageConfig().getString("menu.name", "CraftHeads menu");
+        msg = MessageManagerImpl.getInstance();
+        name = mainInstance.getLanguage().getMessage("menu.name", "CraftHeads menu");
         menuItems = new ArrayList<>();
         inventory = Bukkit.createInventory(null, 9, name);
 
@@ -35,16 +36,16 @@ public class MainMenu extends Menu {
     private void run() {
         final ItemBuilderBukkit ownHeadBuilder = new ItemBuilderBukkit(SkullBukkit.getSkullMaterial())
                 .setName(ChatColor.translateAlternateColorCodes('&',
-                        mainInstance.getLanguage().getLanguageConfig().getString(
+                        mainInstance.getLanguage().getMessage(
                                 "menu.own", "§6Get your own head")))
                 .setDurability((short) SkullType.PLAYER.ordinal());
 
         ItemBuilderBukkit otherHeadBuilder = new ItemBuilderBukkit(SkullBukkit.getCustomSkull(OTHER_PLAYER_ITEM_URL))
                 .setName(ChatColor.translateAlternateColorCodes('&',
-                        mainInstance.getLanguage().getLanguageConfig().getString(
+                        mainInstance.getLanguage().getMessage(
                                 "menu.other", "§6Get someone else's head")))
                 .addLore(ChatColor.translateAlternateColorCodes('&',
-                        mainInstance.getLanguage().getLanguageConfig().getString(
+                        mainInstance.getLanguage().getMessage(
                                 "menu.lore.other", "§a§oUse: §e§o/craftheads <player name>")));
 
         final float ownHeadPrice = mainInstance.getConfig().getInt("player-own-head-price");
@@ -54,21 +55,21 @@ public class MainMenu extends Menu {
 
             if (ownHeadPrice > 0) {
                 ownHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&',
-                        mainInstance.getLanguage().getLanguageConfig().getString("menu.buy.price",
+                        mainInstance.getLanguage().getMessage("menu.buy.price",
                                 "&bPrice: &a%price%").replace("%price%", String.valueOf(ownHeadPrice))));
             } else {
                 ownHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&',
-                        mainInstance.getLanguage().getLanguageConfig().getString(
+                        mainInstance.getLanguage().getMessage(
                                 "menu.buy.free", "&bPrice: &aFREE")));
             }
 
             if (otherHeadPrice > 0) {
                 otherHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&',
-                        mainInstance.getLanguage().getLanguageConfig().getString("menu.buy.price",
+                        mainInstance.getLanguage().getMessage("menu.buy.price",
                                 "&bPrice: &a%price%").replace("%price%", String.valueOf(otherHeadPrice))));
             } else {
                 otherHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&',
-                        mainInstance.getLanguage().getLanguageConfig().getString(
+                        mainInstance.getLanguage().getMessage(
                                 "menu.buy.free", "&bPrice: &aFREE")));
             }
         }
@@ -80,7 +81,7 @@ public class MainMenu extends Menu {
                         if (balance < ownHeadPrice) {
                             // Player can't afford the head
                             msg.bad(p, ChatColor.translateAlternateColorCodes('&',
-                                    mainInstance.getLanguage().getLanguageConfig().getString(
+                                    mainInstance.getLanguage().getMessage(
                                             "error.money.own", "You can't your afford your own head!")));
                             return;
                         }
@@ -89,12 +90,12 @@ public class MainMenu extends Menu {
                     // If the inventory is full
                     if (p.getInventory().firstEmpty() == -1) {
                         msg.bad(p, ChatColor.translateAlternateColorCodes('&',
-                                mainInstance.getLanguage().getLanguageConfig().getString(
+                                mainInstance.getLanguage().getMessage(
                                         "error.inv", "Your inventory is full!")));
                     } else {
                         ItemStack head = new ItemBuilderBukkit(SkullBukkit.getPlayerSkull(p.getName()))
                                 .setName(ChatColor.translateAlternateColorCodes('&',
-                                        mainInstance.getLanguage().getLanguageConfig().getString(
+                                        mainInstance.getLanguage().getMessage(
                                                 "item", "&6Head: &b%args0%").replace("%args0%", p.getName())))
                                 .build();
                         p.getInventory().addItem(head);
@@ -103,20 +104,20 @@ public class MainMenu extends Menu {
                             // Player can afford the head
                             mainInstance.getEconomy().withdrawPlayer(p, ownHeadPrice);
                             msg.good(p, ChatColor.translateAlternateColorCodes('&',
-                                    mainInstance.getLanguage().getLanguageConfig().getString(
+                                    mainInstance.getLanguage().getMessage(
                                             "buy.own", "You bought your own head for &b%ownHeadPrice%")
                                             .replace("%ownHeadPrice%", String.valueOf(ownHeadPrice))));
                         }
 
                         msg.good(p, ChatColor.translateAlternateColorCodes('&',
-                                mainInstance.getLanguage().getLanguageConfig().getString(
+                                mainInstance.getLanguage().getMessage(
                                         "give.own", "You now have your own head!")));
                         p.closeInventory();
                     }
                 }));
 
         menuItems.add(1, new MenuItem(new ItemBuilderBukkit(SkullBukkit.getCustomSkull(CATEGORIES_ITEM_URL))
-                .setName(ChatColor.GOLD + mainInstance.getLanguage().getLanguageConfig().getString(
+                .setName(ChatColor.GOLD + mainInstance.getLanguage().getMessage(
                         "menu.categories", "Categories"))
                 .build(),
                 (Player p) -> {
@@ -128,7 +129,7 @@ public class MainMenu extends Menu {
                 (Player p) -> {
                     // Give someone else's head here
                     msg.info(p, ChatColor.translateAlternateColorCodes('&',
-                            mainInstance.getLanguage().getLanguageConfig().getString(
+                            mainInstance.getLanguage().getMessage(
                                     "give.other.helper", "§aUse: §e/craftheads <player name>")));
                     p.closeInventory();
                 }));

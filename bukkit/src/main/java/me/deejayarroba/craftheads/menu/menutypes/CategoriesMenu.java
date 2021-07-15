@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class CategoriesMenu extends Menu {
 
     public CategoriesMenu() {
-        name = mainInstance.getLanguage().getLanguageConfig().getString("menu.categories", "Categories");
+        name = mainInstance.getLanguage().getMessage("menu.categories", "Categories");
         menuItems = new ArrayList<>();
 
         run();

@@ -21,6 +21,29 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencies>
+        <!-- Commands Core -->
+        <dependency>
+            <groupId>net.gmcbm.dependencies</groupId>
+            <artifactId>acf-core</artifactId>
+        </dependency>
+        <!-- Utils -->
+        <dependency>
+            <groupId>dev.ursinn.utils</groupId>
+            <artifactId>minecraft-checker</artifactId>
+        </dependency>
+        <!-- JSR305 [Annotation] -->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+        </dependency>
+        <!-- Lombok [Annotation] -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <!-- Compiler Plugin -->

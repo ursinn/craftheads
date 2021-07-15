@@ -53,6 +53,7 @@
         <dependency.bukkit.version>1.8.8-R0.1-SNAPSHOT</dependency.bukkit.version>
         <dependency.vault.version>1.7</dependency.vault.version>
         <dependency.bstats.version>1.7</dependency.bstats.version>
+        <dependency.commands.version>0.5.1</dependency.commands.version>
         <dependency.utils.version>1.0.0-SNAPSHOT</dependency.utils.version>
         <!-- Dependency Versions [Annotation] -->
         <dependency.jsr305.version>3.0.2</dependency.jsr305.version>
@@ -80,7 +81,7 @@
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
-        <!-- Bukkit Utils Snapshots -->
+        <!-- Utils Snapshots -->
         <repository>
             <id>ossrh-s01</id>
             <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
@@ -117,28 +118,42 @@
                 <version>${dependency.bstats.version}</version>
                 <scope>compile</scope>
             </dependency>
-            <!-- Bukkit Utils -->
+            <!-- Commands Core -->
+            <dependency>
+                <groupId>net.gmcbm.dependencies</groupId>
+                <artifactId>acf-core</artifactId>
+                <version>${dependency.commands.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- Commands Paper -->
+            <dependency>
+                <groupId>net.gmcbm.dependencies</groupId>
+                <artifactId>acf-paper</artifactId>
+                <version>${dependency.commands.version}</version>
+                <scope>compile</scope>
+            </dependency>
+            <!-- Utils -->
             <dependency>
                 <groupId>dev.ursinn.utils</groupId>
                 <artifactId>bukkit-utils</artifactId>
                 <version>${dependency.utils.version}</version>
                 <scope>compile</scope>
             </dependency>
-            <!-- Bukkit Utils -->
+            <!-- Utils -->
             <dependency>
                 <groupId>dev.ursinn.utils</groupId>
-                <artifactId>bukkit-checker</artifactId>
+                <artifactId>minecraft-checker</artifactId>
                 <version>${dependency.utils.version}</version>
                 <scope>compile</scope>
             </dependency>
-            <!-- Bukkit Utils -->
+            <!-- Utils -->
             <dependency>
                 <groupId>dev.ursinn.utils</groupId>
                 <artifactId>bukkit-builder</artifactId>
                 <version>${dependency.utils.version}</version>
                 <scope>compile</scope>
             </dependency>
-            <!-- Bukkit Utils -->
+            <!-- Utils -->
             <dependency>
                 <groupId>dev.ursinn.utils</groupId>
                 <artifactId>bukkit-skull</artifactId>
@@ -281,8 +296,8 @@
                     <version>1.6.8</version>
                     <extensions>true</extensions>
                     <configuration>
-                        <serverId>ossrh</serverId>
-                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                        <serverId>ossrh-s01</serverId>
+                        <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                         <autoReleaseAfterClose>true</autoReleaseAfterClose>
                     </configuration>
                 </plugin>

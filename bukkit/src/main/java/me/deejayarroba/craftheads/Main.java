@@ -1,12 +1,15 @@
 package me.deejayarroba.craftheads;
 
-import dev.ursinn.minecraft.craftheads.bukkit.utils.Language;
-import dev.ursinn.utils.bukkit.checker.UpdateChecker;
+import co.aikar.commands.PaperCommandManager;
+import dev.ursinn.minecraft.craftheads.bukkit.commands.CommandHelperImpl;
+import dev.ursinn.minecraft.craftheads.bukkit.utils.LanguageImpl;
+import dev.ursinn.minecraft.craftheads.core.commands.CraftHeadsCommand;
+import dev.ursinn.minecraft.craftheads.core.utils.Language;
 import dev.ursinn.utils.bukkit.skull.SkullBukkit;
 import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
-import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
+import dev.ursinn.utils.minecraft.checker.UpdateChecker;
+import dev.ursinn.utils.minecraft.checker.UpdatePlatform;
 import me.deejayarroba.craftheads.menu.MenuManager;
-import me.deejayarroba.craftheads.utils.AbstractCommand;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -18,7 +21,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -31,22 +33,17 @@ import java.util.jar.JarFile;
 public class Main extends JavaPlugin {
 
     private static final boolean DEV_BUILD = true;
-    private static final int SPIGOT_PLUGIN_ID = 59481;
+    private static final String SPIGOT_PLUGIN_ID = "59481";
     private static final int METRICS_PLUGIN_ID = 3033;
 
     private static Main instance;
     private UpdateChecker updateChecker;
-    private Language language;
+    private LanguageImpl language;
     private Economy economy;
-    private float defaultHeadPrice;
     private JSONArray headCategories;
 
     public static Main getInstance() {
         return instance;
-    }
-
-    public static boolean isDevBuild() {
-        return DEV_BUILD;
     }
 
     @Override
@@ -55,17 +52,15 @@ public class Main extends JavaPlugin {
 
         saveDefaultConfig();
 
-        updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this);
+        updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this.getDescription().getName(), this.getDescription().getVersion(), UpdatePlatform.SPIGOT);
 
-        language = new Language();
+        language = new LanguageImpl();
         language.createLanguageFile();
 
         economy = null;
         if (getConfig().getBoolean("economy")) {
             setupEconomy();
         }
-
-        defaultHeadPrice = getConfig().getInt("default-price");
 
         headCategories = new JSONArray();
         loadCategories();
@@ -74,10 +69,7 @@ public class Main extends JavaPlugin {
 
         UtilsBukkit.registerListener("me.deejayarroba.craftheads.listeners", this);
 
-        // Register the command
-        AbstractCommand craftHeadsCommand =
-                new CraftHeadsCommand("craftheads", "/<command>", "The main CraftHeads command.");
-        craftHeadsCommand.register();
+        registerCommands();
 
         // This takes care of auto-updating and metrics
         if (getConfig().getBoolean("metrics")) {
@@ -117,8 +109,13 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public @Nonnull
-    File getPluginFile() {
+    private void registerCommands() {
+        PaperCommandManager commandManager = new PaperCommandManager(instance);
+
+        commandManager.registerCommand(new CraftHeadsCommand(new CommandHelperImpl()));
+    }
+
+    public File getPluginFile() {
         return getFile();
     }
 
@@ -176,27 +173,31 @@ public class Main extends JavaPlugin {
         }
     }
 
-    public @Nonnull
-    UpdateChecker getUpdateChecker() {
+    public UpdateChecker getUpdateChecker() {
         return updateChecker;
     }
 
-    public @Nonnull
-    Language getLanguage() {
+    public Language getLanguage() {
         return language;
     }
 
-    public @Nonnull
-    Economy getEconomy() {
+    public Economy getEconomy() {
         return economy;
     }
 
     public float getDefaultHeadPrice() {
-        return defaultHeadPrice;
+        return getConfig().getInt("default-price");
     }
 
-    public @Nonnull
-    JSONArray getHeadCategories() {
+    public float getOtherHeadPrice() {
+        return getConfig().getInt("player-other-head-price");
+    }
+
+    public JSONArray getHeadCategories() {
         return headCategories;
+    }
+
+    public boolean isDevBuild() {
+        return DEV_BUILD;
     }
 }
