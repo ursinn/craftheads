@@ -27,7 +27,7 @@ public class LanguageImpl implements dev.ursinn.minecraft.craftheads.core.utils.
 
     public LanguageImpl() {
         languageConfig = new YamlConfiguration();
-        languageFile = new File(Main.getInstance().getDataFolder() + "/lang",
+        languageFile = new File(Main.getInstance().getDataFolder() + "/languages",
                 Main.getInstance().getConfig().getString("language", "en") + ".yml");
         mainInstance = Main.getInstance();
     }
@@ -53,7 +53,7 @@ public class LanguageImpl implements dev.ursinn.minecraft.craftheads.core.utils.
             Enumeration<JarEntry> entries = jarfile.entries();
             while (entries.hasMoreElements()) {
                 final String name = entries.nextElement().getName();
-                if (name.startsWith("lang/") && !"lang/".equals(name)) {
+                if (name.startsWith("craftheads-languages/") && !"craftheads-languages/".equals(name)) {
                     mainInstance.saveResource(name, false);
                 }
             }

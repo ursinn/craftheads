@@ -87,5 +87,18 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>languages/*</exclude>
+                    <exclude>categories/*</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>src/main/resources/languages</directory>
+                <targetPath>craftheads-languages</targetPath>
+            </resource>
+        </resources>
     </build>
 </project>

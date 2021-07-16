@@ -145,11 +145,6 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-            <resource>
-                <directory>../core/src/main/resources</directory>
-                <filtering>true</filtering>
             </resource>
         </resources>
     </build>
