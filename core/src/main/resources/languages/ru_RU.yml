@@ -1,33 +1,33 @@
 ---
-give:
-  own: "You now have your own head!"
-  give: "You now have %args0%'s head!"
-  buy: "You bought &b%playerName%&a's head for &b%otherHeadPrice%"
-  item:
-    give: "You now have: %item%"
-    buy: "You bought a head for &b%price%"
-  other:
-    helper: "&aUse: &e/craftheads <player name>"
-buy:
-  own: "You bought your own head for &b%ownHeadPrice%"
 error:
-  inv: "Your inventory is full!"
-  permission: "You don't have permission to use this command."
+  console: Вы можете запустить эту команду только как игрок.
+  inv: Инвентарь полон!
   money:
-    own: "You can't your afford your own head!"
-    other: "You can't afford that head!"
-    player: "You can't your afford this player's head!"
-  console: "You can only run this command as a player."
+    other: Вы не можете позволить себе эту голову!
+    own: Вы не можете позволить себе собственную голову!
+    player: Вы не можете себе позволить голову этого игрока!
+  permission: У вас нет разрешения на использование этой команды.
+give:
+  other:
+    helper: "&aИспользуйте: &e/craftheads <никнейм>"
+  own: Вы получили свою голову!
+  give: Теперь у вас есть голова %args0%!
+  buy: Вы купили &b%playerName%&a's голова для &b%otherHeadPrice%
+  item:
+    give: 'Теперь у вас есть: %item%'
+    buy: Вы купили голову для &b%price%
 menu:
-  name: "CraftHeads menu"
-  own: "&6Get your own head"
-  other: "&6Get someone else's head"
-  categories: "Categories"
+  categories: Категории
   lore:
-    other: "&a&oUse: &e&o/craftheads <player name>"
+    other: "&a&oИспользуйте: &e&o/craftheads <никнейм>"
+  name: CraftHeads Меню
+  other: "&6Получить чью-то голову"
+  own: "&6Получит свою голову"
   buy:
-    free: "&bPrice: &aFREE"
-    price: "&bPrice: &a%price%"
-item: "&6Head: &b%args0%"
+    free: "&bЦена: &aБЕСПЛАТНО"
+    price: "&bЦена: &a%price%"
 update:
-  notify: "An update for CraftHeads is available"
+  notify: Доступно обновление для CraftHeads
+buy:
+  own: Вы купили свою голову за &b%ownHeadPrice%
+item: "&6Голова: &b%args0%"

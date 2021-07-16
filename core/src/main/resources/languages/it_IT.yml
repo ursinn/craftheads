@@ -1,33 +1,33 @@
 ---
-give:
-  own: "You now have your own head!"
-  give: "You now have %args0%'s head!"
-  buy: "You bought &b%playerName%&a's head for &b%otherHeadPrice%"
-  item:
-    give: "You now have: %item%"
-    buy: "You bought a head for &b%price%"
-  other:
-    helper: "&aUse: &e/craftheads <player name>"
-buy:
-  own: "You bought your own head for &b%ownHeadPrice%"
 error:
-  inv: "Your inventory is full!"
-  permission: "You don't have permission to use this command."
+  console: Puoi eseguire questo comando solo come giocatore.
+  inv: Il tuo inventario è pieno!
   money:
-    own: "You can't your afford your own head!"
-    other: "You can't afford that head!"
-    player: "You can't your afford this player's head!"
-  console: "You can only run this command as a player."
+    other: Non puoi permetterti quella testa!
+    own: Non puoi permetterti la tua testa!
+    player: Non puoi permetterti la testa di questo giocatore!
+  permission: Non hai i permessi per usare questo comando.
+give:
+  other:
+    helper: "&aUso: &e/craftheads <nome del giocatore>"
+  own: Ora hai la tua testa!
+  give: Adesso hai  %args0%'s testa!
+  buy: Hai comprato &b%playerName%&a's testa per &b%otherHeadPrice%
+  item:
+    give: 'Adesso hai: %item%'
+    buy: Hai comprato una testa per &b%price%
 menu:
-  name: "CraftHeads menu"
-  own: "&6Get your own head"
-  other: "&6Get someone else's head"
-  categories: "Categories"
+  categories: categorie
   lore:
-    other: "&a&oUse: &e&o/craftheads <player name>"
+    other: "&a&oUso: &e&o/craftheads <nome del giocatore>"
+  name: CraftHeads menù
+  other: "&6Prendi la testa di qualcun altro"
+  own: "&6Prendi la tua testa"
   buy:
-    free: "&bPrice: &aFREE"
-    price: "&bPrice: &a%price%"
-item: "&6Head: &b%args0%"
+    free: "&bPrezzo: &aGRATUITO"
+    price: "&bPrezzo: &a%price%"
 update:
-  notify: "An update for CraftHeads is available"
+  notify: È disponibile un aggiornamento per CraftHeads
+buy:
+  own: Hai comprato la tua testa per &b%ownHeadPrice%
+item: "&6testa : &b%args0%"

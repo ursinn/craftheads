@@ -1,33 +1,33 @@
 ---
-give:
-  own: "You now have your own head!"
-  give: "You now have %args0%'s head!"
-  buy: "You bought &b%playerName%&a's head for &b%otherHeadPrice%"
-  item:
-    give: "You now have: %item%"
-    buy: "You bought a head for &b%price%"
-  other:
-    helper: "&aUse: &e/craftheads <player name>"
-buy:
-  own: "You bought your own head for &b%ownHeadPrice%"
 error:
-  inv: "Your inventory is full!"
-  permission: "You don't have permission to use this command."
+  console: Du kanst diesen Befehl nur als Spieler ausführen.
+  inv: Dein Inventar ist voll!
   money:
-    own: "You can't your afford your own head!"
-    other: "You can't afford that head!"
-    player: "You can't your afford this player's head!"
-  console: "You can only run this command as a player."
+    other: Du kanst dir diesen Kopf nicht leisten!
+    own: Du kannst dir deinen eigenen Kopf nicht leisten!
+    player: Du kannst dir den Kopf dieses Spielers nicht leisten!
+  permission: Du hast keine Berechtigung, diesen Befehl zu verwenden.
+give:
+  other:
+    helper: "&aBenutze: &e/craftheads <Spielername>"
+  own: Du hast jetzt deinen eigenen Kopf!
+  give: Du hast jetzt den Kopf von %args0%!
+  buy: Du hast &b%playerName%&a'sKopf für &b%otherHeadPrice% &agekauft
+  item:
+    give: 'Du hast nun: %item%'
+    buy: Du hast einen kopf für &b%price% &agekauft
 menu:
-  name: "CraftHeads menu"
-  own: "&6Get your own head"
-  other: "&6Get someone else's head"
-  categories: "Categories"
+  categories: Kategorien
   lore:
-    other: "&a&oUse: &e&o/craftheads <player name>"
+    other: "&a&oBenutze: &e&o/craftheads <Spielername>"
+  name: CraftHeads Menue
+  other: "&6Gibt dir den Kopf eines anderen"
+  own: "&6Gib dir deinen eigenen Kopf"
   buy:
-    free: "&bPrice: &aFREE"
-    price: "&bPrice: &a%price%"
-item: "&6Head: &b%args0%"
+    free: "&bPreis: &aGratis"
+    price: "&bPreis: &a%price%"
 update:
-  notify: "An update for CraftHeads is available"
+  notify: Ein Update für CraftHeads ist verfügbar
+buy:
+  own: Du hast deinen eigenen Kopf für &b%ownHeadPrice% gekauft
+item: "&6Kopf: &b%args0%"
