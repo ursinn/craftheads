@@ -26,7 +26,7 @@ menu:
   lore:
     other: "&a&oBenutze: &e&o/craftheads <Spielername>"
   buy:
-    free: "&bPreis: &aGratis"
+    free: "&bPreis: &aKostenlos"
     price: "&bPreis: &a%price%"
 item: "&6Kopf: &b%args0%"
 update:
