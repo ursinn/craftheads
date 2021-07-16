@@ -1,6 +1,7 @@
 package me.deejayarroba.craftheads;
 
 import co.aikar.commands.PaperCommandManager;
+import com.google.common.reflect.ClassPath;
 import dev.ursinn.minecraft.craftheads.bukkit.commands.CommandHelperImpl;
 import dev.ursinn.minecraft.craftheads.bukkit.utils.LanguageImpl;
 import dev.ursinn.minecraft.craftheads.core.commands.CraftHeadsCommand;
@@ -9,12 +10,17 @@ import dev.ursinn.utils.bukkit.skull.SkullBukkit;
 import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
 import dev.ursinn.utils.minecraft.checker.UpdateChecker;
 import dev.ursinn.utils.minecraft.checker.UpdatePlatform;
+import me.deejayarroba.craftheads.listeners.InvClickEvent;
+import me.deejayarroba.craftheads.listeners.PlayerJoin;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONArray;
@@ -23,6 +29,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Enumeration;
@@ -67,7 +74,9 @@ public class Main extends JavaPlugin {
 
         MenuManager.setup();
 
-        UtilsBukkit.registerListener("me.deejayarroba.craftheads.listeners", this);
+//        UtilsBukkit.registerListener("me.deejayarroba.craftheads.listeners", this);
+        getServer().getPluginManager().registerEvents(new InvClickEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 
         registerCommands();
 
