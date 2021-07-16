@@ -7,7 +7,7 @@ give:
     give: "Vous avez maintenant: %item%"
     buy: "Vous avez acheté une tête pour &b%price%"
   other:
-    helper: "&aUtilisation: &e/craftheads"
+    helper: "&aUtilisation: &e/craftheads <player name>"
 buy:
   own: "Vous avez acheté votre propre tête pour &b%ownHeadPrice%"
 error:
