@@ -139,22 +139,7 @@ public class Main extends JavaPlugin {
         JSONParser parser = new JSONParser();
 
         if (getConfig().getBoolean("reset-categories")) {
-            JarFile jarfile;
-            try {
-                jarfile = new JarFile(getPluginFile());
-
-                Enumeration<JarEntry> entries = jarfile.entries();
-                while (entries.hasMoreElements()) {
-                    final String name = entries.nextElement().getName();
-                    if (name.startsWith("categories/") && !"categories/".equals(name)) {
-                        saveResource(name, true);
-                    }
-                }
-                jarfile.close();
-            } catch (IOException e) {
-                getLogger().warning(String.valueOf(e));
-            }
-
+            extractCategories();
             getConfig().set("reset-categories", false);
             saveConfig();
         }
@@ -174,6 +159,23 @@ public class Main extends JavaPlugin {
                     }
                 }
             }
+        }
+    }
+
+    private void extractCategories() {
+        try {
+            JarFile jarfile = new JarFile(instance.getPluginFile());
+
+            Enumeration<JarEntry> entries = jarfile.entries();
+            while (entries.hasMoreElements()) {
+                final String name = entries.nextElement().getName();
+                if (name.startsWith("craftheads-categories/") && !"craftheads-categories/".equals(name)) {
+                    saveResource(name, true);
+                }
+            }
+            jarfile.close();
+        } catch (IOException e) {
+            instance.getLogger().warning(String.valueOf(e));
         }
     }
 

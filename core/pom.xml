@@ -99,6 +99,10 @@
                 <directory>src/main/resources/languages</directory>
                 <targetPath>craftheads-languages</targetPath>
             </resource>
+            <resource>
+                <directory>src/main/resources/categories</directory>
+                <targetPath>craftheads-categories</targetPath>
+            </resource>
         </resources>
     </build>
 </project>
