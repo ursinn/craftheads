@@ -1,4 +1,3 @@
----
 give:
   own: "You now have your own head!"
   give: "You now have %args0%'s head!"
