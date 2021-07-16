@@ -1,7 +1,7 @@
 # CraftHeads
 
-[![Build status (Jenkins)](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads%2Fjob%2Fdevelop%2F&label=Jenkins&logo=jenkins)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
-[![Github last commit date](https://img.shields.io/github/last-commit/ursinn/craftheads?label=Updated&logo=github)](https://github.com/gmcbm/gmcbm/commits)
+[![Build Status](https://ci.ursinn.dev/job/ursinn/job/craftheads/job/develop/badge/icon)](https://ci.ursinn.dev/job/ursinn/job/craftheads/job/develop/)
+[![Crowdin](https://badges.crowdin.net/craftheads/localized.svg)](https://crowdin.com/project/craftheads)
 [![Codecov](https://img.shields.io/codecov/c/gh/ursinn/craftheads?label=Coverage&logo=codecov)](https://app.codecov.io/gh/ursinn/craftheads)
 [![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/ursinn/craftheads?label=Maintainability)](https://codeclimate.com/github/ursinn/craftheads)
 [![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ursinn/craftheads?label=Vulnerabilities)](https://snyk.io/test/github/ursinn/craftheads)
@@ -39,21 +39,10 @@ This plugin allows you to get player heads with an easy to use in-game GUI
 You can read the documentation for the default configuration
 file [here](https://github.com/ursinn/CraftHeads/blob/master/src/main/resources/config.yml).
 
-## **Metrics**
+## Metrics
 
-This plugin utilizes bStats plugin metrics system, which means that the following information is collected and sent to
-bstats.org:
+This plugin utilizes bStats plugin metrics system.
 
-* Your server's randomly generated UUID
-* The amount of players on your server
-* The online mode of your server
-* The bukkit version of your server
-* The java version of your system (e.g. Java 8)
-* The name of your OS (e.g. Windows)
-* The version of your OS
-* The architecture of your OS (e.g. amd64)
-* The system cores of your OS (e.g. 8)
-* bStats-supported plugins
-* Plugin version of bStats-supported plugins
+### Bukkit
 
 [![Metrcis](https://bstats.org/signatures/bukkit/CraftHeads.svg)](https://bstats.org/plugin/bukkit/CraftHeads/3033)
