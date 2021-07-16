@@ -3,7 +3,7 @@
 "files": [
   {
     "source": "/core/src/main/resources/languages/en.yml",
-    "translation": "/core/src/main/resources/languages/%locale%.yml",
+    "translation": "/core/src/main/resources/languages/%locale_with_underscore%.yml",
     "type": "yaml"
   }
 ]
