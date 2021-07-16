@@ -1,7 +1,7 @@
 ---
 give:
   own: "Ora hai la tua testa!"
-  give: "Adesso hai  %args0%'s testa!"
+  give: "Adesso hai %args0%'s testa!"
   buy: "Hai comprato &b%playerName%&a's testa per &b%otherHeadPrice%"
   item:
     give: "Adesso hai: %item%"
@@ -22,12 +22,12 @@ menu:
   name: "CraftHeads menù"
   own: "&6Prendi la tua testa"
   other: "&6Prendi la testa di qualcun altro"
-  categories: "categorie"
+  categories: "Categorie"
   lore:
     other: "&a&oUso: &e&o/craftheads <nome del giocatore>"
   buy:
     free: "&bPrezzo: &aGRATUITO"
     price: "&bPrezzo: &a%price%"
-item: "&6testa : &b%args0%"
+item: "&6testa: &b%args0%"
 update:
   notify: "È disponibile un aggiornamento per CraftHeads"
