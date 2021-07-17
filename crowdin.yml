@@ -1,9 +1,9 @@
 "commit_message": "[ci skip]"
-"files": [
-  {
-    "source": "/core/src/main/resources/languages/original.yml",
-    "translation": "/core/src/main/resources/languages/%locale_with_underscore%.yml",
-    "export_only_approved": true,
-    "type": "yaml",
-  }
+"preserve_hierarchy": true
+files: [
+ {
+  "source" : "/core/src/main/resources/languages/en.properties",
+  "translation" : "/core/src/main/resources/languages/%two_letters_code%.properties",
+  "type": "properties",
+ }
 ]
