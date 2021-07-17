@@ -55,6 +55,7 @@
         <dependency.bstats.version>1.7</dependency.bstats.version>
         <dependency.commands.version>0.5.2</dependency.commands.version>
         <dependency.utils.version>1.0.0-SNAPSHOT</dependency.utils.version>
+        <dependency.json.version>1.1.1</dependency.json.version>
         <!-- Dependency Versions [Annotation] -->
         <dependency.jsr305.version>3.0.2</dependency.jsr305.version>
         <dependency.lombok.version>1.18.20</dependency.lombok.version>
@@ -159,6 +160,13 @@
                 <artifactId>bukkit-skull</artifactId>
                 <version>${dependency.utils.version}</version>
                 <scope>compile</scope>
+            </dependency>
+            <!-- Json -->
+            <dependency>
+                <groupId>com.googlecode.json-simple</groupId>
+                <artifactId>json-simple</artifactId>
+                <version>${dependency.json.version}</version>
+                <scope>provided</scope>
             </dependency>
             <!-- JSR305 [Annotation] -->
             <dependency>

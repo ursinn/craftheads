@@ -32,6 +32,11 @@
             <groupId>dev.ursinn.utils</groupId>
             <artifactId>minecraft-checker</artifactId>
         </dependency>
+        <!-- Json -->
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+        </dependency>
         <!-- JSR305 [Annotation] -->
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
@@ -90,18 +95,6 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>languages/*</exclude>
-                    <exclude>categories/*</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>src/main/resources/languages</directory>
-                <targetPath>craftheads-languages</targetPath>
-            </resource>
-            <resource>
-                <directory>src/main/resources/categories</directory>
-                <targetPath>craftheads-categories</targetPath>
             </resource>
         </resources>
     </build>
