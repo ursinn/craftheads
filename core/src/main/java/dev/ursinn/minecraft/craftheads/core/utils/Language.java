@@ -2,7 +2,6 @@ package dev.ursinn.minecraft.craftheads.core.utils;
 
 public interface Language {
 
-    void createLanguageFile();
-
+    void loadFiles();
     String getMessage(String key, String defaultMessage);
 }

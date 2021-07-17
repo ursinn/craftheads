@@ -2,8 +2,10 @@ package me.deejayarroba.craftheads;
 
 import co.aikar.commands.PaperCommandManager;
 import dev.ursinn.minecraft.craftheads.bukkit.commands.CommandHelperImpl;
+import dev.ursinn.minecraft.craftheads.bukkit.utils.CategoriesImpl;
 import dev.ursinn.minecraft.craftheads.bukkit.utils.LanguageImpl;
 import dev.ursinn.minecraft.craftheads.core.commands.CraftHeadsCommand;
+import dev.ursinn.minecraft.craftheads.core.utils.Categories;
 import dev.ursinn.minecraft.craftheads.core.utils.Language;
 import dev.ursinn.utils.bukkit.skull.SkullBukkit;
 import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
@@ -19,18 +21,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.Enumeration;
-import java.util.Objects;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 public class Main extends JavaPlugin {
 
@@ -42,7 +34,7 @@ public class Main extends JavaPlugin {
     private UpdateChecker updateChecker;
     private LanguageImpl language;
     private Economy economy;
-    private JSONArray headCategories;
+    private Categories categories;
 
     public static Main getInstance() {
         return instance;
@@ -57,15 +49,15 @@ public class Main extends JavaPlugin {
         updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this.getDescription().getName(), this.getDescription().getVersion(), UpdatePlatform.SPIGOT);
 
         language = new LanguageImpl();
-        language.createLanguageFile();
+        language.loadFiles();
 
         economy = null;
         if (getConfig().getBoolean("economy")) {
             setupEconomy();
         }
 
-        headCategories = new JSONArray();
-        loadCategories();
+        categories = new CategoriesImpl();
+        categories.loadFiles();
 
         MenuManager.setup();
 
@@ -135,50 +127,6 @@ public class Main extends JavaPlugin {
         economy = rsp.getProvider();
     }
 
-    private void loadCategories() {
-        JSONParser parser = new JSONParser();
-
-        if (getConfig().getBoolean("reset-categories")) {
-            extractCategories();
-            getConfig().set("reset-categories", false);
-            saveConfig();
-        }
-
-        for (File file : Objects.requireNonNull(getDataFolder().listFiles())) {
-            if (file.isDirectory()) {
-                if ("categories".equals(file.getName())) {
-                    for (File categoryFile : Objects.requireNonNull(file.listFiles())) {
-                        if (categoryFile.isFile()) {
-                            try {
-                                headCategories.add(parser.parse(
-                                        new String(Files.readAllBytes(categoryFile.toPath()), StandardCharsets.UTF_8)));
-                            } catch (IOException | ParseException e) {
-                                getLogger().warning(String.valueOf(e));
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    private void extractCategories() {
-        try {
-            JarFile jarfile = new JarFile(instance.getPluginFile());
-
-            Enumeration<JarEntry> entries = jarfile.entries();
-            while (entries.hasMoreElements()) {
-                final String name = entries.nextElement().getName();
-                if (name.startsWith("craftheads-categories/") && !"craftheads-categories/".equals(name)) {
-                    saveResource(name, true);
-                }
-            }
-            jarfile.close();
-        } catch (IOException e) {
-            instance.getLogger().warning(String.valueOf(e));
-        }
-    }
-
     public UpdateChecker getUpdateChecker() {
         return updateChecker;
     }
@@ -199,8 +147,8 @@ public class Main extends JavaPlugin {
         return getConfig().getInt("player-other-head-price");
     }
 
-    public JSONArray getHeadCategories() {
-        return headCategories;
+    public Categories getCategories() {
+        return categories;
     }
 
     public boolean isDevBuild() {

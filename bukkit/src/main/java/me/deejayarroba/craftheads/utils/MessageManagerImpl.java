@@ -1,15 +1,16 @@
 package me.deejayarroba.craftheads.utils;
 
+import dev.ursinn.minecraft.craftheads.core.utils.MessageManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 public final class MessageManagerImpl implements dev.ursinn.minecraft.craftheads.core.utils.MessageManager {
 
-    private static final dev.ursinn.minecraft.craftheads.core.utils.MessageManager instance = new MessageManagerImpl();
+    private static final MessageManager instance = new MessageManagerImpl();
     private static final String PREFIX =
             ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + "CraftHeads" + ChatColor.DARK_GRAY + "] " + ChatColor.RESET;
 
-    public static dev.ursinn.minecraft.craftheads.core.utils.MessageManager getInstance() {
+    public static MessageManager getInstance() {
         return instance;
     }
 

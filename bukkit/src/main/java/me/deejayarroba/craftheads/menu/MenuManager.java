@@ -1,5 +1,6 @@
 package me.deejayarroba.craftheads.menu;
 
+import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.menutypes.CategoriesMenu;
 import me.deejayarroba.craftheads.menu.menutypes.CategoryMenu;
@@ -15,7 +16,11 @@ public final class MenuManager {
 
     private static final List<Menu> menus = new ArrayList<>();
     private static final ArrayList<CategoryMenu> categoryMenus = new ArrayList<>();
+
+    @Getter
     private static CategoriesMenu categoriesMenu;
+
+    @Getter
     private static MainMenu mainMenu;
 
     private MenuManager() {
@@ -34,8 +39,8 @@ public final class MenuManager {
         categoriesMenu = new CategoriesMenu();
         add(categoriesMenu);
 
-        for (int i = 0; i < Main.getInstance().getHeadCategories().size(); i++) {
-            JSONObject category = (JSONObject) Main.getInstance().getHeadCategories().get(i);
+        for (int i = 0; i < Main.getInstance().getCategories().getHeadCategories().size(); i++) {
+            JSONObject category = (JSONObject) Main.getInstance().getCategories().getHeadCategories().get(i);
             CategoryMenu categoryMenu = new CategoryMenu(category);
             categoryMenus.add(categoryMenu);
             add(categoryMenu);
@@ -67,16 +72,7 @@ public final class MenuManager {
         return null;
     }
 
-
     public static List<CategoryMenu> getCategoryMenus() {
         return Collections.unmodifiableList(categoryMenus);
-    }
-
-    public static CategoriesMenu getCategoriesMenu() {
-        return categoriesMenu;
-    }
-
-    public static MainMenu getMainMenu() {
-        return mainMenu;
     }
 }

@@ -3,6 +3,7 @@ package me.deejayarroba.craftheads.menu.menutypes;
 import dev.ursinn.minecraft.craftheads.core.utils.MessageManager;
 import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import dev.ursinn.utils.bukkit.skull.SkullBukkit;
+import lombok.Getter;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.utils.MessageManagerImpl;
@@ -17,6 +18,7 @@ import java.util.Objects;
 
 public class CategoryMenu extends Menu {
 
+    @Getter
     private final JSONObject category;
     private final MessageManager msg;
 
@@ -99,9 +101,5 @@ public class CategoryMenu extends Menu {
         }
 
         placeItems();
-    }
-
-    public JSONObject getCategory() {
-        return category;
     }
 }

@@ -22,7 +22,7 @@ public class CategoriesMenu extends Menu {
 
     private void run() {
         // Loop through all the categories
-        for (Object o : mainInstance.getHeadCategories()) {
+        for (Object o : mainInstance.getCategories().getHeadCategories()) {
             final JSONObject category = (JSONObject) o;
 
             menuItems.add(new MenuItem(

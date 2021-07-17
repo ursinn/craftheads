@@ -2,6 +2,7 @@ package me.deejayarroba.craftheads.menu;
 
 import com.mojang.authlib.GameProfile;
 import dev.ursinn.utils.bukkit.reflections.ReflectionsBukkit;
+import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
@@ -14,7 +15,10 @@ import java.util.List;
 
 public class Menu {
 
+    @Getter
     protected String name;
+
+    @Getter
     protected Inventory inventory;
     protected ArrayList<MenuItem> menuItems;
     protected Main mainInstance;
@@ -70,13 +74,5 @@ public class Menu {
             }
         }
         return null;
-    }
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public String getName() {
-        return name;
     }
 }
