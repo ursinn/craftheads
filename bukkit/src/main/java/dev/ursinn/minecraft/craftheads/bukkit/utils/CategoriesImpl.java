@@ -11,24 +11,25 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.Enumeration;
 import java.util.Objects;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 public class CategoriesImpl implements Categories {
 
     @Getter
     private final JSONArray headCategories = new JSONArray();
-    private final FileHelper fileHelper;
     private final Main mainInstance;
 
     public CategoriesImpl() {
-        this.fileHelper = new FileHelper();
         mainInstance = Main.getInstance();
     }
 
     @Override
     public void loadFiles() {
         if (mainInstance.getConfig().getBoolean("reset-categories")) {
-            fileHelper.extractFiles("categories/");
+            extractFiles("categories/");
             mainInstance.getConfig().set("reset-categories", false);
             mainInstance.saveConfig();
         }
@@ -54,6 +55,23 @@ public class CategoriesImpl implements Categories {
                     }
                 }
             }
+        }
+    }
+
+    private void extractFiles(String dir) {
+        try {
+            JarFile jarfile = new JarFile(mainInstance.getPluginFile());
+
+            Enumeration<JarEntry> entries = jarfile.entries();
+            while (entries.hasMoreElements()) {
+                final String name = entries.nextElement().getName();
+                if (name.startsWith(dir) && !dir.equals(name)) {
+                    mainInstance.saveResource(name, true);
+                }
+            }
+            jarfile.close();
+        } catch (IOException e) {
+            mainInstance.getLogger().warning(String.valueOf(e));
         }
     }
 }

@@ -1,9 +1,9 @@
 "commit_message": "[ci skip]"
 "preserve_hierarchy": true
 files: [
- {
-  "source" : "/core/src/main/resources/languages/en.properties",
-  "translation" : "/core/src/main/resources/languages/%two_letters_code%.properties",
-  "type": "properties",
- }
+  {
+    "source": "/core/src/main/resources/languages/en.properties",
+    "translation": "/core/src/main/resources/languages/%two_letters_code%.properties",
+    "type": "properties",
+  }
 ]

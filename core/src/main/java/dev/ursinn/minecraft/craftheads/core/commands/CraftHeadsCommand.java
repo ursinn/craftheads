@@ -2,12 +2,10 @@ package dev.ursinn.minecraft.craftheads.core.commands;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandIssuer;
-import co.aikar.commands.annotation.CatchUnknown;
-import co.aikar.commands.annotation.CommandAlias;
-import co.aikar.commands.annotation.Default;
-import co.aikar.commands.annotation.Description;
-import dev.ursinn.minecraft.craftheads.core.utils.Language;
-import dev.ursinn.minecraft.craftheads.core.utils.MessageManager;
+import co.aikar.commands.Locales;
+import co.aikar.commands.MessageKeys;
+import co.aikar.commands.annotation.*;
+import dev.ursinn.minecraft.craftheads.core.utils.LocalMessageKeys;
 
 /**
  * @author Ursin Filli
@@ -16,31 +14,23 @@ import dev.ursinn.minecraft.craftheads.core.utils.MessageManager;
  */
 @CommandAlias("craftheads")
 @Description("CraftHeads Command")
+@CommandPermission("craftheads.use")
 public class CraftHeadsCommand extends BaseCommand {
 
+    private static final String PREFIX = "{prefix}";
+
     private final CommandHelper commandHelper;
-    private final MessageManager msg;
-    private final Language language;
 
     public CraftHeadsCommand(CommandHelper commandHelper) {
         this.commandHelper = commandHelper;
-        this.msg = commandHelper.getMessageManager();
-        this.language = commandHelper.getLanguage();
     }
 
     @Default
     @CatchUnknown
     public void onCommand(CommandIssuer sender, String[] args) {
+        Locales locales = getCurrentCommandManager().getLocales();
         if (!sender.isPlayer()) {
-            sender.sendMessage(language.getMessage("error.console", "You can only run this command as a player."));
-            return;
-        }
-
-        Object player = sender.getIssuer();
-
-        String permission = "craftheads.use";
-        if (!sender.hasPermission(permission)) {
-            msg.bad(player, language.getMessage("error.permission", "You don't have permission to use this command."));
+            sender.sendMessage(locales.getMessage(sender, MessageKeys.NOT_ALLOWED_ON_CONSOLE));
             return;
         }
 
@@ -56,14 +46,18 @@ public class CraftHeadsCommand extends BaseCommand {
         if (commandHelper.hasEconomy()) {
             double balance = commandHelper.getBalance(sender);
             if (balance < otherHeadPrice && otherHeadPrice > 0) {
-                msg.bad(player, language.getMessage("error.money.player", "You can't your afford this player's head!"));
+                sender.sendMessage(locales.getMessage(sender, LocalMessageKeys.NOT_ENOUGH_MONEY)
+                        .replace(PREFIX, locales.getMessage(sender, LocalMessageKeys.PREFIX))
+                );
                 return;
             }
         }
 
         // Check if the inventory is full
         if (commandHelper.isInventoryFull(sender)) {
-            msg.bad(player, language.getMessage("error.inv", "Your inventory is full!"));
+            sender.sendMessage(locales.getMessage(sender, LocalMessageKeys.INVENTORY_FULL)
+                    .replace(PREFIX, locales.getMessage(sender, LocalMessageKeys.PREFIX))
+            );
             return;
         }
 
@@ -71,14 +65,17 @@ public class CraftHeadsCommand extends BaseCommand {
 
         if (commandHelper.hasEconomy() && otherHeadPrice > 0) {
             commandHelper.withdrawPlayer(sender, otherHeadPrice);
-            msg.good(player, language.getMessage("give.buy",
-                    "You bought &b%playerName%&a's head for &b %otherHeadPrice%"
-                            .replace("%playerName%", playerName)
-                            .replace("%otherHeadPrice%", String.valueOf(otherHeadPrice))));
+            sender.sendMessage(locales.getMessage(sender, LocalMessageKeys.HEAD_BUY)
+                    .replace("{playerName}", playerName)
+                    .replace("{headPrice}", String.valueOf(otherHeadPrice))
+                    .replace(PREFIX, locales.getMessage(sender, LocalMessageKeys.PREFIX))
+            );
         }
 
-        commandHelper.giveSkull(sender, language, playerName);
-        msg.good(player, language.getMessage("give.give", "You now have %args0%'s head!")
-                .replace("%args0%", args[0]));
+        commandHelper.giveSkull(sender, locales, playerName);
+        sender.sendMessage(locales.getMessage(sender, LocalMessageKeys.HEAD_GIVE)
+                .replace("{playerName}", playerName)
+                .replace(PREFIX, locales.getMessage(sender, LocalMessageKeys.PREFIX))
+        );
     }
 }

@@ -1,5 +1,6 @@
 package me.deejayarroba.craftheads.menu;
 
+import co.aikar.commands.Locales;
 import com.mojang.authlib.GameProfile;
 import dev.ursinn.utils.bukkit.reflections.ReflectionsBukkit;
 import lombok.Getter;
@@ -22,10 +23,12 @@ public class Menu {
     protected Inventory inventory;
     protected ArrayList<MenuItem> menuItems;
     protected Main mainInstance;
+    protected Locales locales;
 
     public Menu() {
         menuItems = new ArrayList<>();
         mainInstance = Main.getInstance();
+        locales = mainInstance.getCommandManager().getLocales();
     }
 
     // Places the MenuItems in the inventory

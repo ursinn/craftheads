@@ -1,7 +1,9 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
+import dev.ursinn.minecraft.craftheads.core.utils.LocalMessageKeys;
 import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import dev.ursinn.utils.bukkit.skull.SkullBukkit;
+import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.menu.MenuManager;
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 public class CategoriesMenu extends Menu {
 
     public CategoriesMenu() {
-        name = mainInstance.getLanguage().getMessage("menu.categories", "Categories");
+        name = Main.getInstance().messageFormatter(locales.getMessage(null, LocalMessageKeys.MENU_CATEGORIES_NAME));
         menuItems = new ArrayList<>();
 
         run();
