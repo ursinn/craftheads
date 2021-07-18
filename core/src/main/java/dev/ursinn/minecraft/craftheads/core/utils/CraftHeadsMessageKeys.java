@@ -5,7 +5,7 @@ import co.aikar.locales.MessageKeyProvider;
 
 import java.util.Locale;
 
-public enum LocalMessageKeys implements MessageKeyProvider {
+public enum CraftHeadsMessageKeys implements MessageKeyProvider {
     PREFIX,
     MENU_MAIN_NAME,
     MENU_MAIN_OWN_HEAD_NAME,

@@ -1,6 +1,6 @@
 package me.deejayarroba.craftheads.listeners;
 
-import dev.ursinn.minecraft.craftheads.core.utils.LocalMessageKeys;
+import dev.ursinn.minecraft.craftheads.core.utils.CraftHeadsMessageKeys;
 import me.deejayarroba.craftheads.Main;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -12,7 +12,9 @@ public class PlayerJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        if (!Main.getInstance().getConfig().getBoolean("update-check")) {
+        Main mainInstance = Main.getInstance();
+
+        if (!mainInstance.getConfig().getBoolean("update-check")) {
             return;
         }
 
@@ -20,13 +22,10 @@ public class PlayerJoin implements Listener {
             return;
         }
 
-        if (!Main.getInstance().getUpdateChecker().isUpdateAvailable()) {
+        if (!mainInstance.getUpdateChecker().isUpdateAvailable()) {
             return;
         }
 
-        player.sendMessage(
-                Main.getInstance().messageFormatter(
-                        Main.getInstance().getCommandManager().getLocales().getMessage(
-                                null, LocalMessageKeys.UPDATE_AVAILABLE)));
+        player.sendMessage(mainInstance.messageFormatter(CraftHeadsMessageKeys.UPDATE_AVAILABLE));
     }
 }

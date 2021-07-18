@@ -5,7 +5,7 @@ import co.aikar.commands.CommandIssuer;
 import co.aikar.commands.Locales;
 import co.aikar.commands.MessageKeys;
 import co.aikar.commands.annotation.*;
-import dev.ursinn.minecraft.craftheads.core.utils.LocalMessageKeys;
+import dev.ursinn.minecraft.craftheads.core.utils.CraftHeadsMessageKeys;
 
 /**
  * @author Ursin Filli
@@ -46,8 +46,8 @@ public class CraftHeadsCommand extends BaseCommand {
         if (commandHelper.hasEconomy()) {
             double balance = commandHelper.getBalance(sender);
             if (balance < otherHeadPrice && otherHeadPrice > 0) {
-                sender.sendMessage(locales.getMessage(sender, LocalMessageKeys.NOT_ENOUGH_MONEY)
-                        .replace(PREFIX, locales.getMessage(sender, LocalMessageKeys.PREFIX))
+                sender.sendMessage(locales.getMessage(sender, CraftHeadsMessageKeys.NOT_ENOUGH_MONEY)
+                        .replace(PREFIX, locales.getMessage(sender, CraftHeadsMessageKeys.PREFIX))
                 );
                 return;
             }
@@ -55,8 +55,8 @@ public class CraftHeadsCommand extends BaseCommand {
 
         // Check if the inventory is full
         if (commandHelper.isInventoryFull(sender)) {
-            sender.sendMessage(locales.getMessage(sender, LocalMessageKeys.INVENTORY_FULL)
-                    .replace(PREFIX, locales.getMessage(sender, LocalMessageKeys.PREFIX))
+            sender.sendMessage(locales.getMessage(sender, CraftHeadsMessageKeys.INVENTORY_FULL)
+                    .replace(PREFIX, locales.getMessage(sender, CraftHeadsMessageKeys.PREFIX))
             );
             return;
         }
@@ -65,17 +65,17 @@ public class CraftHeadsCommand extends BaseCommand {
 
         if (commandHelper.hasEconomy() && otherHeadPrice > 0) {
             commandHelper.withdrawPlayer(sender, otherHeadPrice);
-            sender.sendMessage(locales.getMessage(sender, LocalMessageKeys.HEAD_BUY)
+            sender.sendMessage(locales.getMessage(sender, CraftHeadsMessageKeys.HEAD_BUY)
                     .replace("{playerName}", playerName)
                     .replace("{headPrice}", String.valueOf(otherHeadPrice))
-                    .replace(PREFIX, locales.getMessage(sender, LocalMessageKeys.PREFIX))
+                    .replace(PREFIX, locales.getMessage(sender, CraftHeadsMessageKeys.PREFIX))
             );
         }
 
         commandHelper.giveSkull(sender, locales, playerName);
-        sender.sendMessage(locales.getMessage(sender, LocalMessageKeys.HEAD_GIVE)
+        sender.sendMessage(locales.getMessage(sender, CraftHeadsMessageKeys.HEAD_GIVE)
                 .replace("{playerName}", playerName)
-                .replace(PREFIX, locales.getMessage(sender, LocalMessageKeys.PREFIX))
+                .replace(PREFIX, locales.getMessage(sender, CraftHeadsMessageKeys.PREFIX))
         );
     }
 }

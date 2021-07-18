@@ -68,6 +68,11 @@
             <groupId>dev.ursinn.utils</groupId>
             <artifactId>bukkit-skull</artifactId>
         </dependency>
+        <!-- Smart Invs -->
+        <dependency>
+            <groupId>fr.minuskube.inv</groupId>
+            <artifactId>smart-invs</artifactId>
+        </dependency>
         <!-- JSR305 [Annotation] -->
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
@@ -107,6 +112,11 @@
                             <pattern>co.aikar.locales</pattern>
                             <!-- Replace this with your package! -->
                             <shadedPattern>dev.ursinn.minecraft.craftheads.bukkit.lib.locales</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>fr.minuskube.inv</pattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>dev.ursinn.minecraft.craftheads.bukkit.lib.inv</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>

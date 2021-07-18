@@ -1,33 +1,31 @@
 package me.deejayarroba.craftheads;
 
 import co.aikar.commands.BukkitMessageFormatter;
+import co.aikar.commands.Locales;
 import co.aikar.commands.MessageType;
 import co.aikar.commands.PaperCommandManager;
 import dev.ursinn.minecraft.craftheads.bukkit.commands.CommandHelperImpl;
 import dev.ursinn.minecraft.craftheads.bukkit.utils.CategoriesImpl;
+import dev.ursinn.minecraft.craftheads.core.MainInterface;
 import dev.ursinn.minecraft.craftheads.core.commands.CraftHeadsCommand;
 import dev.ursinn.minecraft.craftheads.core.utils.Categories;
-import dev.ursinn.minecraft.craftheads.core.utils.LocalMessageKeys;
+import dev.ursinn.minecraft.craftheads.core.utils.CraftHeadsMessageKeys;
 import dev.ursinn.utils.bukkit.skull.SkullBukkit;
 import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
 import dev.ursinn.utils.minecraft.checker.UpdateChecker;
 import dev.ursinn.utils.minecraft.checker.UpdatePlatform;
+import fr.minuskube.inv.InventoryManager;
 import lombok.Getter;
-import me.deejayarroba.craftheads.listeners.InvClickEvent;
 import me.deejayarroba.craftheads.listeners.PlayerJoin;
-import me.deejayarroba.craftheads.menu.MenuManager;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public class Main extends JavaPlugin {
+public class Main extends JavaPlugin implements MainInterface {
 
     private static final boolean DEV_BUILD = true;
     private static final String SPIGOT_PLUGIN_ID = "59481";
@@ -39,10 +37,12 @@ public class Main extends JavaPlugin {
     @Getter
     private UpdateChecker updateChecker;
     @Getter
-    private Economy economy;
-    @Getter
     private Categories categories;
     @Getter
+    private Economy economy;
+    @Getter
+    private InventoryManager inventoryManager;
+
     private PaperCommandManager commandManager;
 
     @Override
@@ -53,20 +53,17 @@ public class Main extends JavaPlugin {
 
         registerCommands();
 
-        updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this.getDescription().getName(), this.getDescription().getVersion(), UpdatePlatform.SPIGOT);
+        this.updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this.getDescription().getName(), this.getDescription().getVersion(), UpdatePlatform.SPIGOT);
 
-        economy = null;
+        this.economy = null;
         if (getConfig().getBoolean("economy")) {
             setupEconomy();
         }
 
-        categories = new CategoriesImpl();
-        categories.loadFiles();
-
-        MenuManager.setup();
+        this.categories = new CategoriesImpl();
+        getCategories().loadFiles();
 
 //        UtilsBukkit.registerListener("me.deejayarroba.craftheads.listeners", this);
-        getServer().getPluginManager().registerEvents(new InvClickEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 
         // This takes care of auto-updating and metrics
@@ -82,7 +79,7 @@ public class Main extends JavaPlugin {
             updateChecker.checkUpdate();
         }
 
-        if (isDevBuild()) {
+        if (DEV_BUILD) {
             getLogger().info("NMS Version: " + UtilsBukkit.getNmsVersion());
             if (SkullBukkit.get18Versions().contains(UtilsBukkit.getNmsVersion())) {
                 getLogger().info("Use 1.8 Heads");
@@ -91,20 +88,14 @@ public class Main extends JavaPlugin {
             }
         }
 
+        this.inventoryManager = new InventoryManager(this);
+        getInventoryManager().init();
+
     }
 
     @Override
     public void onDisable() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            Inventory inv = p.getOpenInventory().getTopInventory();
-            if (inv != null) {
-                if (MenuManager.getMenu(inv) == null) {
-                    continue;
-                }
-
-                p.closeInventory();
-            }
-        }
+        //
     }
 
     private void registerCommands() {
@@ -139,21 +130,26 @@ public class Main extends JavaPlugin {
         economy = rsp.getProvider();
     }
 
+    @Override
     public float getDefaultHeadPrice() {
         return getConfig().getInt("default-price");
     }
 
+    @Override
+    public float getOwnHeadPrice() {
+        return getConfig().getInt("player-own-head-price");
+    }
+
+    @Override
     public float getOtherHeadPrice() {
         return getConfig().getInt("player-other-head-price");
     }
 
-    public boolean isDevBuild() {
-        return DEV_BUILD;
-    }
-
-    public String messageFormatter(String message) {
-        return ChatColor.translateAlternateColorCodes('&', message)
-                .replace("{prefix}", commandManager.getLocales().getMessage(null, LocalMessageKeys.PREFIX))
+    @Override
+    public String messageFormatter(CraftHeadsMessageKeys localMessageKeys) {
+        Locales locales = commandManager.getLocales();
+        return ChatColor.translateAlternateColorCodes('&', locales.getMessage(null, localMessageKeys))
+                .replace("{prefix}", locales.getMessage(null, CraftHeadsMessageKeys.PREFIX))
                 .replace("<c1>", "§9").replace("</c1>", "§f")
                 .replace("<c2>", "§2").replace("</c2>", "§f")
                 .replace("<c3>", "§a").replace("</c3>", "§f")
