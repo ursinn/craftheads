@@ -17,8 +17,6 @@
 [![GitHub experimental release date](https://img.shields.io/github/release-date-pre/ursinn/craftheads?label=Released&logo=github)](https://github.com/ursinn/craftheads/releases)
 [![Github experimental release downloads](https://img.shields.io/github/downloads-pre/ursinn/craftheads/latest/total?label=Downloads&logo=github)](https://github.com/ursinn/craftheads/releases)
 
----
-
 ![CraftHeads logo](http://i.imgur.com/WqkRLhF.png)
 
 This plugin allows you to get player heads with an easy to use in-game GUI
