@@ -1,10 +1,13 @@
 # CraftHeads
 
-[![Build Status](https://ci.ursinn.dev/job/ursinn/job/craftheads/job/develop/badge/icon)](https://ci.ursinn.dev/job/ursinn/job/craftheads/job/develop/)
+<!--
+[![Jenkins](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads&logo=jenkins&style=for-the-badge)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
+-->
 [![Crowdin](https://badges.crowdin.net/craftheads/localized.svg)](https://crowdin.com/project/craftheads)
 [![Codecov](https://img.shields.io/codecov/c/gh/ursinn/craftheads?label=Coverage&logo=codecov)](https://app.codecov.io/gh/ursinn/craftheads)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/ursinn/craftheads?label=Maintainability)](https://codeclimate.com/github/ursinn/craftheads)
-[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ursinn/craftheads?label=Vulnerabilities)](https://snyk.io/test/github/ursinn/craftheads)
+[![GitHub last commit](https://img.shields.io/github/last-commit/ursinn/craftheads?logo=github)](https://github.com/ursinn/craftheads/commits)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/ursinn/craftheads?logo=codeclimate)](https://codeclimate.com/github/ursinn/craftheads)
+[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ursinn/craftheads?logo=snyk)](https://snyk.io/test/github/ursinn/craftheads)
 
 [![GitHub stable release version](https://img.shields.io/github/release/ursinn/craftheads?label=Stable&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
 [![GitHub stable release date](https://img.shields.io/github/release-date/ursinn/craftheads?label=Released&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
