@@ -2,20 +2,19 @@
 
 <!--
 [![Jenkins](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.ursinn.dev%2Fjob%2Fursinn%2Fjob%2Fcraftheads&logo=jenkins&style=for-the-badge)](https://ci.ursinn.dev/job/ursinn/job/craftheads)
--->
 [![Crowdin](https://badges.crowdin.net/craftheads/localized.svg)](https://crowdin.com/project/craftheads)
-[![Codecov](https://img.shields.io/codecov/c/gh/ursinn/craftheads?label=Coverage&logo=codecov)](https://app.codecov.io/gh/ursinn/craftheads)
-[![GitHub last commit](https://img.shields.io/github/last-commit/ursinn/craftheads?logo=github)](https://github.com/ursinn/craftheads/commits)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/ursinn/craftheads?logo=codeclimate)](https://codeclimate.com/github/ursinn/craftheads)
-[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ursinn/craftheads?logo=snyk)](https://snyk.io/test/github/ursinn/craftheads)
+-->
+[![GitHub last commit](https://img.shields.io/github/last-commit/ursinn/craftheads?logo=github&style=for-the-badge)](https://github.com/ursinn/craftheads/commits)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability/ursinn/craftheads?logo=codeclimate&style=for-the-badge)](https://codeclimate.com/github/ursinn/craftheads)
+[![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/ursinn/craftheads?logo=snyk&style=for-the-badge)](https://snyk.io/test/github/ursinn/craftheads)
 
-[![GitHub stable release version](https://img.shields.io/github/release/ursinn/craftheads?label=Stable&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
-[![GitHub stable release date](https://img.shields.io/github/release-date/ursinn/craftheads?label=Released&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
-[![Github stable release downloads](https://img.shields.io/github/downloads/ursinn/craftheads/latest/total?label=Downloads&logo=github)](https://github.com/ursinn/craftheads/releases/latest)
+[![GitHub stable release version](https://img.shields.io/github/release/ursinn/craftheads?logo=github&style=for-the-badge)](https://github.com/ursinn/craftheads/releases/latest)
+[![GitHub stable release date](https://img.shields.io/github/release-date/ursinn/craftheads?logo=github&style=for-the-badge)](https://github.com/ursinn/craftheads/releases/latest)
+[![Github stable release downloads](https://img.shields.io/github/downloads/ursinn/craftheads/latest/total?logo=github&style=for-the-badge)](https://github.com/ursinn/craftheads/releases/latest)
 
-[![GitHub experimental release version](https://img.shields.io/github/release/ursinn/craftheads/all?label=Experimental&logo=github)](https://github.com/ursinn/craftheads/releases)
-[![GitHub experimental release date](https://img.shields.io/github/release-date-pre/ursinn/craftheads?label=Released&logo=github)](https://github.com/ursinn/craftheads/releases)
-[![Github experimental release downloads](https://img.shields.io/github/downloads-pre/ursinn/craftheads/latest/total?label=Downloads&logo=github)](https://github.com/ursinn/craftheads/releases)
+[![GitHub experimental release version](https://img.shields.io/github/release/ursinn/craftheads/all?include_prereleases&logo=github&style=for-the-badge)](https://github.com/ursinn/craftheads/releases)
+[![GitHub experimental release date](https://img.shields.io/github/release-date-pre/ursinn/craftheads?logo=github&style=for-the-badge)](https://github.com/ursinn/craftheads/releases)
+[![Github experimental release downloads](https://img.shields.io/github/downloads-pre/ursinn/craftheads/latest/total?logo=github&style=for-the-badge)](https://github.com/ursinn/craftheads/releases)
 
 ![CraftHeads logo](http://i.imgur.com/WqkRLhF.png)
 
