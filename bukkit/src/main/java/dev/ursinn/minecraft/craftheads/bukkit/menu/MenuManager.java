@@ -9,6 +9,10 @@ import org.json.simple.JSONObject;
 
 public class MenuManager {
 
+    private MenuManager() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static final SmartInventory MAIN_MENU = getInventory(CraftHeadsMessageKeys.MENU_MAIN_NAME, new MainMenu(), 1);
     public static final SmartInventory CATEGORIES_MENU = getInventory(CraftHeadsMessageKeys.MENU_CATEGORIES_NAME, new CategoriesMenu(), calcRows(Main.getInstance().getCategories().getHeadCategories().size()));
 
