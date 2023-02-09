@@ -37,7 +37,7 @@ This plugin allows you to get player heads with an easy to use in-game GUI
 ## **Configuration**
 
 You can read the documentation for the default configuration
-file [here](https://github.com/ursinn/CraftHeads/blob/master/src/main/resources/config.yml).
+file [here](https://github.com/ursinn/craftheads/blob/main/core/src/main/resources/config.yml).
 
 ## Metrics
 
