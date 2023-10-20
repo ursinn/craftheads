@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>dev.ursinn.minecraft.craftheads</groupId>
+        <artifactId>parent</artifactId>
+        <version>5.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>bukkit</artifactId>
+    <version>5.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>CraftHeads Bukkit</name>
+    <description>Head decoration plugin</description>
+    <url>https://github.com/ursinn/craftheads</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- CraftHeads Core -->
+        <dependency>
+            <groupId>dev.ursinn.minecraft.craftheads</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+        <!-- Bukkit -->
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+        </dependency>
+        <!-- Vault -->
+        <dependency>
+            <groupId>com.github.MilkBowl</groupId>
+            <artifactId>VaultAPI</artifactId>
+        </dependency>
+        <!-- bStats Bukkit -->
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+        </dependency>
+        <!-- Commands Paper -->
+        <dependency>
+            <groupId>net.gmcbm.dependencies</groupId>
+            <artifactId>acf-paper</artifactId>
+        </dependency>
+        <!-- Utils -->
+        <dependency>
+            <groupId>dev.ursinn.utils</groupId>
+            <artifactId>bukkit-utils</artifactId>
+        </dependency>
+        <!-- Utils -->
+        <dependency>
+            <groupId>dev.ursinn.utils</groupId>
+            <artifactId>minecraft-checker</artifactId>
+        </dependency>
+        <!-- Utils -->
+        <dependency>
+            <groupId>dev.ursinn.utils</groupId>
+            <artifactId>bukkit-builder</artifactId>
+        </dependency>
+        <!-- Utils -->
+        <dependency>
+            <groupId>dev.ursinn.utils</groupId>
+            <artifactId>bukkit-skull</artifactId>
+        </dependency>
+        <!-- Smart Invs -->
+        <dependency>
+            <groupId>fr.minuskube.inv</groupId>
+            <artifactId>smart-invs</artifactId>
+        </dependency>
+        <!-- JSR305 [Annotation] -->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+        </dependency>
+        <!-- Lombok [Annotation] -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Compiler Plugin -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+            </plugin>
+            <!-- Shade Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <configuration>
+                    <relocations>
+                        <relocation>
+                            <pattern>org.bstats</pattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>dev.ursinn.minecraft.craftheads.bukkit.lib.metrics</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>co.aikar.commands</pattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>dev.ursinn.minecraft.craftheads.bukkit.lib.acf</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>co.aikar.locales</pattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>dev.ursinn.minecraft.craftheads.bukkit.lib.locales</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>fr.minuskube.inv</pattern>
+                            <!-- Replace this with your package! -->
+                            <shadedPattern>dev.ursinn.minecraft.craftheads.bukkit.lib.inv</shadedPattern>
+                        </relocation>
+                    </relocations>
+                </configuration>
+            </plugin>
+            <!-- Surefire Plugin -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+            <!-- Javadoc Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+            </plugin>
+            <!-- Source Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+            </plugin>
+            <!-- Deploy Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+            </plugin>
+            <!-- Release Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+            <!-- Jacoco Plugin -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>
