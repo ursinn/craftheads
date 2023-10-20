@@ -7,8 +7,9 @@ import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
 import me.deejayarroba.craftheads.listeners.InvClickEvent;
 import me.deejayarroba.craftheads.listeners.PlayerJoin;
 import me.deejayarroba.craftheads.menu.MenuManager;
-import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.utils.AbstractCommand;
+import me.deejayarroba.craftheads.utils.Categories;
+import me.deejayarroba.craftheads.utils.CategoriesImpl;
 import me.deejayarroba.craftheads.utils.Language;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
@@ -17,18 +18,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.Enumeration;
-import java.util.Objects;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 public class Main extends JavaPlugin {
 
@@ -43,11 +34,11 @@ public class Main extends JavaPlugin {
     @Getter
     private static Language language;
     @Getter
+    private static Categories categories;
+    @Getter
     private UpdateChecker updateChecker;
     @Getter
     private Economy economy;
-
-    public static JSONArray HEAD_CATEGORIES = new JSONArray();
 
     @Override
     public void onEnable() {
@@ -96,8 +87,9 @@ public class Main extends JavaPlugin {
 
         // Dev Build NMS Debug Info
         if (isDevBuild()) {
-            getLogger().info("NMS Version: " + Skulls.getNmsVersion());
-            if (Skulls.get1_8Versions().contains(Skulls.getNmsVersion())) {
+            String NmsVersion = UtilsBukkit.getNmsVersion();
+            getLogger().info("NMS Version: " + NmsVersion);
+            if (SkullBukkit.get18Versions().contains(NmsVersion)) {
                 getLogger().info("Use 1.8 Heads");
             } else {
                 getLogger().info("Use 1.13 Heads");
@@ -132,40 +124,8 @@ public class Main extends JavaPlugin {
     }
 
     private void loadCategories() {
-
-        JSONParser parser = new JSONParser();
-
-        if (getConfig().getBoolean("reset-categories")) {
-            JarFile jarfile;
-            try {
-                jarfile = new JarFile(getPluginFile());
-
-                Enumeration<JarEntry> entries = jarfile.entries();
-                while (entries.hasMoreElements()) {
-                    final String name = entries.nextElement().getName();
-                    if (name.startsWith("categories/") && !name.equals("categories/")) {
-                        saveResource(name, true);
-                    }
-                }
-                jarfile.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            getConfig().set("reset-categories", false);
-            saveConfig();
-        }
-
-        for (File file : Objects.requireNonNull(getDataFolder().listFiles()))
-            if (file.isDirectory())
-                if (file.getName().equals("categories"))
-                    for (File categoryFile : Objects.requireNonNull(file.listFiles()))
-                        if (categoryFile.isFile())
-                            try {
-                                HEAD_CATEGORIES.add(parser.parse(new String(Files.readAllBytes(categoryFile.toPath()), StandardCharsets.UTF_8)));
-                            } catch (IOException | ParseException e) {
-                                e.printStackTrace();
-                            }
+        categories = new CategoriesImpl();
+        categories.loadFiles();
     }
 
     public float getDefaultHeadPrice() {

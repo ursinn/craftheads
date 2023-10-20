@@ -31,8 +31,8 @@ public class MenuManager {
         categoriesMenu = new CategoriesMenu();
         add(categoriesMenu);
 
-        for (int i = 0; i < Main.HEAD_CATEGORIES.size(); i++) {
-            JSONObject category = (JSONObject) Main.HEAD_CATEGORIES.get(i);
+        for (int i = 0; i < Main.getCategories().getHeadCategories().size(); i++) {
+            JSONObject category = (JSONObject) Main.getCategories().getHeadCategories().get(i);
             CategoryMenu categoryMenu = new CategoryMenu(category);
             categoryMenus.add(categoryMenu);
             add(categoryMenu);
