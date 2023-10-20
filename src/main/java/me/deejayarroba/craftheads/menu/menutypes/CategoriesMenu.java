@@ -18,7 +18,7 @@ public class CategoriesMenu extends Menu {
         menuItems = new ArrayList<>();
 
         // Loop through all the categories
-        for (Object o : Main.HEAD_CATEGORIES) {
+        for (Object o : Main.getCategories().getHeadCategories()) {
             final JSONObject category = (JSONObject) o;
 
             menuItems.add(new MenuItem(
