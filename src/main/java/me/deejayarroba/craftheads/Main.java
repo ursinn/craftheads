@@ -98,14 +98,15 @@ public class Main extends JavaPlugin {
             }
         }
 
+        // Dev Build NMS Debug Info
         if (isDevBuild()) {
-            System.out.println("NMS Version: " + Skulls.getNmsVersion());
-            if (Skulls.get1_8Versions().contains(Skulls.getNmsVersion()))
-                System.out.println("Use 1.8 Heads");
-            else
-                System.out.println("Use 1.13 Heads");
+            getLogger().info("NMS Version: " + Skulls.getNmsVersion());
+            if (Skulls.get1_8Versions().contains(Skulls.getNmsVersion())) {
+                getLogger().info("Use 1.8 Heads");
+            } else {
+                getLogger().info("Use 1.13 Heads");
+            }
         }
-
     }
 
     @Override
