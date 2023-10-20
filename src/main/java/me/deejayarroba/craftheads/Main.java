@@ -48,8 +48,6 @@ public class Main extends JavaPlugin {
     private Economy economy;
 
     public static JSONArray HEAD_CATEGORIES = new JSONArray();
-    public static float defaultHeadPrice;
-
 
     @Override
     public void onEnable() {
@@ -68,8 +66,6 @@ public class Main extends JavaPlugin {
         }
 
         loadCategories();
-
-        defaultHeadPrice = getConfig().getInt("default-price");
 
         MenuManager.setup();
 
@@ -170,5 +166,9 @@ public class Main extends JavaPlugin {
                             } catch (IOException | ParseException e) {
                                 e.printStackTrace();
                             }
+    }
+
+    public float getDefaultHeadPrice() {
+        return getConfig().getInt("default-price");
     }
 }
