@@ -35,6 +35,7 @@ public class Main extends JavaPlugin {
     @Getter
     private static final boolean devBuild = true;
     private static final String SPIGOT_PLUGIN_ID = "59481";
+    private static final int METRICS_PLUGIN_ID = 3033;
 
     @Getter
     private UpdateChecker updateChecker;
@@ -81,11 +82,15 @@ public class Main extends JavaPlugin {
         AbstractCommand craftHeadsCommand = new CraftHeadsCommand("craftheads", "/<command>", "The main CraftHeads command.");
         craftHeadsCommand.register();
 
-        // This takes care of auto-updating and metrics
+
         if (!isDevBuild()) {
+            // Metrics
             if (getConfig().getBoolean("metrics")) {
-                Metrics metrics = new Metrics(this, 3033);
-                metrics.addCustomChart(new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
+                Metrics metrics = new Metrics(this, METRICS_PLUGIN_ID);
+                metrics.addCustomChart(
+                        new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
+                metrics.addCustomChart(
+                        new Metrics.SimplePie("economy", () -> getConfig().getString("economy", "false")));
             }
 
             // Update Check
