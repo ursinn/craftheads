@@ -32,7 +32,8 @@ import java.util.jar.JarFile;
 
 public class Main extends JavaPlugin {
 
-    public static boolean devBuild = true;
+    @Getter
+    private static final boolean devBuild = true;
     private static final String SPIGOT_PLUGIN_ID = "59481";
 
     @Getter
@@ -81,7 +82,7 @@ public class Main extends JavaPlugin {
         craftHeadsCommand.register();
 
         // This takes care of auto-updating and metrics
-        if (!devBuild) {
+        if (!isDevBuild()) {
             if (getConfig().getBoolean("metrics")) {
                 Metrics metrics = new Metrics(this, 3033);
                 metrics.addCustomChart(new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
@@ -93,7 +94,7 @@ public class Main extends JavaPlugin {
             }
         }
 
-        if (devBuild) {
+        if (isDevBuild()) {
             System.out.println("NMS Version: " + Skulls.getNmsVersion());
             if (Skulls.get1_8Versions().contains(Skulls.getNmsVersion()))
                 System.out.println("Use 1.8 Heads");
