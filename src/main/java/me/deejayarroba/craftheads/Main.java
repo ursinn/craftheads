@@ -1,5 +1,8 @@
 package me.deejayarroba.craftheads;
 
+import dev.ursinn.utils.minecraft.checker.UpdateChecker;
+import dev.ursinn.utils.minecraft.checker.UpdatePlatform;
+import lombok.Getter;
 import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
 import me.deejayarroba.craftheads.listeners.InvClickEvent;
 import me.deejayarroba.craftheads.listeners.PlayerJoin;
@@ -7,7 +10,6 @@ import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.utils.AbstractCommand;
 import me.deejayarroba.craftheads.utils.Language;
-import me.deejayarroba.craftheads.utils.UpdateChecker;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
@@ -31,13 +33,16 @@ import java.util.jar.JarFile;
 public class Main extends JavaPlugin {
 
     public static boolean devBuild = true;
+    private static final String SPIGOT_PLUGIN_ID = "59481";
+
+    @Getter
+    private UpdateChecker updateChecker;
 
     public static JSONArray HEAD_CATEGORIES = new JSONArray();
     public static Economy economy = null;
     public static float defaultHeadPrice;
     private static Main instance;
     private static Language language;
-    public UpdateChecker updateChecker = new UpdateChecker(59481, this);
 
     public static Main getInstance() {
         return instance;
@@ -51,6 +56,8 @@ public class Main extends JavaPlugin {
     public void onEnable() {
 
         saveDefaultConfig();
+
+        this.updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this.getDescription().getName(), this.getDescription().getVersion(), UpdatePlatform.SPIGOT);
 
         instance = this;
         language = new Language();
@@ -80,8 +87,9 @@ public class Main extends JavaPlugin {
                 metrics.addCustomChart(new Metrics.SimplePie("language", () -> getConfig().getString("language", "en")));
             }
 
+            // Update Check
             if (getConfig().getBoolean("update-check")) {
-                updateChecker.checkUpdates.start();
+                updateChecker.checkUpdate();
             }
         }
 
