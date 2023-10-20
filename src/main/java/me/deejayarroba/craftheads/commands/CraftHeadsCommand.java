@@ -40,8 +40,8 @@ public class CraftHeadsCommand extends AbstractCommand {
 
                     float otherHeadPrice = Main.getInstance().getConfig().getInt("player-other-head-price");
 
-                    if (Main.economy != null) {
-                        double balance = Main.economy.getBalance(p);
+                    if (Main.getInstance().getEconomy() != null) {
+                        double balance = Main.getInstance().getEconomy().getBalance(p);
                         if (balance < otherHeadPrice && otherHeadPrice > 0) {
                             msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.money.player", "You can't your afford this player's head!")));
                             return true;
@@ -58,8 +58,8 @@ public class CraftHeadsCommand extends AbstractCommand {
                                 .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%args0%", args[0])))
                                 .build();
 
-                        if (Main.economy != null && otherHeadPrice > 0) {
-                            Main.economy.withdrawPlayer(p, otherHeadPrice);
+                        if (Main.getInstance().getEconomy() != null && otherHeadPrice > 0) {
+                            Main.getInstance().getEconomy().withdrawPlayer(p, otherHeadPrice);
                             msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("give.buy", "You bought &b%playerName%&a's head for &b %otherHeadPrice%".replaceAll("%playerName%", playerName).replaceAll("%otherHeadPrice%", String.valueOf(otherHeadPrice)))));
                         }
 

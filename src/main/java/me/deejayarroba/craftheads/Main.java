@@ -39,9 +39,10 @@ public class Main extends JavaPlugin {
 
     @Getter
     private UpdateChecker updateChecker;
+    @Getter
+    private Economy economy;
 
     public static JSONArray HEAD_CATEGORIES = new JSONArray();
-    public static Economy economy = null;
     public static float defaultHeadPrice;
     private static Main instance;
     private static Language language;
@@ -61,12 +62,14 @@ public class Main extends JavaPlugin {
 
         this.updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this.getDescription().getName(), this.getDescription().getVersion(), UpdatePlatform.SPIGOT);
 
+        this.economy = null;
+        if (getConfig().getBoolean("economy")) {
+            setupEconomy();
+        }
+
         instance = this;
         language = new Language();
         language.createLanguageFile();
-
-        if (getConfig().getBoolean("economy"))
-            setupEconomy();
 
         loadCategories();
 
@@ -123,15 +126,16 @@ public class Main extends JavaPlugin {
         return getFile();
     }
 
-    private boolean setupEconomy() {
-        if (getServer().getPluginManager().getPlugin("Vault") == null)
-            return false;
+    private void setupEconomy() {
+        if (getServer().getPluginManager().getPlugin("Vault") == null) {
+            return;
+        }
 
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null)
-            return false;
+        if (rsp == null) {
+            return;
+        }
         economy = rsp.getProvider();
-        return economy != null;
     }
 
     private void loadCategories() {
