@@ -6,7 +6,7 @@
 
     <groupId>me.deejayarroba</groupId>
     <artifactId>CraftHeads</artifactId>
-    <version>4.4.2-rc1</version>
+    <version>4.4.2</version>
     <packaging>jar</packaging>
 
     <name>CraftHeads</name>
@@ -63,7 +63,7 @@
                         <format>html</format>
                         <format>xml</format>
                     </formats>
-                    <check />
+                    <check/>
                 </configuration>
             </plugin>
         </plugins>
