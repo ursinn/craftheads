@@ -40,7 +40,7 @@ public class MainMenu extends Menu {
         final float ownHeadPrice = Main.getInstance().getConfig().getInt("player-own-head-price");
         final float otherHeadPrice = Main.getInstance().getConfig().getInt("player-other-head-price");
 
-        if (Main.economy != null) {
+        if (Main.getInstance().getEconomy() != null) {
 
             if (ownHeadPrice > 0) {
                 ownHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.price", "&bPrice: &a%price%").replaceAll("%price%", String.valueOf(ownHeadPrice))));
@@ -57,8 +57,8 @@ public class MainMenu extends Menu {
 
         menuItems.add(0, new MenuItem(ownHeadBuilder.build(),
                 p -> {
-                    if (Main.economy != null) {
-                        double balance = Main.economy.getBalance(p);
+                    if (Main.getInstance().getEconomy() != null) {
+                        double balance = Main.getInstance().getEconomy().getBalance(p);
                         if (balance < ownHeadPrice) {
                             // Player can't afford the head
                             msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.money.own", "You can't your afford your own head!")));
@@ -75,9 +75,9 @@ public class MainMenu extends Menu {
                                 .build();
                         p.getInventory().addItem(head);
 
-                        if (Main.economy != null && ownHeadPrice > 0) {
+                        if (Main.getInstance().getEconomy() != null && ownHeadPrice > 0) {
                             // Player can afford the head
-                            Main.economy.withdrawPlayer(p, ownHeadPrice);
+                            Main.getInstance().getEconomy().withdrawPlayer(p, ownHeadPrice);
                             msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("buy.own", "You bought your own head for &b%ownHeadPrice%").replaceAll("%ownHeadPrice%", String.valueOf(ownHeadPrice))));
                         }
 
