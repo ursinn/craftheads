@@ -1,5 +1,6 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
+import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 public class CategoryMenu extends Menu {
 
+    @Getter
     JSONObject category;
     MessageManager msg = MessageManager.getInstance();
 
@@ -73,10 +75,6 @@ public class CategoryMenu extends Menu {
 
         placeItems();
 
-    }
-
-    public JSONObject getCategory() {
-        return category;
     }
 
 }
