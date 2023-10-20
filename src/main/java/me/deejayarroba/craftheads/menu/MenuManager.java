@@ -1,5 +1,6 @@
 package me.deejayarroba.craftheads.menu;
 
+import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.menutypes.CategoriesMenu;
 import me.deejayarroba.craftheads.menu.menutypes.CategoryMenu;
@@ -15,6 +16,7 @@ public class MenuManager {
     public static MainMenu mainMenu;
     public static CategoriesMenu categoriesMenu;
     public static ArrayList<CategoryMenu> categoryMenus = new ArrayList<>();
+    @Getter
     private static List<Menu> menus = new ArrayList<>();
 
     // Shortcut to add a menu
@@ -35,11 +37,6 @@ public class MenuManager {
             categoryMenus.add(categoryMenu);
             add(categoryMenu);
         }
-    }
-
-    // Get all the menus
-    public static List<Menu> getMenus() {
-        return menus;
     }
 
     // Get a menu from its name
