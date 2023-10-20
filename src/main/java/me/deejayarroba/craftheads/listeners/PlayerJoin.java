@@ -13,7 +13,7 @@ public class PlayerJoin implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (!Main.devBuild) {
+        if (!Main.isDevBuild()) {
             return;
         }
 
