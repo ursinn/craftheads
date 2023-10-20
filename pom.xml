@@ -126,13 +126,13 @@
     </dependencies>
 
     <distributionManagement>
-        <repository>
-            <id>nexus.filli-it.ch</id>
-            <url>https://nexus.filli-it.ch/repository/maven-releases/</url>
-        </repository>
         <snapshotRepository>
-            <id>nexus.filli-it.ch</id>
-            <url>https://nexus.filli-it.ch/repository/maven-snapshots/</url>
+            <id>ossrh-s01</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
+        <repository>
+            <id>ossrh-s01</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
     </distributionManagement>
 </project>
