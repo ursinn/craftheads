@@ -30,7 +30,7 @@ public class Skulls {
      * @return itemstack
      */
     public static ItemStack getCustomSkull(String url) {
-        GameProfile profile = new GameProfile(UUID.randomUUID(), "");
+        GameProfile profile = new GameProfile(UUID.randomUUID(), "profile");
         PropertyMap propertyMap = profile.getProperties();
         if (propertyMap == null) {
             throw new IllegalStateException("Profile doesn't contain a property map");
