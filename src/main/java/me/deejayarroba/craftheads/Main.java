@@ -38,27 +38,27 @@ public class Main extends JavaPlugin {
     private static final int METRICS_PLUGIN_ID = 3033;
 
     @Getter
+    private static Main instance;
+
+    @Getter
+    private static Language language;
+    @Getter
     private UpdateChecker updateChecker;
     @Getter
     private Economy economy;
 
     public static JSONArray HEAD_CATEGORIES = new JSONArray();
     public static float defaultHeadPrice;
-    private static Main instance;
-    private static Language language;
 
-    public static Main getInstance() {
-        return instance;
-    }
-
-    public static Language getLanguage() {
-        return language;
-    }
 
     @Override
     public void onEnable() {
+        instance = this;
 
         saveDefaultConfig();
+
+        language = new Language();
+        language.createLanguageFile();
 
         this.updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this.getDescription().getName(), this.getDescription().getVersion(), UpdatePlatform.SPIGOT);
 
@@ -66,10 +66,6 @@ public class Main extends JavaPlugin {
         if (getConfig().getBoolean("economy")) {
             setupEconomy();
         }
-
-        instance = this;
-        language = new Language();
-        language.createLanguageFile();
 
         loadCategories();
 
