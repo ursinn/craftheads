@@ -1,11 +1,11 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
+import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
-import me.deejayarroba.craftheads.utils.Items;
 import org.bukkit.ChatColor;
 import org.json.simple.JSONObject;
 
@@ -22,7 +22,7 @@ public class CategoriesMenu extends Menu {
             final JSONObject category = (JSONObject) o;
 
             menuItems.add(new MenuItem(
-                    Items.editor(Skulls.getCustomSkull((String) category.get("URL")))
+                    new ItemBuilderBukkit(Skulls.getCustomSkull((String) category.get("URL")))
                             .setName(ChatColor.GOLD + (String) category.get("Name"))
                             .build(),
                     p -> {

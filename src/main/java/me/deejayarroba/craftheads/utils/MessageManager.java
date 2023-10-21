@@ -10,9 +10,6 @@ public class MessageManager {
     private static MessageManager instance = new MessageManager();
     String prefix = ChatColor.DARK_GRAY + "[" + ChatColor.GREEN + "CraftHeads" + ChatColor.DARK_GRAY + "] " + ChatColor.RESET;
 
-    private MessageManager() {
-    }
-
     public void info(Player p, String msg) {
         msg(p, ChatColor.YELLOW, msg);
     }
@@ -26,8 +23,6 @@ public class MessageManager {
     }
 
     public void msg(Player p, ChatColor color, String msg) {
-
-        p.sendMessage(prefix + color + msg);
-
+        p.sendMessage(prefix + color + ChatColor.translateAlternateColorCodes('&', msg));
     }
 }

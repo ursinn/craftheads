@@ -1,5 +1,8 @@
 package me.deejayarroba.craftheads;
 
+import dev.ursinn.utils.bukkit.reflections.ReflectionsBukkit;
+import dev.ursinn.utils.bukkit.skull.SkullBukkit;
+import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
 import dev.ursinn.utils.minecraft.checker.UpdateChecker;
 import dev.ursinn.utils.minecraft.checker.UpdatePlatform;
 import lombok.Getter;
@@ -49,7 +52,7 @@ public class Main extends JavaPlugin {
         language = new Language();
         language.createLanguageFile();
 
-        this.updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this.getDescription().getName(), this.getDescription().getVersion(), UpdatePlatform.SPIGOT);
+        this.updateChecker = new UpdateChecker(SPIGOT_PLUGIN_ID, this.getDescription().getName(), this.getDescription().getVersion(), UpdatePlatform.SPIGOT, null);
 
         this.economy = null;
         if (getConfig().getBoolean("economy")) {
@@ -87,9 +90,8 @@ public class Main extends JavaPlugin {
 
         // Dev Build NMS Debug Info
         if (isDevBuild()) {
-            String NmsVersion = UtilsBukkit.getNmsVersion();
-            getLogger().info("NMS Version: " + NmsVersion);
-            if (SkullBukkit.get18Versions().contains(NmsVersion)) {
+            getLogger().info("NMS Version: " + ReflectionsBukkit.getNmsVersion());
+            if (SkullBukkit.get18Versions().contains(ReflectionsBukkit.getNmsVersion())) {
                 getLogger().info("Use 1.8 Heads");
             } else {
                 getLogger().info("Use 1.13 Heads");
