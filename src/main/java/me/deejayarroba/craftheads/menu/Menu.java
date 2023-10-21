@@ -9,18 +9,16 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
-import java.util.List;
 
+@Getter
 public abstract class Menu {
 
-    @Getter
     protected String name;
-    @Getter
     protected Inventory inventory;
-    protected ArrayList<MenuItem> menuItems = new ArrayList<>();
+    protected ArrayList<MenuItem> menuItems;
 
     public Menu() {
-
+        menuItems = new ArrayList<>();
     }
 
     // Places the MenuItems in the inventory
@@ -40,10 +38,6 @@ public abstract class Menu {
             MenuItem menuItem = menuItems.get(i);
             inventory.setItem(i, menuItem.getItemStack());
         }
-    }
-
-    public List<MenuItem> getMenuItems() {
-        return menuItems;
     }
 
     public MenuItem getMenuItem(ItemStack itemStack) {

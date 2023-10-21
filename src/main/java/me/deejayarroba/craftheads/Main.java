@@ -1,5 +1,7 @@
 package me.deejayarroba.craftheads;
 
+import dev.ursinn.utils.bukkit.skull.SkullBukkit;
+import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
 import dev.ursinn.utils.minecraft.checker.UpdateChecker;
 import dev.ursinn.utils.minecraft.checker.UpdatePlatform;
 import lombok.Getter;

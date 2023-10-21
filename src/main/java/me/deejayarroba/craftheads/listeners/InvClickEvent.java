@@ -20,22 +20,24 @@ public class InvClickEvent implements Listener {
         ItemStack clickedItem = event.getCurrentItem();
 
         // Check if the inventory is the menu
-        if (MenuManager.getMenu(inventory) != null) {
-            // Cancel the event to prevent the user from placing an item in the menu
-            event.setCancelled(true);
-            Menu menu = MenuManager.getMenu(inventory);
-
-            if (clickedItem != null && clickedItem.getType() != Material.AIR) {
-                // Check if the menu contains the clicked item
-                assert menu != null;
-                if (menu.getInventory().contains(clickedItem)) {
-                    MenuItem menuItem = menu.getMenuItem(clickedItem);
-                    // Execute the menu item's action
-                    menuItem.executeAction(p);
-                }
-            }
-
+        if (MenuManager.getMenu(inventory) == null) {
+            return;
         }
 
+        // Cancel the event to prevent the user from placing an item in the menu
+        event.setCancelled(true);
+        Menu menu = MenuManager.getMenu(inventory);
+
+        if (clickedItem == null || clickedItem.getType() == Material.AIR) {
+            return;
+        }
+
+        // Check if the menu contains the clicked item
+        assert menu != null;
+        if (menu.getInventory().contains(clickedItem)) {
+            MenuItem menuItem = menu.getMenuItem(clickedItem);
+            // Execute the menu item's action
+            menuItem.executeAction(p);
+        }
     }
 }

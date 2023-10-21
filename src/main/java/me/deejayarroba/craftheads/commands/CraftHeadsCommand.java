@@ -24,61 +24,62 @@ public class CraftHeadsCommand extends AbstractCommand {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (cmd.getName().equalsIgnoreCase("craftheads")) {
-            if (sender instanceof Player) {
-                Player p = (Player) sender;
-
-                if (!sender.hasPermission("craftheads.use")) {
-                    msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.permission", "You don't have permission to use this command.")));
-                    return false;
-                }
-
-                if (args.length > 0) {
-
-                    // Here the command would be: /craftheads <playername>
-
-                    // TODO: implement buying other people's heads
-
-                    float otherHeadPrice = Main.getInstance().getConfig().getInt("player-other-head-price");
-
-                    if (Main.getInstance().getEconomy() != null) {
-                        double balance = Main.getInstance().getEconomy().getBalance(p);
-                        if (balance < otherHeadPrice && otherHeadPrice > 0) {
-                            msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.money.player", "You can't your afford this player's head!")));
-                            return true;
-                        }
-                    }
-
-                    // Check if the inventory is full
-                    if (p.getInventory().firstEmpty() == -1) {
-                        msg.bad(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!")));
-                        return true;
-                    } else {
-                        String playerName = args[0];
-                        ItemStack head = Items.editor(Skulls.getPlayerSkull(playerName))
-                                .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%args0%", args[0])))
-                                .build();
-
-                        if (Main.getInstance().getEconomy() != null && otherHeadPrice > 0) {
-                            Main.getInstance().getEconomy().withdrawPlayer(p, otherHeadPrice);
-                            msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("give.buy", "You bought &b%playerName%&a's head for &b %otherHeadPrice%".replaceAll("%playerName%", playerName).replaceAll("%otherHeadPrice%", String.valueOf(otherHeadPrice)))));
-                        }
-
-                        p.getInventory().addItem(head);
-                        msg.good(p, ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("give.give", "You now have %args0%'s head!").replaceAll("%args0%", args[0])));
-                        return true;
-                    }
-                } else {
-                    // Open the menu
-
-                    Inventory inv = MenuManager.mainMenu.getInventory();
-                    p.openInventory(inv);
-
-                    return true;
-                }
-            } else {
+            if (!(sender instanceof Player)) {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("error.console", "You can only run this command as a player.")));
                 return true;
             }
+            Player p = (Player) sender;
+
+            if (!sender.hasPermission("craftheads.use")) {
+                msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.permission", "You don't have permission to use this command."));
+                return false;
+            }
+
+            if (args.length > 0) {
+
+                // Here the command would be: /craftheads <playername>
+
+                // TODO: implement buying other people's heads
+
+                float otherHeadPrice = Main.getInstance().getConfig().getInt("player-other-head-price");
+
+                if (Main.getInstance().getEconomy() != null) {
+                    double balance = Main.getInstance().getEconomy().getBalance(p);
+                    if (balance < otherHeadPrice && otherHeadPrice > 0) {
+                        msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.money.player", "You can't your afford this player's head!"));
+                        return true;
+                    }
+                }
+
+                // Check if the inventory is full
+                if (p.getInventory().firstEmpty() == -1) {
+                    msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!"));
+                    return true;
+                }
+
+                String playerName = args[0];
+                ItemStack head = Items.editor(Skulls.getPlayerSkull(playerName))
+                        .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%")
+                                .replaceAll("%args0%", args[0])))
+                        .build();
+
+                if (Main.getInstance().getEconomy() != null && otherHeadPrice > 0) {
+                    Main.getInstance().getEconomy().withdrawPlayer(p, otherHeadPrice);
+                    msg.good(p, Main.getLanguage().getLanguageConfig().getString("give.buy", "You bought &b%playerName%&a's head for &b %otherHeadPrice%"
+                            .replaceAll("%playerName%", playerName).replaceAll("%otherHeadPrice%", String.valueOf(otherHeadPrice))));
+                }
+
+                p.getInventory().addItem(head);
+                msg.good(p, Main.getLanguage().getLanguageConfig().getString("give.give", "You now have %args0%'s head!")
+                        .replaceAll("%args0%", args[0]));
+            } else {
+                // Open the menu
+
+                Inventory inv = MenuManager.mainMenu.getInventory();
+                p.openInventory(inv);
+            }
+
+            return true;
         }
         return false;
     }
