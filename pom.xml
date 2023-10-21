@@ -57,7 +57,7 @@
         <dependency.utils.version>1.0.0-SNAPSHOT</dependency.utils.version>
         <!-- Dependency Versions [Annotation] -->
         <dependency.jsr305.version>3.0.2</dependency.jsr305.version>
-        <dependency.lombok.version>1.18.28</dependency.lombok.version>
+        <dependency.lombok.version>1.18.30</dependency.lombok.version>
     </properties>
 
     <repositories>
