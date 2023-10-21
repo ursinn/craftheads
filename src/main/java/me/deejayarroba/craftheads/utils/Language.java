@@ -1,5 +1,6 @@
 package me.deejayarroba.craftheads.utils;
 
+import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -11,13 +12,10 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+@Getter
 public class Language {
 
     private FileConfiguration languageConfig;
-
-    public FileConfiguration getLanguageConfig() {
-        return languageConfig;
-    }
 
     public void createLanguageFile() {
         File languageFile = new File(Main.getInstance().getDataFolder() + "/lang", Main.getInstance().getConfig().getString("language", "en") + ".yml");

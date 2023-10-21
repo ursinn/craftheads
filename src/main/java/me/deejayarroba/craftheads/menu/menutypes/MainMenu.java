@@ -1,11 +1,12 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
+import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
+import dev.ursinn.utils.bukkit.skull.SkullBukkit;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.skulls.Skulls;
-import me.deejayarroba.craftheads.utils.Items;
 import me.deejayarroba.craftheads.utils.MessageManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -22,12 +23,11 @@ public class MainMenu extends Menu {
     public MainMenu() {
         name = Main.getLanguage().getLanguageConfig().getString("menu.name", "CraftHeads menu");
 
-        final Items.ItemStackBuilder ownHeadBuilder = Items.builder()
+        final ItemBuilderBukkit ownHeadBuilder = new ItemBuilderBukkit(SkullBukkit.getSkullMaterial())
                 .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.own", "§6Get your own head")))
-                .setMaterial(Skulls.getPlayerSkullMaterial())
-                .setData((short) SkullType.PLAYER.ordinal());
+                .setDurability((short) SkullType.PLAYER.ordinal());
 
-        Items.ItemStackBuilder otherHeadBuilder = Items.editor(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
+        final ItemBuilderBukkit otherHeadBuilder = new ItemBuilderBukkit(Skulls.getCustomSkull(OTHER_PLAYER_ITEM_URL))
                 .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.other", "§6Get someone else's head")))
                 .addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.lore.other", "§a§oUse: §e§o/craftheads <player name>")));
 
@@ -68,7 +68,7 @@ public class MainMenu extends Menu {
                         msg.bad(p, Main.getLanguage().getLanguageConfig().getString("error.inv", "Your inventory is full!"));
                         return;
                     }
-                    ItemStack head = Items.editor(Skulls.getPlayerSkull(p.getName()))
+                    ItemStack head = new ItemBuilderBukkit(SkullBukkit.getPlayerSkull(p.getName()))
                             .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%args0%", p.getName())))
                             .build();
                     p.getInventory().addItem(head);
@@ -85,7 +85,7 @@ public class MainMenu extends Menu {
 
                 }));
 
-        getMenuItems().add(new MenuItem(Items.editor(Skulls.getCustomSkull(CATEGORIES_ITEM_URL))
+        getMenuItems().add(new MenuItem(new ItemBuilderBukkit(Skulls.getCustomSkull(CATEGORIES_ITEM_URL))
                 .setName(ChatColor.GOLD + Main.getLanguage().getLanguageConfig().getString("menu.categories", "Categories"))
                 .build(),
                 p -> {

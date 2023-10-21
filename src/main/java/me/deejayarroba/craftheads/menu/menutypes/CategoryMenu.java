@@ -1,11 +1,11 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
+import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.Menu;
 import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.skulls.Skulls;
-import me.deejayarroba.craftheads.utils.Items;
 import me.deejayarroba.craftheads.utils.MessageManager;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
@@ -30,7 +30,7 @@ public class CategoryMenu extends Menu {
             final JSONObject head = (JSONObject) o;
             final float price = (long) head.get("Price") > 0 ? (long) head.get("Price") : Main.getInstance().getDefaultHeadPrice();
 
-            Items.ItemStackBuilder itemStackBuilder = Items.editor(Skulls.getCustomSkull((String) head.get("URL")))
+            ItemBuilderBukkit itemStackBuilder = new ItemBuilderBukkit(Skulls.getCustomSkull((String) head.get("URL")))
                     .setName(ChatColor.AQUA + "" + ChatColor.BOLD + head.get("Name"));
 
             if (useEconomy) {
@@ -44,7 +44,7 @@ public class CategoryMenu extends Menu {
             final ItemStack itemStack = itemStackBuilder.build();
 
             menuItems.add(new MenuItem(itemStack, p -> {
-                ItemStack headItem = Items.editor(Skulls.getCustomSkull((String) head.get("URL")))
+                ItemStack headItem = new ItemBuilderBukkit(Skulls.getCustomSkull((String) head.get("URL")))
                         .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%args0%", head.get("Name").toString())))
                         .build();
 
