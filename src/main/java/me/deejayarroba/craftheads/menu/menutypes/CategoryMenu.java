@@ -35,7 +35,7 @@ public class CategoryMenu extends Menu {
 
             if (useEconomy) {
                 if (price > 0) {
-                    itemStackBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.price", "&bPrice: &a%price%").replaceAll("%price%", String.valueOf(price))));
+                    itemStackBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.price", "&bPrice: &a%price%").replace("%price%", String.valueOf(price))));
                 } else {
                     itemStackBuilder.addLore(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("menu.buy.free", "&bPrice: &aFREE")));
                 }
@@ -45,7 +45,7 @@ public class CategoryMenu extends Menu {
 
             menuItems.add(new MenuItem(itemStack, p -> {
                 ItemStack headItem = new ItemBuilderBukkit(Skulls.getCustomSkull((String) head.get("URL")))
-                        .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%args0%", head.get("Name").toString())))
+                        .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replace("%args0%", head.get("Name").toString())))
                         .build();
 
                 if (useEconomy) {
@@ -67,12 +67,12 @@ public class CategoryMenu extends Menu {
                     // Player can afford the head
                     Main.getInstance().getEconomy().withdrawPlayer(p, price);
                     msg.good(p, Main.getLanguage().getLanguageConfig().getString("give.item.buy", "You bought a head for &b%price%")
-                            .replaceAll("%price%", String.valueOf(price)));
+                            .replace("%price%", String.valueOf(price)));
                 }
 
                 p.getInventory().addItem(headItem);
                 msg.good(p, Main.getLanguage().getLanguageConfig().getString("give.item.give", "You now have: %item%")
-                        .replaceAll("%item%", itemStack.getItemMeta().getDisplayName()));
+                        .replace("%item%", itemStack.getItemMeta().getDisplayName()));
             }
             ));
         }

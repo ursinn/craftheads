@@ -60,18 +60,18 @@ public class CraftHeadsCommand extends AbstractCommand {
                 String playerName = args[0];
                 ItemStack head = new ItemBuilderBukkit(SkullBukkit.getPlayerSkull(playerName))
                         .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%")
-                                .replaceAll("%args0%", args[0])))
+                                .replace("%args0%", args[0])))
                         .build();
 
                 if (Main.getInstance().getEconomy() != null && otherHeadPrice > 0) {
                     Main.getInstance().getEconomy().withdrawPlayer(p, otherHeadPrice);
                     msg.good(p, Main.getLanguage().getLanguageConfig().getString("give.buy", "You bought &b%playerName%&a's head for &b %otherHeadPrice%"
-                            .replaceAll("%playerName%", playerName).replaceAll("%otherHeadPrice%", String.valueOf(otherHeadPrice))));
+                            .replace("%playerName%", playerName).replace("%otherHeadPrice%", String.valueOf(otherHeadPrice))));
                 }
 
                 p.getInventory().addItem(head);
                 msg.good(p, Main.getLanguage().getLanguageConfig().getString("give.give", "You now have %args0%'s head!")
-                        .replaceAll("%args0%", args[0]));
+                        .replace("%args0%", args[0]));
             } else {
                 // Open the menu
 

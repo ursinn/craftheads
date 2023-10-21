@@ -42,10 +42,10 @@ public class MainMenu extends Menu {
             String otherHeadLore = priceFree;
 
             if (ownHeadPrice > 0) {
-                ownHeadLore = priceCost.replaceAll("%price%", String.valueOf(ownHeadPrice));
+                ownHeadLore = priceCost.replace("%price%", String.valueOf(ownHeadPrice));
             }
             if (otherHeadPrice > 0) {
-                otherHeadLore = priceCost.replaceAll("%price%", String.valueOf(otherHeadPrice));
+                otherHeadLore = priceCost.replace("%price%", String.valueOf(otherHeadPrice));
             }
 
             ownHeadBuilder.addLore(ChatColor.translateAlternateColorCodes('&', ownHeadLore));
@@ -69,7 +69,7 @@ public class MainMenu extends Menu {
                         return;
                     }
                     ItemStack head = new ItemBuilderBukkit(SkullBukkit.getPlayerSkull(p.getName()))
-                            .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replaceAll("%args0%", p.getName())))
+                            .setName(ChatColor.translateAlternateColorCodes('&', Main.getLanguage().getLanguageConfig().getString("item", "&6Head: &b%args0%").replace("%args0%", p.getName())))
                             .build();
                     p.getInventory().addItem(head);
 
@@ -77,7 +77,7 @@ public class MainMenu extends Menu {
                         // Player can afford the head
                         Main.getInstance().getEconomy().withdrawPlayer(p, ownHeadPrice);
                         msg.good(p, Main.getLanguage().getLanguageConfig().getString("buy.own", "You bought your own head for &b%ownHeadPrice%")
-                                .replaceAll("%ownHeadPrice%", String.valueOf(ownHeadPrice)));
+                                .replace("%ownHeadPrice%", String.valueOf(ownHeadPrice)));
                     }
 
                     msg.good(p, Main.getLanguage().getLanguageConfig().getString("give.own", "You now have your own head!"));
