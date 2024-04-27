@@ -1,41 +1,55 @@
 package me.deejayarroba.craftheads.menu.menutypes;
 
 import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
+import dev.ursinn.utils.bukkit.skull.SkullBukkit;
+import fr.minuskube.inv.ClickableItem;
+import fr.minuskube.inv.content.InventoryContents;
+import fr.minuskube.inv.content.InventoryProvider;
+import fr.minuskube.inv.content.Pagination;
+import fr.minuskube.inv.content.SlotIterator;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.Menu;
-import me.deejayarroba.craftheads.menu.MenuItem;
 import me.deejayarroba.craftheads.menu.MenuManager;
-import me.deejayarroba.craftheads.skulls.Skulls;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 import org.json.simple.JSONObject;
 
-import java.util.ArrayList;
+public class CategoriesMenu extends Menu implements InventoryProvider {
 
-public class CategoriesMenu extends Menu {
+    @Override
+    public void init(Player player, InventoryContents contents) {
+        Pagination pagination = contents.pagination();
 
-    public CategoriesMenu() {
-        name = Main.getLanguage().getLanguageConfig().getString("menu.categories", "Categories");
-        menuItems = new ArrayList<>();
+        int size = Main.getInstance().getCategories().getHeadCategories().size();
+        ClickableItem[] items = new ClickableItem[size];
 
-        // Loop through all the categories
-        for (Object o : Main.getCategories().getHeadCategories()) {
-            final JSONObject category = (JSONObject) o;
-
-            menuItems.add(new MenuItem(
-                    new ItemBuilderBukkit(Skulls.getCustomSkull((String) category.get("URL")))
-                            .setName(ChatColor.GOLD + (String) category.get("Name"))
-                            .build(),
-                    p -> {
-
-                        for (CategoryMenu categoryMenu : MenuManager.categoryMenus) {
-                            if (category.equals(categoryMenu.getCategory())) {
-                                p.openInventory(categoryMenu.getInventory());
-                            }
-                        }
-
-                    }));
+        for (int i = 0; i < size; i++) {
+            JSONObject category = (JSONObject) Main.getInstance().getCategories().getHeadCategories().get(i);
+            items[i] = ClickableItem.of(new ItemBuilderBukkit(SkullBukkit.getCustomSkull((String) category.get("URL")))
+                    .setName(ChatColor.GOLD + (String) category.get("Name"))
+                    .build(), (InventoryClickEvent inventoryClickEvent) -> MenuManager.getCategoryMenu(category).open(player));
         }
 
-        placeItems();
+        pagination.setItems(items);
+        if (size <= 54) {
+            pagination.setItemsPerPage(size);
+        } else {
+            pagination.setItemsPerPage(45);
+
+            contents.set(5, 3, ClickableItem.of(new ItemStack(Material.ARROW),
+                    e -> MenuManager.CATEGORIES_MENU.open(player, pagination.previous().getPage())));
+            contents.set(5, 5, ClickableItem.of(new ItemStack(Material.ARROW),
+                    e -> MenuManager.CATEGORIES_MENU.open(player, pagination.next().getPage())));
+        }
+
+        pagination.addToIterator(contents.newIterator(SlotIterator.Type.HORIZONTAL, 0, 0));
+    }
+
+    @Override
+    public void update(Player player, InventoryContents inventoryContents) {
+        //
     }
 }

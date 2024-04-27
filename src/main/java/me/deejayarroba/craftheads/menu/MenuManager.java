@@ -1,11 +1,14 @@
 package me.deejayarroba.craftheads.menu;
 
+import fr.minuskube.inv.SmartInventory;
+import fr.minuskube.inv.content.InventoryProvider;
 import lombok.Getter;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.menutypes.CategoriesMenu;
 import me.deejayarroba.craftheads.menu.menutypes.CategoryMenu;
 import me.deejayarroba.craftheads.menu.menutypes.MainMenu;
 import org.bukkit.inventory.Inventory;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
@@ -13,48 +16,35 @@ import java.util.List;
 
 public class MenuManager {
 
-    public static MainMenu mainMenu;
-    public static CategoriesMenu categoriesMenu;
-    public static ArrayList<CategoryMenu> categoryMenus = new ArrayList<>();
-    @Getter
-    private static List<Menu> menus = new ArrayList<>();
-
-    // Shortcut to add a menu
-    private static void add(Menu menu) {
-        menus.add(menu);
+    private MenuManager() {
+        throw new IllegalStateException("Utility class");
     }
 
-    // Initialization: create all the menus here
-    public static void setup() {
-        mainMenu = new MainMenu();
-        add(mainMenu);
-        categoriesMenu = new CategoriesMenu();
-        add(categoriesMenu);
+    public static final SmartInventory MAIN_MENU = getInventory(Main.getLanguage().getLanguageConfig().getString("menu.name", "CraftHeads menu"), new MainMenu(), 1);
+    public static final SmartInventory CATEGORIES_MENU = getInventory(Main.getLanguage().getLanguageConfig().getString("menu.categories", "Categories"), new CategoriesMenu(), calcRows(Main.getInstance().getCategories().getHeadCategories().size()));
 
-        for (int i = 0; i < Main.getCategories().getHeadCategories().size(); i++) {
-            JSONObject category = (JSONObject) Main.getCategories().getHeadCategories().get(i);
-            CategoryMenu categoryMenu = new CategoryMenu(category);
-            categoryMenus.add(categoryMenu);
-            add(categoryMenu);
-        }
+    public static SmartInventory getCategoryMenu(JSONObject category) {
+        return getInventory((String) category.get("Name"), new CategoryMenu(category), calcRows(((JSONArray) category.get("Heads")).size()));
     }
 
-    // Get a menu from its name
-    public static Menu getMenu(String name) {
-        for (Menu menu : getMenus()) {
-            if (menu.getName().equals(name))
-                return menu;
-        }
-        return null;
+    private static SmartInventory getInventory(String title, InventoryProvider inventoryProvider, int rows) {
+        return SmartInventory.builder()
+                .provider(inventoryProvider)
+                .size(rows, 9)
+                .title(title)
+                .manager(Main.getInstance().getInventoryManager())
+                .build();
     }
 
-    // Get a menu from its inventory
-    public static Menu getMenu(Inventory inv) {
-        for (Menu menu : getMenus()) {
-            if (menu.getInventory().equals(inv))
-                return menu;
+    private static int calcRows(int size) {
+        if (size > 54) {
+            return 6;
         }
-        return null;
+        int rest = size % 9;
+        if (rest == 0) {
+            return size / 9;
+        }
+        return (size / 9) + 1;
     }
 
 }

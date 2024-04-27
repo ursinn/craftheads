@@ -4,7 +4,6 @@ import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import dev.ursinn.utils.bukkit.skull.SkullBukkit;
 import me.deejayarroba.craftheads.Main;
 import me.deejayarroba.craftheads.menu.MenuManager;
-import me.deejayarroba.craftheads.skulls.Skulls;
 import me.deejayarroba.craftheads.utils.AbstractCommand;
 import me.deejayarroba.craftheads.utils.MessageManager;
 import org.bukkit.ChatColor;
@@ -71,7 +70,7 @@ public class CraftHeadsCommand extends AbstractCommand {
                 } else {
                     // Open the menu
 
-                    Inventory inv = MenuManager.mainMenu.getInventory();
+                    Inventory inv = MenuManager.MAIN_MENU.open(p);
                     p.openInventory(inv);
 
                     return true;

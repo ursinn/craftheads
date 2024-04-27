@@ -2,23 +2,18 @@ package me.deejayarroba.craftheads;
 
 import dev.ursinn.utils.bukkit.reflections.ReflectionsBukkit;
 import dev.ursinn.utils.bukkit.skull.SkullBukkit;
-import dev.ursinn.utils.bukkit.utils.UtilsBukkit;
 import dev.ursinn.utils.minecraft.checker.UpdateChecker;
 import dev.ursinn.utils.minecraft.checker.UpdatePlatform;
+import fr.minuskube.inv.InventoryManager;
 import lombok.Getter;
 import me.deejayarroba.craftheads.commands.CraftHeadsCommand;
-import me.deejayarroba.craftheads.listeners.InvClickEvent;
 import me.deejayarroba.craftheads.listeners.PlayerJoin;
-import me.deejayarroba.craftheads.menu.MenuManager;
 import me.deejayarroba.craftheads.utils.AbstractCommand;
 import me.deejayarroba.craftheads.utils.Categories;
 import me.deejayarroba.craftheads.utils.CategoriesImpl;
 import me.deejayarroba.craftheads.utils.Language;
 import net.milkbowl.vault.economy.Economy;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -42,6 +37,8 @@ public class Main extends JavaPlugin {
     private UpdateChecker updateChecker;
     @Getter
     private Economy economy;
+    @Getter
+    private InventoryManager inventoryManager;
 
     @Override
     public void onEnable() {
@@ -61,16 +58,15 @@ public class Main extends JavaPlugin {
 
         loadCategories();
 
-        MenuManager.setup();
-
         // Register the events
-        getServer().getPluginManager().registerEvents(new InvClickEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 
         // Register the command
         AbstractCommand craftHeadsCommand = new CraftHeadsCommand("craftheads", "/<command>", "The main CraftHeads command.");
         craftHeadsCommand.register();
 
+        this.inventoryManager = new InventoryManager(this);
+        this.inventoryManager.init();
 
         if (!isDevBuild()) {
             // Metrics
@@ -99,16 +95,6 @@ public class Main extends JavaPlugin {
         }
     }
 
-    @Override
-    public void onDisable() {
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            Inventory inv = p.getOpenInventory().getTopInventory();
-            if (inv != null)
-                if (MenuManager.getMenu(inv) != null)
-                    p.closeInventory();
-        }
-    }
-
     public File getPluginFile() {
         return getFile();
     }
@@ -132,5 +118,13 @@ public class Main extends JavaPlugin {
 
     public float getDefaultHeadPrice() {
         return getConfig().getInt("default-price");
+    }
+
+    public float getOwnHeadPrice() {
+        return getConfig().getInt("player-own-head-price");
+    }
+
+    public float getOtherHeadPrice() {
+        return getConfig().getInt("player-other-head-price");
     }
 }

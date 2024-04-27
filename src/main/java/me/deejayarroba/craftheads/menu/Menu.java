@@ -1,9 +1,10 @@
 package me.deejayarroba.craftheads.menu;
 
 import com.mojang.authlib.GameProfile;
-
+import dev.ursinn.utils.bukkit.builder.ItemBuilderBukkit;
 import dev.ursinn.utils.bukkit.reflections.ReflectionsBukkit;
 import lombok.Getter;
+import me.deejayarroba.craftheads.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -19,10 +20,6 @@ public abstract class Menu {
     @Getter
     protected Inventory inventory;
     protected ArrayList<MenuItem> menuItems = new ArrayList<>();
-
-    public Menu() {
-
-    }
 
     // Places the MenuItems in the inventory
     // Must be called in the constructor
@@ -68,6 +65,19 @@ public abstract class Menu {
             }
         }
         return null;
+    }
+
+    protected ItemBuilderBukkit addPriceLore(ItemBuilderBukkit item, double price) {
+        if (Main.getInstance().getEconomy() != null) {
+            if (price > 0) {
+                item.addLore("PRICE"
+                        .replace("{price}", String.valueOf(price)));
+            } else {
+                item.addLore("FREE");
+            }
+        }
+
+        return item;
     }
 
 }
